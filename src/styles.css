@@ -2,3 +2,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-4xl;
+    @apply sm:text-5xl;
+    @apply font-bold;
+    @apply text-gray-900;
+  }
+
+  h3 {
+    @apply text-base;
+    @apply font-semibold;
+  }
+
+  p {
+    @apply text-base;
+    @apply text-gray-500;
+  }
+
+  a {
+    @apply text-base;
+    @apply text-gray-700;
+  }
+}
