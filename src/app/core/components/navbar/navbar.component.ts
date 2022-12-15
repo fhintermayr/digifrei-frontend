@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {NavigationLinkModel} from "../../models/navigation-link.model";
+import {NavigationBarContentService} from "../../services/navigation-bar-content.service";
 
 @Component({
   selector: 'app-navbar',
@@ -28,13 +29,7 @@ import {NavigationLinkModel} from "../../models/navigation-link.model";
 export class NavbarComponent {
 
   isProfileDropdownOpen: boolean = false
-
-  navbarItems: NavigationLinkModel[] = [
-    { displayName: "Home", routerLink: "/home" },
-    { displayName: "Match", routerLink: "/match" },
-    { displayName: "Events", routerLink: "/events" },
-    { displayName: "Chat", routerLink: "/chat" }
-  ]
+  navigationLinks: NavigationLinkModel[] = this.navigationLinkService.getNavigationLinks()
 
   profileDropdownItems: NavigationLinkModel[] = [
     { displayName: "Admin Menu", routerLink: "/admin" },
@@ -42,6 +37,8 @@ export class NavbarComponent {
     { displayName: "Settings", routerLink: "/settings" },
     { displayName: "Sign out", routerLink: "/logout" }
 ]
+
+  constructor(private navigationLinkService: NavigationBarContentService) { }
 
   toggleProfileDropdown() {
     this.isProfileDropdownOpen = !this.isProfileDropdownOpen

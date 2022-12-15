@@ -1,5 +1,9 @@
 export class NavigationLinkModel {
-  public displayName?: string
-  public routerLink?: string
+  displayName: string
+  routerLink: string
 
+  constructor(displayName: string, routerLink: string) {
+    this.displayName = displayName;
+    this.routerLink = routerLink;
+  }
 }
