@@ -1,0 +1,29 @@
+<div [class.bg-slate-100]="isDisabled"
+     [class.border-red-600]="isInvalidAndTouched()"
+     [class.focus-within:ring-red-600]="isInvalidAndTouched()"
+     [class.focus-within:border-primary]="!isInvalidAndTouched()"
+     [class.focus-within:ring-primary]="!isInvalidAndTouched()"
+  class="relative rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:border-primary focus-within:ring-1 focus-within:ring-primary"
+>
+
+  <label [attr.for]="inputId ? inputId : null"
+         [class.required-field]="isRequired()"
+         [class.invalid-form-label]="isInvalidAndTouched()"
+         class="absolute -top-2 left-2 -mt-px inline-block bg-white px-1 text-xs font-medium text-gray-900">
+    <ng-content></ng-content>
+  </label>
+
+  <select [formControl]="control"
+         [attr.name]="inputId ? inputId : null"
+         [attr.id]="inputId ? inputId : null"
+         [required]="isRequired()"
+         class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm
+         disabled:bg-slate-100 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none disabled:cursor-not-allowed"
+  >
+      <option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+  </select>
+</div>
+
+<ng-container *ngIf="isInvalidAndTouched() && control.hasError('required')">
+  <p class="ml-1 mt-2 text-sm text-red-600">Feld wird benötigt</p>
+</ng-container>

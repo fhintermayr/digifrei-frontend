@@ -1,0 +1,94 @@
+<h2 class="sm:truncate sm:tracking-tight" xmlns="http://www.w3.org/1999/html">Register a new user</h2>
+
+<div class="mt-10 sm:mt-5 overflow-hidden shadow sm:rounded-md">
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="grid grid-cols-6 gap-6 bg-foreground px-4 py-8 sm:p-6">
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <app-shared-input
+              (input)="autofillDefaultUsername()"
+              [control]="registrationForm.controls.firstName"
+              [inputId]="'fist-name'"
+              [placeholder]="'Max'"
+            >First name</app-shared-input>
+          </div>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <app-shared-input
+              (input)="autofillDefaultUsername()"
+              [control]="registrationForm.controls.lastName"
+              [inputId]="'last-name'"
+              [placeholder]="'Mustermann'"
+            >Last name</app-shared-input>
+          </div>
+
+          <div class="col-span-6 sm:col-span-4 lg:col-span-3">
+            <app-shared-input
+              [control]="registrationForm.controls.username"
+              [inputId]="'username'"
+              [placeholder]="'max.mustermann'"
+            >Username</app-shared-input>
+          </div>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2 mb-8 sm:mb-4 lg:mb-0">
+            <app-shared-input
+              [control]="registrationForm.controls.password"
+              [inputId]="'password'"
+              [inputType]="'password'"
+            >Password</app-shared-input>
+          </div>
+
+          <div class="col-span-6 sm:col-start-1 lg:col-start-1 sm:col-span-2 lg:col-span-1">
+            <app-shared-input
+              [control]="registrationForm.controls.dateOfBirth"
+              [inputId]="'date-of-birth'"
+              [inputType]="'date'"
+            >Date of birth</app-shared-input>
+          </div>
+
+          <div class="col-span-6 sm:col-span-2 lg:col-span-1">
+            <app-shared-dropdown
+              [control]="registrationForm.controls.gender"
+              [options]="genderSelectOptions"
+            >Gender</app-shared-dropdown>
+          </div>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <app-shared-input
+              [control]="registrationForm.controls.profession"
+              [inputId]="'profession'"
+              [placeholder]="'Fachpraktiker Zerspanungsmechanik'"
+            >Profession</app-shared-input>
+          </div>
+
+          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+            <app-shared-input
+              [control]="registrationForm.controls.department"
+              [inputId]="'department'"
+              [placeholder]="'Metalltechnik'"
+            >Department</app-shared-input>
+          </div>
+
+          <div class="col-span-6 lg:col-start-1 sm:col-span-2 lg:col-span-1">
+            <app-shared-input
+              [control]="registrationForm.controls.roomNumber"
+              [inputId]="'room-number'"
+              [placeholder]="'2.1.13'"
+            >Room number</app-shared-input>
+          </div>
+
+          <div class="col-span-6 sm:col-span-2 lg:col-span-1">
+            <app-shared-dropdown
+              [control]="registrationForm.controls.accessRole"
+              [options]="accessRoleSelectOptions"
+            >Access role</app-shared-dropdown>
+          </div>
+
+        </div>
+
+      <div class="flex justify-end space-x-2 bg-gray-50 px-4 py-3 text-right sm:px-6">
+          <app-shared-button [routerLink]="'/admin'" [buttonDesign]="'secondary'">Cancel</app-shared-button>
+          <app-shared-button [buttonType]="'submit'" [isDisabled]="!registrationForm.valid" [buttonDesign]="'primary'">Register</app-shared-button>
+        </div>
+    </form>
+</div>

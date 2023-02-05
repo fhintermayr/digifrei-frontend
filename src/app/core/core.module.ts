@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
 import {NavbarComponent} from "./components/navbar/navbar.component";
 import {BottomNavbarComponent} from "./components/bottom-navbar/bottom-navbar.component";
-import {SafeHtmlPipe} from "../shared/pipes/safe-html.pipe";
 import {RouterLink, RouterLinkActive} from "@angular/router";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {SharedModule} from "../shared/shared.module";
+import {HttpClientModule} from "@angular/common/http";
+import {ToastrModule} from "ngx-toastr";
+import { NotificationComponent } from './components/notification/notification.component';
 
 
 
@@ -14,19 +16,20 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     PageNotFoundComponent,
     NavbarComponent,
     BottomNavbarComponent,
-    SafeHtmlPipe
+    NotificationComponent
   ],
   exports: [
     PageNotFoundComponent,
     NavbarComponent,
-    BottomNavbarComponent,
-    SafeHtmlPipe
+    BottomNavbarComponent
   ],
   imports: [
-    BrowserAnimationsModule,
     CommonModule,
+    HttpClientModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    SharedModule,
+    ToastrModule
   ]
 })
 export class CoreModule { }

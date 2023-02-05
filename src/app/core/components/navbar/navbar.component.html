@@ -1,13 +1,13 @@
-<nav class="sticky top-0 bg-foreground shadow">
+<nav class="sticky z-10 top-0 bg-foreground shadow">
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div class="relative flex h-16 justify-between">
 
       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
         <div class="flex flex-shrink-0 items-center">
-          <img class="block h-8 w-auto" src="../../../../assets/images/placeholder-logo.png" alt="ICP Match Logo">
+          <img routerLink="/" class="block h-6 w-auto cursor-pointer" src="../../../../assets/images/match_logo_black.png" alt="ICP Match Logo">
         </div>
         <div class="hidden lg:ml-6 lg:flex lg:space-x-8">
-          <a *ngFor="let navbarItem of navigationLinks" [routerLink]="navbarItem.routerLink" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700" routerLinkActive="border-primary text-gray-800">{{ navbarItem.displayName }}</a>
+          <a *ngFor="let navbarItem of navigationLinks" [routerLink]="navbarItem.routerLink" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm text-gray-500 hover:border-gray-300 hover:text-gray-700" routerLinkActive="border-primary text-gray-800">{{ navbarItem.title }}</a>
         </div>
       </div>
 
@@ -23,7 +23,7 @@
 
           <div [@showHideProfileDropdown]="isProfileDropdownOpen ? 'visible' : 'hidden'" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-foreground py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
             <!-- Active: "bg-gray-100", Not Active: "" -->
-            <a *ngFor="let profileDropdownItem of profileDropdownItems" [routerLink]="profileDropdownItem.routerLink" class="block px-4 py-2 text-sm text-gray-700" routerLinkActive="bg-gray-100" role="menuitem" tabindex="-1">{{ profileDropdownItem.displayName }}</a>
+            <a *ngFor="let profileDropdownItem of profileDropdownItems" [routerLink]="profileDropdownItem.routerLink" class="block px-4 py-2 text-sm text-gray-700" routerLinkActive="bg-gray-100" role="menuitem" tabindex="-1">{{ profileDropdownItem.title }}</a>
           </div>
         </div>
       </div>

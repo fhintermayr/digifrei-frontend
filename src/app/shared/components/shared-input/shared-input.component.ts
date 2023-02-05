@@ -1,0 +1,54 @@
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {FormControl, Validators} from "@angular/forms";
+
+@Component({
+  selector: 'app-shared-input',
+  templateUrl: './shared-input.component.html',
+  styleUrls: ['./shared-input.component.css']
+})
+export class SharedInputComponent implements OnChanges {
+
+  @Input()
+  inputType: string = "text"
+  @Input()
+  placeholder: string = ""
+  @Input()
+  isDisabled: boolean = false
+  @Input()
+  inputId?: string
+  @Input()
+  control: FormControl = new FormControl()
+
+  errorMessages: Record<string, string> = {
+    required: "Feld wird benötigt",
+    minlength: "Die Eingabe ist zu kurz",
+    maxlength: "Die Eingabe ist zu lang",
+    min: "Der übergebene Wert is zu klein",
+    max: "Der übergebene Wert is zu groß",
+    pattern: "Feld hat falsches Format",
+    usernameIsTaken: "Der Benutzername ist bereits vergeben",
+    unknownError: "Verfügbarkeit des Benutzernamens konnte nicht überprüft werden. " +
+                  "Bitte überprüfe deine Internetverbindung",
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.setDisabledState()
+  }
+
+  isInvalidAndTouched(): boolean {
+    return this.control.invalid && (this.control.touched || this.control.dirty)
+  }
+
+  isRequired(): boolean {
+    return this.control.hasValidator(Validators.required)
+  }
+
+  private setDisabledState(): void {
+    this.isDisabled ? this.control.disable() : this.control.enable()
+  }
+
+  setToNullIfStringIsEmpty() {
+    if (this.control.value === '') this.control.reset()
+  }
+
+}

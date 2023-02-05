@@ -1,9 +1,9 @@
-export class NavigationLinkModel {
-  displayName: string
+export class NavigationBarItemModel {
+  title: string
   routerLink: string
 
   constructor(displayName: string, routerLink: string) {
-    this.displayName = displayName;
+    this.title = displayName;
     this.routerLink = routerLink;
   }
 }

@@ -1,0 +1,35 @@
+<!-- I had to set the tailwind classes separately, because setting a custom class which contains
+     multiple tailwind classes won't be applied-->
+
+<div [class.bg-slate-100]="isDisabled"
+     [class.border-red-600]="isInvalidAndTouched()"
+     [class.focus-within:ring-red-600]="isInvalidAndTouched()"
+     [class.focus-within:border-primary]="!isInvalidAndTouched()"
+     [class.focus-within:ring-primary]="!isInvalidAndTouched()"
+     class="relative rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:ring-1"
+     >
+
+  <label [attr.for]="inputId ? inputId : null"
+         [class.required-field]="isRequired()"
+         [class.invalid-form-label]="isInvalidAndTouched()"
+         class="absolute -top-2 left-2 -mt-px inline-block bg-white px-1 text-xs font-medium text-gray-900"
+  >
+    <ng-content></ng-content>
+  </label>
+
+  <input [formControl]="control"
+         [type]="inputType"
+         [attr.name]="inputId ? inputId : null"
+         [attr.id]="inputId ? inputId : null"
+         [placeholder]="placeholder"
+         [required]="isRequired()"
+         [ngClass]="{'text-red-600': isInvalidAndTouched()}"
+         (input)="setToNullIfStringIsEmpty()"
+         class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm disabled:bg-slate-100
+         disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none disabled:cursor-not-allowed
+         placeholder:italic placeholder:text-slate-400 ">
+</div>
+
+<ng-container *ngIf="isInvalidAndTouched()">
+  <p *ngFor="let error of control.errors | keyvalue" class="ml-1 mt-2 text-sm text-red-600">{{ errorMessages[error.key] }}</p>
+</ng-container>

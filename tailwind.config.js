@@ -13,7 +13,7 @@ module.exports = {
           DEFAULT: '#188164',
           light: '#139a77'
         },
-        icon: '#6b7281',
+        icon: '#9ca3ae',
         foreground: '#ffffff',
         background: '#f3f6ff'
       },
@@ -22,5 +22,7 @@ module.exports = {
       },
     }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms')
+  ],
 }
