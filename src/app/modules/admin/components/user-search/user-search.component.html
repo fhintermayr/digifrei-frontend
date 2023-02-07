@@ -1,0 +1,49 @@
+<div class="mx-auto max-w-lg">
+  <div class="text-center">
+
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mx-auto h-12 w-12 text-icon">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+    </svg>
+
+    <h3>Search user</h3>
+    <p class="mt-1">Search here for a user to manage.</p>
+
+    <form class="mt-6 flex">
+      <app-shared-input #searchBar (input)="onInput(searchBar.control.value)" [inputType]="'search'"  [placeholder]="'Enter first name, last name or username'" class="w-full bg-white"></app-shared-input>
+    </form>
+
+  </div>
+
+
+  <div class="mt-10">
+    <ng-container *ngIf="matchingUsers$ | async as matchingUsers" role="list" class="mt-4">
+      <ul *ngIf="(matchingUsers.length > 0) && isSearchTermProvided; else noResults" class="max-h-[25rem] overflow-y-scroll divide-y divide-gray-200 border-t border-gray-200">
+        <app-user-search-result *ngFor="let user of matchingUsers" [user]="user" ></app-user-search-result>
+      </ul>
+
+      <div *ngIf="matchingUsers.length >= 10" class="mt-12 text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="mx-auto w-5 h-5 text-icon">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+        </svg>
+
+        <p class="text-sm mt-2">
+          Hint: Only the first 10 matching users will be loaded.
+          If the desired user is not in the list, please provide a more detailed search term
+        </p>
+      </div>
+
+    </ng-container>
+
+    <ng-template #noResults>
+      <p *ngIf="isSearchTermProvided" class="flex flex-wrap justify-center">No users were found.
+        <a [routerLink]="'/admin/register'" class="inline-flex align-baseline text-primary font-bold ml-1">
+          Create a new one instead
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-1">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+          </svg>
+        </a>
+      </p>
+    </ng-template>
+
+  </div>
+</div>

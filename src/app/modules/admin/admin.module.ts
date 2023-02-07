@@ -7,13 +7,17 @@ import {CoreModule} from "../../core/core.module";
 import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
 import {SharedModule} from "../../shared/shared.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { UserSearchComponent } from './components/user-search/user-search.component';
+import { UserSearchResultComponent } from './components/user-search/user-search-result/user-search-result.component';
 
 
 @NgModule({
   declarations: [
     AdminDashboardComponent,
     AdminDashboardListItemComponent,
-    UserRegistrationComponent
+    UserRegistrationComponent,
+    UserSearchComponent,
+    UserSearchResultComponent
   ],
     imports: [
         CommonModule,

@@ -67,6 +67,8 @@ export class UserRegistrationComponent {
     firstName && lastName ?
       username?.setValue(`${firstName}.${lastName}`.toLowerCase()) :
       username?.reset()
+
+    username?.markAsTouched()
   }
 
 }

@@ -10,6 +10,6 @@ export class User {
   department!: string
   roomNumber?: string | null
   accessRole!: string
-  preferencesId!: number
+  preferences?: number | null
 
 }

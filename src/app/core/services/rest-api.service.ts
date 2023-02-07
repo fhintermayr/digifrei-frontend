@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {User} from "../../shared/models/user";
@@ -23,6 +23,18 @@ export class RestApiService {
     const url = `${environment.apiUrl}/user/${username}`
 
     return this.httpClient.head(url)
+  }
+
+  public findAllUsersMatchingSearchTerm(searchTerm?: string, limit?: number): Observable<any> {
+
+    let params = new HttpParams()
+    if (searchTerm !== undefined) params = params.append('searchTerm', searchTerm)
+    if (limit !== undefined) params = params.append('limit', limit)
+
+    const url = `${environment.apiUrl}/user`
+
+    return this.httpClient.get(url, {params})
+
   }
 
 }

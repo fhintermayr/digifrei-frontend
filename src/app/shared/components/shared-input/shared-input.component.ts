@@ -1,6 +1,11 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 
+
+type InputType =
+  "date" | "datetime-local" | "email" | "month" | "number" |
+  "password" | "search" | "tel" | "text" | "time" | "url" | "week"
+
 @Component({
   selector: 'app-shared-input',
   templateUrl: './shared-input.component.html',
@@ -9,7 +14,7 @@ import {FormControl, Validators} from "@angular/forms";
 export class SharedInputComponent implements OnChanges {
 
   @Input()
-  inputType: string = "text"
+  inputType: InputType = "text"
   @Input()
   placeholder: string = ""
   @Input()
