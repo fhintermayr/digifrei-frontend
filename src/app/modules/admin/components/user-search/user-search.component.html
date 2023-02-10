@@ -17,7 +17,7 @@
 
   <div class="mt-10">
     <ng-container *ngIf="matchingUsers$ | async as matchingUsers" role="list" class="mt-4">
-      <ul *ngIf="(matchingUsers.length > 0) && isSearchTermProvided; else noResults" class="max-h-[25rem] overflow-y-scroll divide-y divide-gray-200 border-t border-gray-200">
+      <ul *ngIf="(matchingUsers.length > 0) && isSearchTermProvided; else noResults" class="max-h-[25rem] divide-y divide-gray-200 border-t border-gray-200">
         <app-user-search-result *ngFor="let user of matchingUsers" [user]="user" ></app-user-search-result>
       </ul>
 

@@ -18,6 +18,13 @@ export class RestApiService {
     return this.httpClient.post<User>(url, userToCreate)
   }
 
+  public getUserById(userId: number): Observable<User> {
+
+    const url = `${environment.apiUrl}/user/${userId}`
+
+    return this.httpClient.get<User>(url)
+  }
+
   public checkIfUsernameIsTaken(username: string): Observable<any> {
 
     const url = `${environment.apiUrl}/user/${username}`

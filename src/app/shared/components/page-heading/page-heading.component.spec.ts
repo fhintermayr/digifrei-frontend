@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserSearchResultComponent } from './user-search-result.component';
+import { PageHeadingComponent } from './page-heading.component';
 import {RouterTestingModule} from "@angular/router/testing";
 
-describe('UserSearchResultComponent', () => {
-  let component: UserSearchResultComponent;
-  let fixture: ComponentFixture<UserSearchResultComponent>;
+describe('PageHeadingComponent', () => {
+  let component: PageHeadingComponent;
+  let fixture: ComponentFixture<PageHeadingComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserSearchResultComponent ],
+      declarations: [ PageHeadingComponent ],
       imports: [ RouterTestingModule ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UserSearchResultComponent);
+    fixture = TestBed.createComponent(PageHeadingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

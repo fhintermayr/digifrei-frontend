@@ -1,0 +1,11 @@
+<div class="block">
+  <div class="border-b border-gray-200">
+    <nav class="-mb-px flex overflow-x-auto" aria-label="Tabs">
+      <a *ngFor="let tab of tabs" [routerLink]="tab.routerLink"
+         class="border-transparent hover:text-gray-700 hover:border-gray-300 min-w-[12.5rem] sm:min-w-[15rem] py-4 px-1 text-center border-b-2 font-medium text-sm"
+         routerLinkActive="text-primary hover:text-primary border-primary hover:border-primary">
+        {{tab.displayName}}
+      </a>
+    </nav>
+  </div>
+</div>

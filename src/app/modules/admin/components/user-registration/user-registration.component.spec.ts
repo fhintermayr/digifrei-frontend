@@ -8,6 +8,7 @@ import {SharedInputComponent} from "../../../../shared/components/shared-input/s
 import {SharedDropdownComponent} from "../../../../shared/components/shared-dropdown/shared-dropdown.component";
 import {SharedButtonComponent} from "../../../../shared/components/shared-button/shared-button.component";
 import {RouterTestingModule} from "@angular/router/testing";
+import {PageHeadingComponent} from "../../../../shared/components/page-heading/page-heading.component";
 
 describe('UserRegistrationComponent', () => {
   let component: UserRegistrationComponent;
@@ -15,7 +16,7 @@ describe('UserRegistrationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserRegistrationComponent, SharedInputComponent, SharedDropdownComponent, SharedButtonComponent ],
+      declarations: [ UserRegistrationComponent, SharedInputComponent, SharedDropdownComponent, SharedButtonComponent, PageHeadingComponent ],
       imports: [ ReactiveFormsModule, HttpClientTestingModule, ToastrModule.forRoot(), RouterTestingModule ]
     })
     .compileComponents();

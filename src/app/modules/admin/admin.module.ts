@@ -9,6 +9,9 @@ import {SharedModule} from "../../shared/shared.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { UserSearchComponent } from './components/user-search/user-search.component';
 import { UserSearchResultComponent } from './components/user-search/user-search-result/user-search-result.component';
+import { UserManagementComponent } from './components/user-management/user-management.component';
+import { UserManagementProfileComponent } from './components/user-management/user-management-profile/user-management-profile.component';
+import { UserManagementAccountComponent } from './components/user-management/user-management-account/user-management-account.component';
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import { UserSearchResultComponent } from './components/user-search/user-search-
     AdminDashboardListItemComponent,
     UserRegistrationComponent,
     UserSearchComponent,
-    UserSearchResultComponent
+    UserSearchResultComponent,
+    UserManagementComponent,
+    UserManagementProfileComponent,
+    UserManagementAccountComponent
   ],
     imports: [
         CommonModule,

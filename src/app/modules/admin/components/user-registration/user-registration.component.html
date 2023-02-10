@@ -1,8 +1,8 @@
-<h2 class="sm:truncate sm:tracking-tight" xmlns="http://www.w3.org/1999/html">Register a new user</h2>
+<app-page-heading [breadcrumbs]="breadcrumbs">Register a new user</app-page-heading>
 
-<div class="mt-10 sm:mt-5 overflow-hidden shadow sm:rounded-md">
+<main class="overflow-hidden rounded-lg bg-white shadow">
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-        <div class="grid grid-cols-6 gap-6 bg-foreground px-4 py-8 sm:p-6">
+      <div class="grid grid-cols-6 gap-6 bg-foreground px-4 py-8 sm:p-6">
 
           <div class="col-span-6 sm:col-span-3 lg:col-span-2">
             <app-shared-input
@@ -87,8 +87,8 @@
         </div>
 
       <div class="flex justify-end space-x-2 bg-gray-50 px-4 py-3 text-right sm:px-6">
-          <app-shared-button [routerLink]="'/admin'" [buttonDesign]="'secondary'">Cancel</app-shared-button>
-          <app-shared-button [buttonType]="'submit'" [isDisabled]="!registrationForm.valid" [buttonDesign]="'primary'">Register</app-shared-button>
-        </div>
+        <app-shared-button [routerLink]="'/admin'" [buttonDesign]="'secondary'">Cancel</app-shared-button>
+        <app-shared-button [buttonType]="'submit'" [isDisabled]="!registrationForm.valid" [buttonDesign]="'primary'">Register</app-shared-button>
+      </div>
     </form>
-</div>
+</main>

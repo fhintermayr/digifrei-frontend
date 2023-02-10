@@ -1,18 +1,20 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {RestApiService} from "../../../../core/services/rest-api.service";
 import {User} from "../../../../shared/models/user";
 import {SelectOption} from "../../../../shared/components/shared-dropdown/shared-dropdown.component";
 import {NotificationService} from "../../../../core/services/notification.service";
 import {UsernameValidators} from "../../validators/username-validators";
+import {Subject, takeUntil} from "rxjs";
+import {SiteNavigationLink} from "../../../../shared/types/site-navigation-link";
 
 @Component({
   selector: 'app-user-registration',
   templateUrl: './user-registration.component.html',
   styleUrls: ['./user-registration.component.css']
 })
-export class UserRegistrationComponent {
-
+export class UserRegistrationComponent implements OnDestroy{
+  private unsubscribe$ = new Subject<void>();
   private readonly roomNumberPattern: RegExp = new RegExp("^\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}$")
 
   readonly registrationForm = this.formBuilder.group({
@@ -39,6 +41,11 @@ export class UserRegistrationComponent {
     { label: "Diverse", value: "DIVERSE" },
   ]
 
+  readonly breadcrumbs: SiteNavigationLink[] = [
+    {displayName: "Admin", routerLink: "/admin"},
+    {displayName: "User Registration", routerLink: "/admin/register"},
+  ]
+
   constructor(
     private formBuilder: FormBuilder,
     private restApiService: RestApiService,
@@ -49,8 +56,10 @@ export class UserRegistrationComponent {
     const formValues = this.registrationForm.value
     const userToRegister: User = Object.assign(new User(), formValues)
 
-    this.restApiService.createUser(userToRegister).subscribe({
-      next: (createdUser: User) => {
+    this.restApiService.createUser(userToRegister)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: (createdUser: User) => {
       this.notification.showSuccess(`Nutzer ${createdUser.username} wurde erstellt`)
       this.registrationForm.reset()
       },
@@ -69,6 +78,11 @@ export class UserRegistrationComponent {
       username?.reset()
 
     username?.markAsTouched()
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next()
+    this.unsubscribe$.complete()
   }
 
 }
