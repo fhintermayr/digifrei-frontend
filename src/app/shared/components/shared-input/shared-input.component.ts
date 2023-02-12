@@ -40,6 +40,14 @@ export class SharedInputComponent implements OnChanges {
     this.setDisabledState()
   }
 
+  onInput() {
+    this.setToNullIfEmpty()
+  }
+
+  private setToNullIfEmpty() {
+    if (this.control.value.trim() === '') this.control.setValue(null)
+  }
+
   isInvalidAndTouched(): boolean {
     return this.control.invalid && (this.control.touched || this.control.dirty)
   }
@@ -51,9 +59,4 @@ export class SharedInputComponent implements OnChanges {
   private setDisabledState(): void {
     this.isDisabled ? this.control.disable() : this.control.enable()
   }
-
-  setToNullIfStringIsEmpty() {
-    if (this.control.value === '') this.control.reset()
-  }
-
 }

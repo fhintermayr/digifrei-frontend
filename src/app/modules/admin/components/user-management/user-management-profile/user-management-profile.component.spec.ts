@@ -10,6 +10,7 @@ import {SharedButtonComponent} from "../../../../../shared/components/shared-but
 import {SharedDropdownComponent} from "../../../../../shared/components/shared-dropdown/shared-dropdown.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RouterTestingModule} from "@angular/router/testing";
+import {SectionHeadingComponent} from "../../../../../shared/components/section-heading/section-heading.component";
 
 describe('UserManagementProfileComponent', () => {
   let component: UserManagementProfileComponent;
@@ -17,7 +18,8 @@ describe('UserManagementProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserManagementProfileComponent, SharedInputComponent, SharedButtonComponent, SharedDropdownComponent ],
+      declarations: [ UserManagementProfileComponent, SharedInputComponent,
+        SharedButtonComponent, SharedDropdownComponent, SectionHeadingComponent ],
       imports: [ HttpClientTestingModule, ReactiveFormsModule, RouterTestingModule, ToastrModule.forRoot() ],
       providers: [
         {

@@ -23,15 +23,16 @@ export class UserManagementProfileComponent implements OnInit {
   ]
 
   private readonly roomNumberPattern: RegExp = new RegExp("^\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}$")
+  private readonly namePattern: RegExp = new RegExp("^[a-zA-Z\x7f-\xff-]{2,}(\\s?[a-zA-Z\x7f-\xff-]{2,})*$")
 
   userEditingForm = this.formBuilder.group({
-    firstName: ['', [Validators.required, Validators.minLength(3)]],
-    lastName: ['', [Validators.required, Validators.minLength(3)]],
+    firstName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(this.namePattern)]],
+    lastName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(this.namePattern)]],
     username: ['', [Validators.required, Validators.minLength(7)]],
     dateOfBirth: [''],
     gender: ['', Validators.required],
-    profession: ['', Validators.required],
-    department: ['', Validators.required],
+    profession: ['', [Validators.required, Validators.pattern(this.namePattern)]],
+    department: ['', [Validators.required, Validators.pattern(this.namePattern)]],
     roomNumber: ['', Validators.pattern(this.roomNumberPattern)]
   })
 
@@ -67,24 +68,25 @@ export class UserManagementProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    this.setOptionalInputsToNullIfEmpty()
-
+    this.trimAllFormValues()
     Object.assign(this.currentManagingUser, this.userEditingForm.value)
-    //TODO: Add call to endpoint
+
+    this.restApiService.updateUserById(this.currentManagingUser).subscribe({
+      next: updatedUser => {
+        this.notification.showSuccess(`${updatedUser.username} was updated successfully.`)
+        this.currentManagingUser = updatedUser
+      },
+      error: () => this.notification.showError("Wasn't able to perform the update. Please try again later.")
+    })
   }
 
-  setOptionalInputsToNullIfEmpty() {
-    const allEmptyOptionalFormControls = this.getEmptyOptionalFormControls()
-
-    allEmptyOptionalFormControls.forEach(formControl => formControl.setValue(null))
-  }
-
-  getEmptyOptionalFormControls() {
+  private trimAllFormValues() {
     const allFormControls = Object.values(this.userEditingForm.controls)
 
-    return allFormControls
-      .filter(formControl => !formControl.hasValidator(Validators.required))
-      .filter(formControl => formControl.value?.trim() === "")
+    allFormControls.forEach(formControl => {
+      const trimmedInputValue = formControl.value?.trim() || null
+      formControl.setValue(trimmedInputValue)
+    })
   }
 
   skipUsernameAvailableValidatorIfUsernameDidntChange() {
@@ -97,5 +99,4 @@ export class UserManagementProfileComponent implements OnInit {
 
     usernameInput?.updateValueAndValidity()
   }
-
 }

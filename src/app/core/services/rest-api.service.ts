@@ -40,8 +40,14 @@ export class RestApiService {
 
     const url = `${environment.apiUrl}/user`
 
-    return this.httpClient.get(url, {params})
+    return this.httpClient.get<User[]>(url, {params})
+  }
 
+  public updateUserById(userWithUpdatedData: User): Observable<User> {
+
+    const url = `${environment.apiUrl}/user/${userWithUpdatedData.id}`
+
+    return this.httpClient.put<User>(url, userWithUpdatedData)
   }
 
 }
