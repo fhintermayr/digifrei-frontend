@@ -25,11 +25,11 @@ export class RestApiService {
     return this.httpClient.get<User>(url)
   }
 
-  public checkIfUsernameIsTaken(username: string): Observable<any> {
+  public checkIfUsernameIsTaken(username: string): Observable<void> {
 
     const url = `${environment.apiUrl}/user/${username}`
 
-    return this.httpClient.head(url)
+    return this.httpClient.head<void>(url)
   }
 
   public findAllUsersMatchingSearchTerm(searchTerm?: string, limit?: number): Observable<any> {
@@ -48,6 +48,13 @@ export class RestApiService {
     const url = `${environment.apiUrl}/user/${userWithUpdatedData.id}`
 
     return this.httpClient.put<User>(url, userWithUpdatedData)
+  }
+
+  public changePassword(userId: number, newPassword: string): Observable<void> {
+
+    const url = `${environment.apiUrl}/user/${userId}/password`
+
+    return this.httpClient.put<void>(url, {newPassword: newPassword} )
   }
 
 }

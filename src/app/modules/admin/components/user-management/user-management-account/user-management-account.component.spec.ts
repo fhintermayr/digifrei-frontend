@@ -5,6 +5,11 @@ import {SectionHeadingComponent} from "../../../../../shared/components/section-
 import {SharedInputComponent} from "../../../../../shared/components/shared-input/shared-input.component";
 import {SharedButtonComponent} from "../../../../../shared/components/shared-button/shared-button.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {ActivatedRoute} from "@angular/router";
+import {of} from "rxjs";
+import {RouterTestingModule} from "@angular/router/testing";
+import {ToastrModule} from "ngx-toastr";
 
 describe('UserManagementAccountComponent', () => {
   let component: UserManagementAccountComponent;
@@ -13,7 +18,17 @@ describe('UserManagementAccountComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ UserManagementAccountComponent, SectionHeadingComponent, SharedInputComponent, SharedButtonComponent ],
-      imports: [ ReactiveFormsModule ]
+      imports: [ HttpClientTestingModule, ReactiveFormsModule, RouterTestingModule, ToastrModule.forRoot() ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              params: of({id: 123})
+            }
+          }
+        }
+      ]
     })
     .compileComponents();
 
