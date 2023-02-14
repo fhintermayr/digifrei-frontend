@@ -13,6 +13,7 @@ import {ToastrModule} from "ngx-toastr";
 import {
   SharedColoredDropdownComponent
 } from "../../../../../shared/components/shared-colored-dropdown/shared-colored-dropdown.component";
+import {AlertComponent} from "../../../../../shared/components/alert/alert.component";
 
 describe('UserManagementAccountComponent', () => {
   let component: UserManagementAccountComponent;
@@ -20,7 +21,8 @@ describe('UserManagementAccountComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserManagementAccountComponent, SectionHeadingComponent, SharedInputComponent, SharedButtonComponent, SharedColoredDropdownComponent ],
+      declarations: [ UserManagementAccountComponent, SectionHeadingComponent, SharedInputComponent,
+        SharedButtonComponent, SharedColoredDropdownComponent, AlertComponent ],
       imports: [ HttpClientTestingModule, ReactiveFormsModule, RouterTestingModule, ToastrModule.forRoot() ],
       providers: [
         {

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {PasswordValidators} from "../../../validators/password-validators";
 import {RestApiService} from "../../../../../core/services/rest-api.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {NotificationService} from "../../../../../core/services/notification.service";
 import {ColoredDropdownOption} from "../../../../../shared/types/colored-dropdown-option";
 import {User} from "../../../../../shared/models/user";
@@ -32,6 +32,7 @@ export class UserManagementAccountComponent implements OnInit {
     private formBuilder: FormBuilder,
     private restApiService: RestApiService,
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private notification: NotificationService
     ) { }
 
@@ -48,12 +49,22 @@ export class UserManagementAccountComponent implements OnInit {
     })
   }
 
-  onSubmit() {
+  submitPasswordChange() {
     const newPassword: string = this.passwordResetForm.get('password')?.value || ''
 
     this.restApiService.changePassword(this.currentlyManagingUser.id, newPassword).subscribe({
       next: () => this.notification.showSuccess("Password wurde geändert"),
       error: () => this.notification.showError("Passwort konnte nicht geändert werden")
+    })
+  }
+
+  submitUserDeletion() {
+    this.restApiService.deleteUserById(this.currentlyManagingUser.id).subscribe({
+      next: () => {
+        this.notification.showSuccess(`User ${this.currentlyManagingUser.username} deleted successfully`)
+        this.router.navigate(["/admin"])
+      },
+      error: () => this.notification.showError("User deletion can't be performed. Please try again later")
     })
   }
 

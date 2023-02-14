@@ -16,16 +16,17 @@ import {SiteNavigationLink} from "../../../../shared/types/site-navigation-link"
 export class UserRegistrationComponent implements OnDestroy{
   private unsubscribe$ = new Subject<void>();
   private readonly roomNumberPattern: RegExp = new RegExp("^\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}$")
+  private readonly namePattern: RegExp = new RegExp("^[a-zA-Z\x7f-\xff-]{2,}(\\s?[a-zA-Z\x7f-\xff-]{2,})*$")
 
   readonly registrationForm = this.formBuilder.group({
-    firstName: ['', [Validators.required, Validators.minLength(3)]],
-    lastName: ['', [Validators.required, Validators.minLength(3)]],
+    firstName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(this.namePattern)]],
+    lastName: ['', [Validators.required, Validators.minLength(3),Validators.pattern(this.namePattern)]],
     username: ['', [Validators.required, Validators.minLength(7)], UsernameValidators.usernameAvailable(this.restApiService)],
     password: [null, [Validators.required, Validators.minLength(8)]],
     dateOfBirth: [null],
     gender: [null, Validators.required],
-    profession: [null, Validators.required],
-    department: [null, Validators.required],
+    profession: [null, [Validators.required, Validators.pattern(this.namePattern)]],
+    department: [null, [Validators.required, Validators.pattern(this.namePattern)]],
     roomNumber: [null, Validators.pattern(this.roomNumberPattern)],
     accessRole: [null, Validators.required]
   })

@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 
-type buttonType = "button" | "submit" | "reset"
-type buttonStyle = "primary" | "secondary"
+type ButtonType = "button" | "submit" | "reset"
+type ButtonStyle = "primary" | "secondary" | "danger"
 
 @Component({
   selector: 'app-shared-button',
@@ -11,9 +11,9 @@ type buttonStyle = "primary" | "secondary"
 export class SharedButtonComponent {
 
   @Input()
-  buttonType: buttonType = "button"
+  buttonType: ButtonType = "button"
   @Input()
-  buttonDesign: buttonStyle = "primary"
+  buttonDesign: ButtonStyle = "primary"
   @Input()
   isDisabled: boolean = false
 

@@ -64,5 +64,11 @@ export class RestApiService {
     return this.httpClient.put<User>(url, {newAccessRole: newAccessRole} )
   }
 
+  public deleteUserById(userId: number): Observable<void> {
+
+    const url = `${environment.apiUrl}/user/${userId}`
+
+    return this.httpClient.delete<void>(url)
+  }
 
 }

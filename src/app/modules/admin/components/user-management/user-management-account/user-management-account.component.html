@@ -2,7 +2,7 @@
   <div>
     <app-section-heading>Change password</app-section-heading>
 
-    <form [formGroup]="passwordResetForm" (ngSubmit)="onSubmit()" class="grid grid-cols-5 space-y-6">
+    <form [formGroup]="passwordResetForm" (ngSubmit)="submitPasswordChange()" class="grid grid-cols-5 space-y-6">
       <div class="col-span-5 sm:col-span-3">
         <app-shared-input
           [control]="passwordResetForm.controls.password"
@@ -36,7 +36,18 @@
       [selected]="usersRespectiveAccessRoleDropdownOption"
       [selectOptions]="accessRoleOptions">
     </app-shared-colored-dropdown>
+  </div>
 
+  <div>
+    <app-section-heading>Delete user</app-section-heading>
+
+    <app-alert [alertType]="'danger'">
+      Are you sure you want to delete this account?
+      All of the data will be permanently removed.
+      This action cannot be undone.
+    </app-alert>
+
+    <app-shared-button (click)="submitUserDeletion()" [buttonDesign]="'danger'" class="block mt-6">Delete user</app-shared-button>
   </div>
 
 </div>
