@@ -10,6 +10,9 @@ import {ActivatedRoute} from "@angular/router";
 import {of} from "rxjs";
 import {RouterTestingModule} from "@angular/router/testing";
 import {ToastrModule} from "ngx-toastr";
+import {
+  SharedColoredDropdownComponent
+} from "../../../../../shared/components/shared-colored-dropdown/shared-colored-dropdown.component";
 
 describe('UserManagementAccountComponent', () => {
   let component: UserManagementAccountComponent;
@@ -17,7 +20,7 @@ describe('UserManagementAccountComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserManagementAccountComponent, SectionHeadingComponent, SharedInputComponent, SharedButtonComponent ],
+      declarations: [ UserManagementAccountComponent, SectionHeadingComponent, SharedInputComponent, SharedButtonComponent, SharedColoredDropdownComponent ],
       imports: [ HttpClientTestingModule, ReactiveFormsModule, RouterTestingModule, ToastrModule.forRoot() ],
       providers: [
         {

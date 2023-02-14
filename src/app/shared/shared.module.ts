@@ -9,6 +9,7 @@ import { PageHeadingComponent } from './components/page-heading/page-heading.com
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import { TabsComponent } from './components/tabs/tabs.component';
 import { SectionHeadingComponent } from './components/section-heading/section-heading.component';
+import { SharedColoredDropdownComponent } from './components/shared-colored-dropdown/shared-colored-dropdown.component';
 
 
 
@@ -20,17 +21,19 @@ import { SectionHeadingComponent } from './components/section-heading/section-he
     SharedDropdownComponent,
     PageHeadingComponent,
     TabsComponent,
-    SectionHeadingComponent
+    SectionHeadingComponent,
+    SharedColoredDropdownComponent
   ],
-    exports: [
-        SharedButtonComponent,
-        SafeHtmlPipe,
-        SharedInputComponent,
-        SharedDropdownComponent,
-        PageHeadingComponent,
-        TabsComponent,
-        SectionHeadingComponent
-    ],
+  exports: [
+    SharedButtonComponent,
+    SafeHtmlPipe,
+    SharedInputComponent,
+    SharedDropdownComponent,
+    PageHeadingComponent,
+    TabsComponent,
+    SectionHeadingComponent,
+    SharedColoredDropdownComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

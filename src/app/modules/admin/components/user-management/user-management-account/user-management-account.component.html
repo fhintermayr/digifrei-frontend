@@ -1,28 +1,42 @@
-<div class="mt-2 px-4 py-8 sm:p-6">
-  <app-section-heading>Change password</app-section-heading>
+<div class="flex flex-col space-y-10 mt-2 px-4 py-8 sm:p-6">
+  <div>
+    <app-section-heading>Change password</app-section-heading>
 
-  <form [formGroup]="passwordResetForm" (ngSubmit)="onSubmit()" class="grid grid-cols-5 space-y-6">
-    <div class="col-span-5 sm:col-span-3">
-      <app-shared-input
-        [control]="passwordResetForm.controls.password"
-        [inputId]="'password'"
-        [inputType]="'password'"
-      >Password</app-shared-input>
-    </div>
+    <form [formGroup]="passwordResetForm" (ngSubmit)="onSubmit()" class="grid grid-cols-5 space-y-6">
+      <div class="col-span-5 sm:col-span-3">
+        <app-shared-input
+          [control]="passwordResetForm.controls.password"
+          [inputId]="'password'"
+          [inputType]="'password'"
+        >Password</app-shared-input>
+      </div>
 
-    <div class="col-span-5 sm:col-span-3">
-      <app-shared-input
-        [control]="passwordResetForm.controls.passwordConfirm"
-        [inputId]="'password-repeat'"
-        [inputType]="'password'"
-      >Repeat password</app-shared-input>
-    </div>
+      <div class="col-span-5 sm:col-span-3">
+        <app-shared-input
+          [control]="passwordResetForm.controls.passwordConfirm"
+          [inputId]="'password-repeat'"
+          [inputType]="'password'"
+        >Repeat password</app-shared-input>
+      </div>
 
-    <div class="col-span-5 sm:col-span-3">
-      <app-shared-button [buttonType]="'submit'" [isDisabled]="!passwordResetForm.valid" [buttonDesign]="'primary'">
-        Change password
-      </app-shared-button>
-    </div>
-  </form>
+      <div class="col-span-5 sm:col-span-3">
+        <app-shared-button [buttonType]="'submit'" [isDisabled]="!passwordResetForm.valid" [buttonDesign]="'primary'">
+          Change password
+        </app-shared-button>
+      </div>
+    </form>
+
+  </div>
+
+  <div>
+    <app-section-heading>Change access role</app-section-heading>
+
+    <app-shared-colored-dropdown
+      (dropdownSelectChanged)="onDropdownChange($event)"
+      [selected]="usersRespectiveAccessRoleDropdownOption"
+      [selectOptions]="accessRoleOptions">
+    </app-shared-colored-dropdown>
+
+  </div>
 
 </div>
