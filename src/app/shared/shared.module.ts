@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedButtonComponent } from './components/shared-button/shared-button.component';
-import { SafeHtmlPipe } from "./pipes/safe-html.pipe";
 import { SharedInputComponent } from './components/shared-input/shared-input.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { SharedDropdownComponent } from './components/shared-dropdown/shared-dropdown.component';
@@ -11,13 +10,13 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { SectionHeadingComponent } from './components/section-heading/section-heading.component';
 import { SharedColoredDropdownComponent } from './components/shared-colored-dropdown/shared-colored-dropdown.component';
 import { AlertComponent } from './components/alert/alert.component';
+import {NgIconComponent} from "@ng-icons/core";
 
 
 
 @NgModule({
   declarations: [
     SharedButtonComponent,
-    SafeHtmlPipe,
     SharedInputComponent,
     SharedDropdownComponent,
     PageHeadingComponent,
@@ -28,7 +27,6 @@ import { AlertComponent } from './components/alert/alert.component';
   ],
     exports: [
         SharedButtonComponent,
-        SafeHtmlPipe,
         SharedInputComponent,
         SharedDropdownComponent,
         PageHeadingComponent,
@@ -37,11 +35,12 @@ import { AlertComponent } from './components/alert/alert.component';
         SharedColoredDropdownComponent,
         AlertComponent
     ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterLink,
-    RouterLinkActive
-  ]
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        RouterLink,
+        RouterLinkActive,
+        NgIconComponent
+    ]
 })
 export class SharedModule { }

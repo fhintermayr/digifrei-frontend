@@ -14,6 +14,8 @@ import {
   SharedColoredDropdownComponent
 } from "../../../../../shared/components/shared-colored-dropdown/shared-colored-dropdown.component";
 import {AlertComponent} from "../../../../../shared/components/alert/alert.component";
+import {NgIconsModule} from "@ng-icons/core";
+import {heroCheckMini, heroChevronDownMini, heroChevronUpMini} from "@ng-icons/heroicons/mini";
 
 describe('UserManagementAccountComponent', () => {
   let component: UserManagementAccountComponent;
@@ -23,7 +25,8 @@ describe('UserManagementAccountComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ UserManagementAccountComponent, SectionHeadingComponent, SharedInputComponent,
         SharedButtonComponent, SharedColoredDropdownComponent, AlertComponent ],
-      imports: [ HttpClientTestingModule, ReactiveFormsModule, RouterTestingModule, ToastrModule.forRoot() ],
+      imports: [ HttpClientTestingModule, ReactiveFormsModule, RouterTestingModule, ToastrModule.forRoot(),
+        NgIconsModule.withIcons({heroCheckMini, heroChevronDownMini, heroChevronUpMini}) ],
       providers: [
         {
           provide: ActivatedRoute,

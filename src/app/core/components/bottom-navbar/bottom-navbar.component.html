@@ -1,9 +1,11 @@
 <section class="w-full fixed block lg:hidden inset-x-0 bottom-0 z-10 bg-foreground shadow">
     <div class="flex justify-between py-4">
+
       <a *ngFor="let navbarButton of navbarButtons" [routerLink]="navbarButton.routerLink" class="w-full justify-center inline-block text-center" routerLinkActive="text-primary">
-        <svg [innerHTML]="navbarButton.svgContentAsHtml | safeHtml" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="block m-auto w-6 h-6"></svg>
+        <ng-icon [name]="navbarButton.ngIconName" size="24"></ng-icon>
         <span class="block text-xs font-semibold">{{ navbarButton.title }}</span>
       </a>
+
     </div>
   </section>
 

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AlertComponent } from './alert.component';
+import {NgIconsModule} from "@ng-icons/core";
+import {heroCheckCircleMini, heroExclamationTriangleMini, heroInformationCircleMini} from "@ng-icons/heroicons/mini";
 
 describe('AlertComponent', () => {
   let component: AlertComponent;
@@ -8,7 +10,10 @@ describe('AlertComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AlertComponent ]
+      declarations: [ AlertComponent ],
+      imports: [NgIconsModule.withIcons({
+        heroInformationCircleMini, heroCheckCircleMini, heroExclamationTriangleMini
+      })]
     })
     .compileComponents();
 

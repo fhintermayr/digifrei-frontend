@@ -8,6 +8,7 @@ import {SharedModule} from "../shared/shared.module";
 import {HttpClientModule} from "@angular/common/http";
 import {ToastrModule} from "ngx-toastr";
 import { NotificationComponent } from './components/notification/notification.component';
+import {NgIconComponent} from "@ng-icons/core";
 
 
 
@@ -23,13 +24,14 @@ import { NotificationComponent } from './components/notification/notification.co
     NavbarComponent,
     BottomNavbarComponent
   ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    RouterLink,
-    RouterLinkActive,
-    SharedModule,
-    ToastrModule
-  ]
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        RouterLink,
+        RouterLinkActive,
+        SharedModule,
+        ToastrModule,
+        NgIconComponent
+    ]
 })
 export class CoreModule { }

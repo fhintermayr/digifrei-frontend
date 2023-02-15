@@ -12,6 +12,7 @@ import { UserSearchResultComponent } from './components/user-search/user-search-
 import { UserManagementComponent } from './components/user-management/user-management.component';
 import { UserManagementProfileComponent } from './components/user-management/user-management-profile/user-management-profile.component';
 import { UserManagementAccountComponent } from './components/user-management/user-management-account/user-management-account.component';
+import {NgIconComponent} from "@ng-icons/core";
 
 
 @NgModule({
@@ -25,13 +26,14 @@ import { UserManagementAccountComponent } from './components/user-management/use
     UserManagementProfileComponent,
     UserManagementAccountComponent
   ],
-    imports: [
-        CommonModule,
-        CoreModule,
-        AdminRoutingModule,
-        SharedModule,
-        ReactiveFormsModule,
-        FormsModule,
-    ]
+  imports: [
+    CommonModule,
+    CoreModule,
+    AdminRoutingModule,
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgIconComponent,
+  ]
 })
 export class AdminModule { }

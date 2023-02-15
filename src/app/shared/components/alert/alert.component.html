@@ -3,22 +3,16 @@
 'border-green-400 bg-green-50' : alertType === 'success',
 'border-yellow-400 bg-yellow-50' : alertType === 'warning',
 'border-red-400 bg-red-50' : alertType === 'danger'
-}"
-     class="border-l-4 p-4">
+}" class="border-l-4 p-4">
   <div class="flex">
     <div class="flex-shrink-0">
-<!--      TODO: Replace with more suitable icons after icon library is installed -->
-      <!-- Heroicon name: mini/exclamation-triangle -->
-      <svg
-        [ngClass]="{
-        'text-blue-400' : alertType === 'info',
-        'text-green-400 ' : alertType === 'success',
-        'text-yellow-400' : alertType === 'warning',
-        'text-red-400' : alertType === 'danger'
-        }"
-        class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-        <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
-      </svg>
+      <ng-container [ngSwitch]="alertType">
+        <ng-icon *ngSwitchCase="'info'" name="heroInformationCircleMini" size="20" class="text-blue-400"></ng-icon>
+        <ng-icon *ngSwitchCase="'success'" name="heroCheckCircleMini" size="20" class="text-green-400"></ng-icon>
+        <ng-icon *ngSwitchCase="'warning'" name="heroExclamationTriangleMini" size="20" class="text-orange-400"></ng-icon>
+        <ng-icon *ngSwitchCase="'danger'" name="heroExclamationTriangleMini" size="20" class="text-red-400"></ng-icon>
+      </ng-container>
+
     </div>
     <div class="ml-3">
       <p [ngClass]="{

@@ -14,6 +14,6 @@ export class AdminDashboardListItemComponent {
   @Input()
   routerLink: string = ""
   @Input()
-  svgContentAsHtmlString: string = ""
+  ngIconName: string = ""
 
 }

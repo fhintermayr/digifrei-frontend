@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 import {RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import {CoreModule} from "./core/core.module";
@@ -9,6 +9,8 @@ import {AdminModule} from "./modules/admin/admin.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
 import {NotificationComponent} from "./core/components/notification/notification.component";
+import {NgIconsModule} from "@ng-icons/core";
+import {ngIcons} from "./ng-icons";
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +30,7 @@ import {NotificationComponent} from "./core/components/notification/notification
       maxOpened: 5,
       extendedTimeOut: 5_000
     }),
+    NgIconsModule.withIcons(ngIcons),
     AppRoutingModule,
     AdminModule
   ],

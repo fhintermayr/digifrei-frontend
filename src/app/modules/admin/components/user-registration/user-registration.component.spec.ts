@@ -9,6 +9,8 @@ import {SharedDropdownComponent} from "../../../../shared/components/shared-drop
 import {SharedButtonComponent} from "../../../../shared/components/shared-button/shared-button.component";
 import {RouterTestingModule} from "@angular/router/testing";
 import {PageHeadingComponent} from "../../../../shared/components/page-heading/page-heading.component";
+import {NgIconsModule} from "@ng-icons/core";
+import {heroChevronLeftMini, heroChevronRightMini} from "@ng-icons/heroicons/mini";
 
 describe('UserRegistrationComponent', () => {
   let component: UserRegistrationComponent;
@@ -17,7 +19,8 @@ describe('UserRegistrationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ UserRegistrationComponent, SharedInputComponent, SharedDropdownComponent, SharedButtonComponent, PageHeadingComponent ],
-      imports: [ ReactiveFormsModule, HttpClientTestingModule, ToastrModule.forRoot(), RouterTestingModule ]
+      imports: [ ReactiveFormsModule, HttpClientTestingModule, ToastrModule.forRoot(), RouterTestingModule,
+        NgIconsModule.withIcons({heroChevronLeftMini, heroChevronRightMini})]
     })
     .compileComponents();
 

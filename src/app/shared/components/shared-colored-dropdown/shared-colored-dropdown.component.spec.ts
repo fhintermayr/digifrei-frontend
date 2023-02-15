@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SharedColoredDropdownComponent } from './shared-colored-dropdown.component';
+import {NgIconsModule} from "@ng-icons/core";
+import {heroCheckMini, heroChevronDownMini, heroChevronUpMini} from "@ng-icons/heroicons/mini";
 
 describe('SharedColoredDropdownComponent', () => {
   let component: SharedColoredDropdownComponent;
@@ -8,7 +10,8 @@ describe('SharedColoredDropdownComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SharedColoredDropdownComponent ]
+      declarations: [ SharedColoredDropdownComponent ],
+      imports: [NgIconsModule.withIcons({heroCheckMini, heroChevronDownMini, heroChevronUpMini})]
     })
     .compileComponents();
 

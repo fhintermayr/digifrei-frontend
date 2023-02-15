@@ -1,8 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BottomNavbarComponent } from './bottom-navbar.component';
-import {SafeHtmlPipe} from "../../../shared/pipes/safe-html.pipe";
 import {RouterTestingModule} from "@angular/router/testing";
+import {NgIconsModule} from "@ng-icons/core";
+import {
+  heroCalendarDaysSolid,
+  heroChatBubbleOvalLeftSolid,
+  heroFireSolid,
+  heroHomeSolid
+} from "@ng-icons/heroicons/solid";
 
 describe('BottomNavbarComponent', () => {
   let component: BottomNavbarComponent;
@@ -10,8 +16,10 @@ describe('BottomNavbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BottomNavbarComponent, SafeHtmlPipe ],
-      imports: [RouterTestingModule]
+      declarations: [ BottomNavbarComponent ],
+      imports: [RouterTestingModule, NgIconsModule.withIcons({
+        heroHomeSolid, heroFireSolid, heroCalendarDaysSolid, heroChatBubbleOvalLeftSolid
+      })]
     })
     .compileComponents();
 

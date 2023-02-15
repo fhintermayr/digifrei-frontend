@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PageHeadingComponent } from './page-heading.component';
 import {RouterTestingModule} from "@angular/router/testing";
+import {NgIconsModule} from "@ng-icons/core";
+import {heroChevronLeftMini, heroChevronRightMini} from "@ng-icons/heroicons/mini";
 
 describe('PageHeadingComponent', () => {
   let component: PageHeadingComponent;
@@ -10,7 +12,7 @@ describe('PageHeadingComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ PageHeadingComponent ],
-      imports: [ RouterTestingModule ]
+      imports: [ RouterTestingModule, NgIconsModule.withIcons({heroChevronLeftMini, heroChevronRightMini}) ]
     })
     .compileComponents();
 
