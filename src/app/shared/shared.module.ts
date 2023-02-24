@@ -11,6 +11,7 @@ import { SectionHeadingComponent } from './components/section-heading/section-he
 import { SharedColoredDropdownComponent } from './components/shared-colored-dropdown/shared-colored-dropdown.component';
 import { AlertComponent } from './components/alert/alert.component';
 import {NgIconComponent} from "@ng-icons/core";
+import { ClickedOutsideDirective } from './directives/clicked-outside.directive';
 
 
 
@@ -23,7 +24,8 @@ import {NgIconComponent} from "@ng-icons/core";
     TabsComponent,
     SectionHeadingComponent,
     SharedColoredDropdownComponent,
-    AlertComponent
+    AlertComponent,
+    ClickedOutsideDirective
   ],
     exports: [
         SharedButtonComponent,
@@ -33,7 +35,8 @@ import {NgIconComponent} from "@ng-icons/core";
         TabsComponent,
         SectionHeadingComponent,
         SharedColoredDropdownComponent,
-        AlertComponent
+        AlertComponent,
+        ClickedOutsideDirective
     ],
     imports: [
         CommonModule,

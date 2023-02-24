@@ -9,6 +9,7 @@ import {
   heroFireSolid,
   heroHomeSolid
 } from "@ng-icons/heroicons/solid";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('BottomNavbarComponent', () => {
   let component: BottomNavbarComponent;
@@ -17,7 +18,7 @@ describe('BottomNavbarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ BottomNavbarComponent ],
-      imports: [RouterTestingModule, NgIconsModule.withIcons({
+      imports: [RouterTestingModule, HttpClientTestingModule, NgIconsModule.withIcons({
         heroHomeSolid, heroFireSolid, heroCalendarDaysSolid, heroChatBubbleOvalLeftSolid
       })]
     })

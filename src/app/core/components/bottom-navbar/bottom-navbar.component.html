@@ -1,4 +1,4 @@
-<section class="w-full fixed block lg:hidden inset-x-0 bottom-0 z-10 bg-foreground shadow">
+<section *ngIf="authService.isLoggedIn()" class="w-full fixed block lg:hidden inset-x-0 bottom-0 z-10 bg-foreground shadow">
     <div class="flex justify-between py-4">
 
       <a *ngFor="let navbarButton of navbarButtons" [routerLink]="navbarButton.routerLink" class="w-full justify-center inline-block text-center" routerLinkActive="text-primary">
@@ -7,5 +7,4 @@
       </a>
 
     </div>
-  </section>
-
+</section>

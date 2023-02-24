@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {NavigationBarItemModel} from "../../models/navigation-bar-item.model";
 import {NavigationBarContentService} from "../../services/navigation-bar-content.service";
+import {AuthService} from "../../../modules/authentication/service/auth.service";
 
 @Component({
   selector: 'app-navbar',
@@ -34,14 +35,24 @@ export class NavbarComponent {
   profileDropdownItems: NavigationBarItemModel[] = [
     { title: "Admin Menu", routerLink: "/admin" },
     { title: "Your Profile", routerLink: "/profile" },
-    { title: "Settings", routerLink: "/settings" },
-    { title: "Sign out", routerLink: "/logout" }
+    { title: "Settings", routerLink: "/settings" }
 ]
 
-  constructor(private navigationLinkService: NavigationBarContentService) { }
+  constructor(
+    public authService: AuthService,
+    private navigationLinkService: NavigationBarContentService,
+  ) { }
+
+  onLogout() {
+    this.authService.logout()
+  }
 
   toggleProfileDropdown() {
     this.isProfileDropdownOpen = !this.isProfileDropdownOpen
+  }
+
+  onOutsideClick() {
+    if (this.isProfileDropdownOpen) this.isProfileDropdownOpen = false
   }
 
 }

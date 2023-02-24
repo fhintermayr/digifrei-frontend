@@ -10,8 +10,9 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 })
 export class AuthService {
 
-  constructor(private httpClient: HttpClient, private jwtHelper: JwtHelperService) { }
+  private jwtHelper: JwtHelperService = new JwtHelperService()
 
+  constructor(private httpClient: HttpClient) { }
 
   public attemptLogin(loginCredentials: LoginCredentials): Observable<any> {
 
@@ -30,6 +31,10 @@ export class AuthService {
 
   public isLoggedIn(): boolean {
     return this.isTokenSetAndValid()
+  }
+
+  public isLoggedOut(): boolean {
+    return !this.isLoggedIn()
   }
 
   private isTokenSetAndValid(): boolean {
