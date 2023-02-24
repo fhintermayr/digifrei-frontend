@@ -1,0 +1,32 @@
+<div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <img class="mx-auto h-12 w-auto" src="assets/images/match_logo_black.png" alt="Match Logo">
+    <h2 class="mt-6 text-center">Sign in to your account</h2>
+  </div>
+
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
+
+        <div>
+          <app-shared-input [control]="loginForm.controls.username">Username</app-shared-input>
+        </div>
+
+        <div>
+          <app-shared-input [control]="loginForm.controls.password" [inputType]="'password'">Password</app-shared-input>
+        </div>
+
+        <div class="pb-2">
+          <a href="#" class="text-primary hover:text-primary-light">Forgot your password?</a>
+        </div>
+
+        <app-shared-button [buttonType]="'submit'" [isDisabled]="loginForm.invalid" class="inline-grid w-full">Sign in</app-shared-button>
+
+      </form>
+
+    </div>
+  </div>
+
+</div>

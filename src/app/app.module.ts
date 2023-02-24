@@ -11,6 +11,9 @@ import {ToastrModule} from "ngx-toastr";
 import {NotificationComponent} from "./core/components/notification/notification.component";
 import {NgIconsModule} from "@ng-icons/core";
 import {ngIcons} from "./ng-icons";
+import {AuthenticationModule} from "./modules/authentication/authentication.module";
+import {JwtInterceptor} from "./core/interceptors/jwt.interceptor";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,9 +35,12 @@ import {ngIcons} from "./ng-icons";
     }),
     NgIconsModule.withIcons(ngIcons),
     AppRoutingModule,
-    AdminModule
+    AdminModule,
+    AuthenticationModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
