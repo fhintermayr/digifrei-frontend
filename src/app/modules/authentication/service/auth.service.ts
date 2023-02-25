@@ -29,6 +29,14 @@ export class AuthService {
     localStorage.removeItem("bearer_token")
   }
 
+  public getUsersRole(): string {
+
+    const token = this.getToken()
+    const decodedToken = this.jwtHelper.decodeToken(token);
+
+    return decodedToken.role;
+  }
+
   public isLoggedIn(): boolean {
     return this.isTokenSetAndValid()
   }
@@ -41,6 +49,14 @@ export class AuthService {
     const token = localStorage.getItem("bearer_token")
 
     return token ? !this.jwtHelper.isTokenExpired(token) : false
+  }
+
+  private getToken(): string {
+    const token = localStorage.getItem("bearer_token")
+
+    if (!token) throw new Error("Can't access token before if no user is logged in!")
+
+    return token
   }
 
 }
