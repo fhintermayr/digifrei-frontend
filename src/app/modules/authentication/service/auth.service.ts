@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {LoginCredentials} from "../model/login.credentials";
 import {JwtHelperService} from "@auth0/angular-jwt";
+import {User} from "../../../shared/models/user";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,13 @@ export class AuthService {
     const url = `${environment.apiUrl}/auth/login`
 
     return this.httpClient.post<any>(url, loginCredentials)
+  }
+
+  public getCurrentUser(): Observable<User> {
+
+    const url = `${environment.apiUrl}/auth/user`
+
+    return this.httpClient.get<User>(url)
   }
 
   public saveJwtInStorage(jwt: string) {

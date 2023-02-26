@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {NavigationBarItemModel} from "../../models/navigation-bar-item.model";
 import {NavigationBarContentService} from "../../services/navigation-bar-content.service";
 import {AuthService} from "../../../modules/authentication/service/auth.service";
+import {User} from "../../../shared/models/user";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-navbar',
@@ -27,8 +29,9 @@ import {AuthService} from "../../../modules/authentication/service/auth.service"
     ])
   ]
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
 
+  currentUser$: Observable<User> = new Observable<User>()
   isProfileDropdownOpen: boolean = false
   navigationLinks: NavigationBarItemModel[] = this.navigationLinkService.getNavigationLinks()
 
@@ -43,8 +46,13 @@ export class NavbarComponent {
     private navigationLinkService: NavigationBarContentService,
   ) { }
 
+  ngOnInit(): void {
+    if (this.authService.isLoggedIn()) this.currentUser$ = this.authService.getCurrentUser()
+   }
+
   onLogout() {
     this.authService.logout()
+    this.toggleProfileDropdown()
   }
 
   toggleProfileDropdown() {
