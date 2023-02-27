@@ -36,7 +36,6 @@ export class NavbarComponent implements OnInit {
   navigationLinks: NavigationBarItemModel[] = this.navigationLinkService.getNavigationLinks()
 
   profileDropdownItems: NavigationBarItemModel[] = [
-    { title: "Admin Menu", routerLink: "/admin" },
     { title: "Your Profile", routerLink: "/profile" },
     { title: "Settings", routerLink: "/settings" }
 ]

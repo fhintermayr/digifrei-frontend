@@ -25,6 +25,7 @@
             <p *ngIf="currentUser$ | async as currentUser" class="block px-4 py-2 text-sm text-gray-700" role="menuitem">
               Logged in as <br><span class="font-semibold">{{currentUser.firstName | titlecase}} {{currentUser.lastName | titlecase}}</span>
             </p>
+            <a *ngIf="authService.hasRole('ADMINISTRATOR')" routerLink="/admin" class="block px-4 py-2 text-sm text-gray-700" routerLinkActive="bg-gray-100" role="menuitem" tabindex="-1">Admin Menu</a>
             <a *ngFor="let profileDropdownItem of profileDropdownItems" [routerLink]="profileDropdownItem.routerLink" class="block px-4 py-2 text-sm text-gray-700" routerLinkActive="bg-gray-100" role="menuitem" tabindex="-1">{{ profileDropdownItem.title }}</a>
             <a (click)="onLogout()" [routerLink]="'/login'" class="block px-4 py-2 text-sm text-gray-700 font-semibold" role="menuitem">Logout</a>
           </div>

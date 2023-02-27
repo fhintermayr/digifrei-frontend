@@ -45,6 +45,18 @@ export class AuthService {
     return decodedToken.role;
   }
 
+  public hasAnyRole(requiredRoles: string[]): boolean {
+    const usersRole = this.getUsersRole()
+
+    return requiredRoles.some(requiredRole => requiredRole === usersRole)
+  }
+
+  public hasRole(requiredRole: string): boolean {
+    const usersRole = this.getUsersRole()
+
+    return requiredRole === usersRole
+  }
+
   public isLoggedIn(): boolean {
     return this.isTokenSetAndValid()
   }
