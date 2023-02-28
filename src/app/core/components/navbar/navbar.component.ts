@@ -12,7 +12,7 @@ import {Observable} from "rxjs";
   styleUrls: ['./navbar.component.css'],
   animations: [
     trigger('showHideProfileDropdown', [
-      state('hidden', style({
+      state('void', style({
         opacity: 0,
         transform: 'scale(.95)'
       })),
@@ -20,10 +20,10 @@ import {Observable} from "rxjs";
         opacity: 100,
         transform: 'scale(1)'
       })),
-      transition('hidden => visible', [
+      transition(':enter', [
         animate('200ms ease-out')
       ]),
-      transition('visible => hidden', [
+      transition(':leave', [
         animate('75ms ease-in')
       ]),
     ])
