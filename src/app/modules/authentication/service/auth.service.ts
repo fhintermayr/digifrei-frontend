@@ -65,6 +65,12 @@ export class AuthService {
     return !this.isLoggedIn()
   }
 
+  public isSessionExpired(): boolean {
+    const token = localStorage.getItem("bearer_token")
+
+    return !!(token && this.jwtHelper.isTokenExpired(token));
+  }
+
   private isTokenSetAndValid(): boolean {
     const token = localStorage.getItem("bearer_token")
 

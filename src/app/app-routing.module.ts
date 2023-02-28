@@ -3,6 +3,7 @@ import {ExtraOptions, RouterModule, Routes} from '@angular/router';
 import {PageNotFoundComponent} from "./core/components/page-not-found/page-not-found.component";
 import {LoginComponent} from "./modules/authentication/components/login/login.component";
 import {AccessRoleGuard} from "./shared/guards/access-role.guard";
+import {AuthGuard} from "./shared/guards/auth.guard";
 
 export const routingConfiguration: ExtraOptions = {
   paramsInheritanceStrategy: 'always'
@@ -11,7 +12,8 @@ export const routingConfiguration: ExtraOptions = {
 const routes: Routes = [
   {
     path: 'admin',
-    canActivate: [AccessRoleGuard],
+    canActivate: [AuthGuard, AccessRoleGuard],
+    canActivateChild: [AuthGuard],
     data: {
       requiredRoles: ['ADMINISTRATOR']
     },
