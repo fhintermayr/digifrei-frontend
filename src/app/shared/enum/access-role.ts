@@ -1,4 +1,4 @@
 export enum AccessRole {
-  APPRENTICE,
-  TRAINER
+  APPRENTICE= "APPRENTICE",
+  TRAINER = "TRAINER"
 }
