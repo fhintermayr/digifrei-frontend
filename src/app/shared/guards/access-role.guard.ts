@@ -8,6 +8,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import {AuthService} from "../../modules/authentication/service/auth.service";
+import {AccessRole} from "../enum/access-role";
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class AccessRoleGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    const requiredRoles: string[] = route.data['requiredRoles']
+    const requiredRoles: AccessRole[] = route.data['requiredRoles']
 
     if (this.authService.isLoggedOut() || this.hasNotRequiredRole(requiredRoles)) {
       this.router.navigate(['/'])
@@ -33,11 +34,11 @@ export class AccessRoleGuard implements CanActivate {
     return true
   }
 
-  private hasNotRequiredRole(requiredRoles: string[]): boolean {
+  private hasNotRequiredRole(requiredRoles: AccessRole[]): boolean {
 
     const usersRole = this.authService.getUsersRole()
 
-    return requiredRoles.some(requiredRole => requiredRole !== usersRole)
+    return requiredRoles.some(requiredRole => requiredRole.valueOf() !== usersRole.valueOf())
   }
 
 }
