@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {SelectOption} from "../../../../../shared/components/shared-dropdown/shared-dropdown.component";
 import {FormBuilder, Validators} from "@angular/forms";
 import {RestApiService} from "../../../../../core/services/rest-api.service";
 import {UsernameValidators} from "../../../validators/username-validators";
@@ -16,22 +15,13 @@ export class UserManagementProfileComponent implements OnInit {
 
   currentManagingUser: User = new User()
 
-  readonly genderSelectOptions: SelectOption[] = [
-    { label: "Male", value: "MALE" },
-    { label: "Female", value: "FEMALE" },
-    { label: "Diverse", value: "DIVERSE" },
-  ]
-
-  private readonly roomNumberPattern: RegExp = new RegExp("^\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}$")
   private readonly namePattern: RegExp = new RegExp("^[a-zA-Z\x7f-\xff-]{2,}(\\s?[a-zA-Z\x7f-\xff-]{2,})*$")
 
   userEditingForm = this.formBuilder.group({
     firstName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(this.namePattern)]],
     lastName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(this.namePattern)]],
     email: ['', [Validators.required, Validators.minLength(7)]],
-    profession: ['', [Validators.required, Validators.pattern(this.namePattern)]],
     department: ['', [Validators.required, Validators.pattern(this.namePattern)]],
-    roomNumber: ['', Validators.pattern(this.roomNumberPattern)]
   })
 
   constructor(
@@ -58,9 +48,7 @@ export class UserManagementProfileComponent implements OnInit {
     this.userEditingForm.controls.firstName.setValue(user.firstName)
     this.userEditingForm.controls.lastName.setValue(user.lastName)
     this.userEditingForm.controls.email.setValue(user.email)
-    this.userEditingForm.controls.profession.setValue(user.profession)
     this.userEditingForm.controls.department.setValue(user.department)
-    if (user.roomNumber) this.userEditingForm.controls.roomNumber.setValue(user.roomNumber)
   }
 
   onSubmit() {
