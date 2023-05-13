@@ -28,9 +28,7 @@ export class UserManagementProfileComponent implements OnInit {
   userEditingForm = this.formBuilder.group({
     firstName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(this.namePattern)]],
     lastName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(this.namePattern)]],
-    username: ['', [Validators.required, Validators.minLength(7)]],
-    dateOfBirth: [''],
-    gender: ['', Validators.required],
+    email: ['', [Validators.required, Validators.minLength(7)]],
     profession: ['', [Validators.required, Validators.pattern(this.namePattern)]],
     department: ['', [Validators.required, Validators.pattern(this.namePattern)]],
     roomNumber: ['', Validators.pattern(this.roomNumberPattern)]
@@ -59,9 +57,7 @@ export class UserManagementProfileComponent implements OnInit {
   private insertUsersDataIntoForm(user: User) {
     this.userEditingForm.controls.firstName.setValue(user.firstName)
     this.userEditingForm.controls.lastName.setValue(user.lastName)
-    this.userEditingForm.controls.username.setValue(user.username)
-    if (user.dateOfBirth) this.userEditingForm.controls.dateOfBirth.setValue(user.dateOfBirth.toString())
-    this.userEditingForm.controls.gender.setValue(user.gender)
+    this.userEditingForm.controls.email.setValue(user.email)
     this.userEditingForm.controls.profession.setValue(user.profession)
     this.userEditingForm.controls.department.setValue(user.department)
     if (user.roomNumber) this.userEditingForm.controls.roomNumber.setValue(user.roomNumber)
@@ -73,7 +69,7 @@ export class UserManagementProfileComponent implements OnInit {
 
     this.restApiService.updateUserById(this.currentManagingUser).subscribe({
       next: updatedUser => {
-        this.notification.showSuccess(`${updatedUser.username} was updated successfully.`)
+        this.notification.showSuccess(`${updatedUser.email} was updated successfully.`)
         this.currentManagingUser = updatedUser
       },
       error: () => this.notification.showError("Wasn't able to perform the update. Please try again later.")
@@ -90,8 +86,8 @@ export class UserManagementProfileComponent implements OnInit {
   }
 
   skipUsernameAvailableValidatorIfUsernameDidntChange() {
-    const usernameInput = this.userEditingForm.get('username')
-    const usernameIsSameAsBefore = usernameInput?.value === this.currentManagingUser.username
+    const usernameInput = this.userEditingForm.get('email')
+    const usernameIsSameAsBefore = usernameInput?.value === this.currentManagingUser.email
 
     usernameIsSameAsBefore ?
       usernameInput?.clearAsyncValidators() :

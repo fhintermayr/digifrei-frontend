@@ -61,7 +61,7 @@ export class UserManagementAccountComponent implements OnInit {
   submitUserDeletion() {
     this.restApiService.deleteUserById(this.currentlyManagingUser.id).subscribe({
       next: () => {
-        this.notification.showSuccess(`User ${this.currentlyManagingUser.username} deleted successfully`)
+        this.notification.showSuccess(`User ${this.currentlyManagingUser.email} deleted successfully`)
         this.router.navigate(["/admin"])
       },
       error: () => this.notification.showError("User deletion can't be performed. Please try again later")

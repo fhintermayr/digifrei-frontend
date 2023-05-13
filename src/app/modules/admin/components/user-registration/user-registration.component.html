@@ -24,7 +24,7 @@
 
           <div class="col-span-6 sm:col-span-4 lg:col-span-3">
             <app-shared-input
-              [control]="registrationForm.controls.username"
+              [control]="registrationForm.controls.email"
               [inputId]="'username'"
               [placeholder]="'max.mustermann'"
             >Username</app-shared-input>
@@ -36,21 +36,6 @@
               [inputId]="'password'"
               [inputType]="'password'"
             >Password</app-shared-input>
-          </div>
-
-          <div class="col-span-6 sm:col-start-1 lg:col-start-1 sm:col-span-2 lg:col-span-1">
-            <app-shared-input
-              [control]="registrationForm.controls.dateOfBirth"
-              [inputId]="'date-of-birth'"
-              [inputType]="'date'"
-            >Date of birth</app-shared-input>
-          </div>
-
-          <div class="col-span-6 sm:col-span-2 lg:col-span-1">
-            <app-shared-dropdown
-              [control]="registrationForm.controls.gender"
-              [options]="genderSelectOptions"
-            >Gender</app-shared-dropdown>
           </div>
 
           <div class="col-span-6 sm:col-span-3 lg:col-span-2">

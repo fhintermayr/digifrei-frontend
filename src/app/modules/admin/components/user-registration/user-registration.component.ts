@@ -21,10 +21,8 @@ export class UserRegistrationComponent implements OnDestroy{
   readonly registrationForm = this.formBuilder.group({
     firstName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(this.namePattern)]],
     lastName: ['', [Validators.required, Validators.minLength(3),Validators.pattern(this.namePattern)]],
-    username: ['', [Validators.required, Validators.minLength(7)], UsernameValidators.usernameAvailable(this.restApiService)],
+    email: ['', [Validators.required, Validators.minLength(7)], UsernameValidators.usernameAvailable(this.restApiService)],
     password: [null, [Validators.required, Validators.minLength(8)]],
-    dateOfBirth: [null],
-    gender: [null, Validators.required],
     profession: [null, [Validators.required, Validators.pattern(this.namePattern)]],
     department: [null, [Validators.required, Validators.pattern(this.namePattern)]],
     roomNumber: [null, Validators.pattern(this.roomNumberPattern)],
@@ -34,12 +32,6 @@ export class UserRegistrationComponent implements OnDestroy{
   readonly accessRoleSelectOptions: SelectOption[] = [
     { label: "Member", value: "MEMBER" },
     { label: "Administrator", value: "ADMINISTRATOR" },
-  ]
-
-  readonly genderSelectOptions: SelectOption[] = [
-    { label: "Male", value: "MALE" },
-    { label: "Female", value: "FEMALE" },
-    { label: "Diverse", value: "DIVERSE" },
   ]
 
   readonly breadcrumbs: SiteNavigationLink[] = [
@@ -61,7 +53,7 @@ export class UserRegistrationComponent implements OnDestroy{
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe({
         next: (createdUser: User) => {
-      this.notification.showSuccess(`Nutzer ${createdUser.username} wurde erstellt`)
+      this.notification.showSuccess(`Nutzer ${createdUser.email} wurde erstellt`)
       this.registrationForm.reset()
       },
       error: () => this.notification.showError("Nutzer konnte nicht erstellt werden. Bitte versuche es erneut")
@@ -72,7 +64,7 @@ export class UserRegistrationComponent implements OnDestroy{
   autofillDefaultUsername() {
     const firstName = this.registrationForm.get('firstName')?.value
     const lastName = this.registrationForm.get('lastName')?.value
-    const username = this.registrationForm.get('username')
+    const username = this.registrationForm.get('email')
 
     firstName && lastName ?
       username?.setValue(`${firstName}.${lastName}`.toLowerCase()) :
