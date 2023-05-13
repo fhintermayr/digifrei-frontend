@@ -57,13 +57,6 @@ export class RestApiService {
     return this.httpClient.put<void>(url, {newPassword: newPassword} )
   }
 
-  public changeUsersAccessRoleById(userId: number, newAccessRole: string): Observable<User> {
-
-    const url = `${environment.apiUrl}/user/${userId}/access-role`
-
-    return this.httpClient.put<User>(url, {newAccessRole: newAccessRole} )
-  }
-
   public deleteUserById(userId: number): Observable<void> {
 
     const url = `${environment.apiUrl}/user/${userId}`

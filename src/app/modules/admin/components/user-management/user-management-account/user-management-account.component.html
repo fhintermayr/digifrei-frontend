@@ -29,16 +29,6 @@
   </div>
 
   <div>
-    <app-section-heading>Change access role</app-section-heading>
-
-    <app-shared-colored-dropdown
-      (dropdownSelectChanged)="onDropdownChange($event)"
-      [selected]="usersRespectiveAccessRoleDropdownOption"
-      [selectOptions]="accessRoleOptions">
-    </app-shared-colored-dropdown>
-  </div>
-
-  <div>
     <app-section-heading>Delete user</app-section-heading>
 
     <app-alert [alertType]="'danger'">
