@@ -40,7 +40,7 @@
 
           <div class="col-span-6 sm:col-span-3 lg:col-span-2">
             <app-shared-input
-              [control]="registrationForm.controls.department"
+              [control]="registrationForm.controls.departmentId"
               [inputId]="'department'"
               [placeholder]="'Metalltechnik'"
             >Department</app-shared-input>
@@ -48,9 +48,9 @@
 
           <div class="col-span-6 sm:col-span-2 lg:col-span-1">
             <app-shared-dropdown
-              [control]="registrationForm.controls.accessRole"
+              [control]="registrationForm.controls.userType"
               [options]="accessRoleSelectOptions"
-            >Access role</app-shared-dropdown>
+            >User Type</app-shared-dropdown>
           </div>
 
         </div>

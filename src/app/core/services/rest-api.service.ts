@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {User} from "../../shared/models/user";
+import {UserCreationDto} from "../../modules/admin/dto/user-creation-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class RestApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public createUser(userToCreate: User): Observable<User> {
+  public createUser(userToCreate: UserCreationDto): Observable<User> {
 
     const url = `${environment.apiUrl}/user/register`
 

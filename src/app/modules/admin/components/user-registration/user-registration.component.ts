@@ -7,6 +7,10 @@ import {NotificationService} from "../../../../core/services/notification.servic
 import {UsernameValidators} from "../../validators/username-validators";
 import {Subject, takeUntil} from "rxjs";
 import {SiteNavigationLink} from "../../../../shared/types/site-navigation-link";
+import {AccessRole} from "../../../../shared/enum/access-role";
+import {UserCreationDto} from "../../dto/user-creation-dto";
+import {ApprenticeCreationDto} from "../../dto/apprentice-creation-dto";
+import {TrainerCreationDto} from "../../dto/trainer-creation-dto";
 
 @Component({
   selector: 'app-user-registration',
@@ -22,13 +26,13 @@ export class UserRegistrationComponent implements OnDestroy{
     lastName: ['', [Validators.required, Validators.minLength(3),Validators.pattern(this.namePattern)]],
     email: ['', [Validators.required, Validators.minLength(7)], UsernameValidators.usernameAvailable(this.restApiService)],
     password: [null, [Validators.required, Validators.minLength(8)]],
-    department: [null, [Validators.required, Validators.pattern(this.namePattern)]],
-    accessRole: [null, Validators.required]
+    departmentId: [null, [Validators.required, Validators.pattern(this.namePattern)]],
+    userType: [null, Validators.required]
   })
 
   readonly accessRoleSelectOptions: SelectOption[] = [
-    { label: "Member", value: "MEMBER" },
-    { label: "Administrator", value: "ADMINISTRATOR" },
+    { label: "Azubi", value: AccessRole[AccessRole.APPRENTICE] },
+    { label: "Ausbilder", value: AccessRole[AccessRole.TRAINER] },
   ]
 
   readonly breadcrumbs: SiteNavigationLink[] = [
@@ -43,8 +47,9 @@ export class UserRegistrationComponent implements OnDestroy{
   ) { }
 
   onSubmit() {
-    const formValues = this.registrationForm.value
-    const userToRegister: User = Object.assign(new User(), formValues)
+    const userToRegister: UserCreationDto = this.createUserCreationDto()
+
+    console.debug(userToRegister)
 
     this.restApiService.createUser(userToRegister)
       .pipe(takeUntil(this.unsubscribe$))
@@ -68,6 +73,33 @@ export class UserRegistrationComponent implements OnDestroy{
       username?.reset()
 
     username?.markAsTouched()
+  }
+
+  createUserCreationDto(): UserCreationDto {
+
+    const formValues = this.registrationForm.value
+
+    switch (this.registrationForm.controls.userType.value!) {
+      case AccessRole.APPRENTICE:
+        return new ApprenticeCreationDto(
+          formValues.firstName!,
+          formValues.lastName!,
+          formValues.email!,
+          formValues.password!,
+          1, //TODO: Replace with real department id
+          1
+        )
+      case AccessRole.TRAINER:
+        return new TrainerCreationDto(
+          formValues.firstName!,
+          formValues.lastName!,
+          formValues.email!,
+          formValues.password!,
+          1
+        )
+      default:
+        throw new Error("Unknown user type. Must be apprentice or trainer")
+    }
   }
 
   ngOnDestroy(): void {
