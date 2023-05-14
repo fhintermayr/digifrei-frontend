@@ -1,4 +1,4 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {RestApiService} from "../../../../core/services/rest-api.service";
 import {User} from "../../../../shared/models/user";
@@ -11,13 +11,15 @@ import {AccessRole} from "../../../../shared/enum/access-role";
 import {UserCreationDto} from "../../dto/user-creation-dto";
 import {ApprenticeCreationDto} from "../../dto/apprentice-creation-dto";
 import {TrainerCreationDto} from "../../dto/trainer-creation-dto";
+import {DepartmentService} from "../../service/department.service";
+import {Department} from "../../model/department";
 
 @Component({
   selector: 'app-user-registration',
   templateUrl: './user-registration.component.html',
   styleUrls: ['./user-registration.component.css']
 })
-export class UserRegistrationComponent implements OnDestroy{
+export class UserRegistrationComponent implements OnInit, OnDestroy{
   private unsubscribe$ = new Subject<void>();
   private readonly namePattern: RegExp = new RegExp("^[a-zA-Z\x7f-\xff-]{2,}(\\s?[a-zA-Z\x7f-\xff-]{2,})*$")
 
@@ -26,7 +28,7 @@ export class UserRegistrationComponent implements OnDestroy{
     lastName: ['', [Validators.required, Validators.minLength(3),Validators.pattern(this.namePattern)]],
     email: ['', [Validators.required, Validators.minLength(7)], UsernameValidators.usernameAvailable(this.restApiService)],
     password: [null, [Validators.required, Validators.minLength(8)]],
-    departmentId: [null, [Validators.required, Validators.pattern(this.namePattern)]],
+    departmentId: [null, Validators.required],
     userType: [null, Validators.required]
   })
 
@@ -34,6 +36,8 @@ export class UserRegistrationComponent implements OnDestroy{
     { label: "Azubi", value: AccessRole[AccessRole.APPRENTICE] },
     { label: "Ausbilder", value: AccessRole[AccessRole.TRAINER] },
   ]
+
+  departmentDropdownSelectOptions: SelectOption[] = []
 
   readonly breadcrumbs: SiteNavigationLink[] = [
     {displayName: "Admin", routerLink: "/admin"},
@@ -43,8 +47,13 @@ export class UserRegistrationComponent implements OnDestroy{
   constructor(
     private formBuilder: FormBuilder,
     private restApiService: RestApiService,
+    private departmentService: DepartmentService,
     private notification: NotificationService
   ) { }
+
+  ngOnInit(): void {
+    this.initializeDepartmentDropdownOptions()
+  }
 
   onSubmit() {
     const userToRegister: UserCreationDto = this.createUserCreationDto()
@@ -86,7 +95,7 @@ export class UserRegistrationComponent implements OnDestroy{
           formValues.lastName!,
           formValues.email!,
           formValues.password!,
-          1, //TODO: Replace with real department id
+          parseInt(formValues.departmentId!),
           1
         )
       case AccessRole.TRAINER:
@@ -95,16 +104,32 @@ export class UserRegistrationComponent implements OnDestroy{
           formValues.lastName!,
           formValues.email!,
           formValues.password!,
-          1
+          parseInt(formValues.departmentId!)
         )
       default:
         throw new Error("Unknown user type. Must be apprentice or trainer")
     }
   }
 
+  private initializeDepartmentDropdownOptions() {
+
+    this.departmentService.getAllDepartments()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: departments => this.departmentDropdownSelectOptions = this.mapDepartmentsToDropdownSelect(departments)
+      })
+
+  }
+
+  private mapDepartmentsToDropdownSelect(departments: Department[]): SelectOption[] {
+    return departments.map(department => ({
+      label: department.name,
+      value: department.id
+    }));
+  }
+
   ngOnDestroy(): void {
     this.unsubscribe$.next()
     this.unsubscribe$.complete()
   }
-
 }
