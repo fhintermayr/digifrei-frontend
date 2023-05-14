@@ -1,1 +1,20 @@
-<p>request-submission works!</p>
+<app-page-heading>Neuen Antrag einreichen</app-page-heading>
+
+<app-card>
+  <form>
+    <app-card-body>
+
+      <app-shared-input [inputType]="'datetime-local'">Beginn</app-shared-input>
+      <app-shared-input [inputType]="'datetime-local'">Ende</app-shared-input>
+
+    </app-card-body>
+
+    <app-card-footer>
+      <div class="flex justify-end space-x-2">
+        <app-shared-button [buttonDesign]="'secondary'">Entwurf speichern</app-shared-button>
+        <app-shared-button [buttonType]="'submit'" [buttonDesign]="'primary'">Einreichen</app-shared-button>
+      </div>
+    </app-card-footer>
+
+  </form>
+</app-card>
