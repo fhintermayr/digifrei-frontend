@@ -8,6 +8,7 @@ import {NotificationService} from "../../../../../core/services/notification.ser
 import {SelectOption} from "../../../../../shared/components/shared-dropdown/shared-dropdown.component";
 import {DepartmentService} from "../../../service/department.service";
 import {Department} from "../../../model/department";
+import {UserUpdateDto} from "../../../dto/user-update-dto";
 
 @Component({
   selector: 'app-user-management-profile',
@@ -62,9 +63,12 @@ export class UserManagementProfileComponent implements OnInit {
 
   onSubmit() {
     this.trimAllFormValues()
-    Object.assign(this.currentManagingUser, this.userEditingForm.value)
 
-    this.restApiService.updateUserById(this.currentManagingUser).subscribe({
+    const userUpdateDto: UserUpdateDto = new UserUpdateDto()
+    Object.assign(userUpdateDto, this.userEditingForm.value)
+    userUpdateDto.departmentId = parseInt(this.userEditingForm.controls.department.value!)
+
+    this.restApiService.updateUserById(this.currentManagingUser.id, userUpdateDto).subscribe({
       next: updatedUser => {
         this.notification.showSuccess(`${updatedUser.email} was updated successfully.`)
         this.currentManagingUser = updatedUser
