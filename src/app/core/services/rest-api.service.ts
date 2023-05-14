@@ -3,6 +3,8 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {User} from "../../shared/models/user";
+import {UserCreationDto} from "../../modules/admin/dto/user-creation-dto";
+import {UserUpdateDto} from "../../modules/admin/dto/user-update-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class RestApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public createUser(userToCreate: User): Observable<User> {
+  public createUser(userToCreate: UserCreationDto): Observable<User> {
 
     const url = `${environment.apiUrl}/user/register`
 
@@ -43,9 +45,9 @@ export class RestApiService {
     return this.httpClient.get<User[]>(url, {params})
   }
 
-  public updateUserById(userWithUpdatedData: User): Observable<User> {
+  public updateUserById(userId: number, userWithUpdatedData: UserUpdateDto): Observable<User> {
 
-    const url = `${environment.apiUrl}/user/${userWithUpdatedData.id}`
+    const url = `${environment.apiUrl}/user/${userId}`
 
     return this.httpClient.put<User>(url, userWithUpdatedData)
   }
@@ -55,13 +57,6 @@ export class RestApiService {
     const url = `${environment.apiUrl}/user/${userId}/password`
 
     return this.httpClient.put<void>(url, {newPassword: newPassword} )
-  }
-
-  public changeUsersAccessRoleById(userId: number, newAccessRole: string): Observable<User> {
-
-    const url = `${environment.apiUrl}/user/${userId}/access-role`
-
-    return this.httpClient.put<User>(url, {newAccessRole: newAccessRole} )
   }
 
   public deleteUserById(userId: number): Observable<void> {

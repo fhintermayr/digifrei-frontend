@@ -4,6 +4,7 @@ import {PageNotFoundComponent} from "./core/components/page-not-found/page-not-f
 import {LoginComponent} from "./modules/authentication/components/login/login.component";
 import {AccessRoleGuard} from "./shared/guards/access-role.guard";
 import {AuthGuard} from "./shared/guards/auth.guard";
+import {AccessRole} from "./shared/enum/access-role";
 
 export const routingConfiguration: ExtraOptions = {
   paramsInheritanceStrategy: 'always'
@@ -15,7 +16,7 @@ const routes: Routes = [
     canActivate: [AuthGuard, AccessRoleGuard],
     canActivateChild: [AuthGuard],
     data: {
-      requiredRoles: ['ADMINISTRATOR']
+      requiredRoles: [AccessRole.TRAINER]
     },
     loadChildren: () => import('./modules/admin/admin.module').then(module => module.AdminModule)
   },

@@ -5,6 +5,7 @@ import {NavigationBarContentService} from "../../services/navigation-bar-content
 import {AuthService} from "../../../modules/authentication/service/auth.service";
 import {User} from "../../../shared/models/user";
 import {Observable} from "rxjs";
+import {AccessRole} from "../../../shared/enum/access-role";
 
 @Component({
   selector: 'app-navbar',
@@ -62,4 +63,5 @@ export class NavbarComponent implements OnInit {
     if (this.isProfileDropdownOpen) this.isProfileDropdownOpen = false
   }
 
+  protected readonly AccessRole = AccessRole;
 }

@@ -4,7 +4,6 @@ import {PasswordValidators} from "../../../validators/password-validators";
 import {RestApiService} from "../../../../../core/services/rest-api.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NotificationService} from "../../../../../core/services/notification.service";
-import {ColoredDropdownOption} from "../../../../../shared/types/colored-dropdown-option";
 import {User} from "../../../../../shared/models/user";
 
 
@@ -15,18 +14,12 @@ import {User} from "../../../../../shared/models/user";
 })
 export class UserManagementAccountComponent implements OnInit {
 
-  readonly accessRoleOptions: ColoredDropdownOption[] = [
-    { title: "Administrator", description: "Grants all basic and all administrative permissions, e.g. user creation, user deletion" },
-    { title: "Member", description: "Grants all basic permissions like event creation, or showing profile of other users" }
-  ]
   readonly passwordResetForm = this.formBuilder.group({
     password: ['', [Validators.required, Validators.minLength(8)]],
     passwordConfirm: ['', [Validators.required, PasswordValidators.equalPasswords('password')]]
   })
 
   currentlyManagingUser: User = new User()
-  usersRespectiveAccessRoleDropdownOption = this.accessRoleOptions[1]
-
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,10 +34,7 @@ export class UserManagementAccountComponent implements OnInit {
     const userIdProvidedInRoute: number = this.activatedRoute.snapshot.params['userId']
 
     this.restApiService.getUserById(userIdProvidedInRoute).subscribe({
-      next: user => {
-        this.currentlyManagingUser = user
-        this.usersRespectiveAccessRoleDropdownOption = this.getDropdownOptionDependingOnUsersAccessRole(user)
-      },
+      next: user => this.currentlyManagingUser = user,
       error: () => this.notification.showError("Benutzer konnte nicht geladen werden")
     })
   }
@@ -61,29 +51,11 @@ export class UserManagementAccountComponent implements OnInit {
   submitUserDeletion() {
     this.restApiService.deleteUserById(this.currentlyManagingUser.id).subscribe({
       next: () => {
-        this.notification.showSuccess(`User ${this.currentlyManagingUser.username} deleted successfully`)
+        this.notification.showSuccess(`User ${this.currentlyManagingUser.email} deleted successfully`)
         this.router.navigate(["/admin"])
       },
       error: () => this.notification.showError("User deletion can't be performed. Please try again later")
     })
-  }
-
-  onDropdownChange($event: string) {
-    const accessRoleAsString: string = $event.toUpperCase()
-
-    this.restApiService.changeUsersAccessRoleById(this.currentlyManagingUser.id, accessRoleAsString).subscribe({
-      next: updatedUser => {
-        this.notification.showSuccess(`Changed access role to ${$event}`)
-        this.currentlyManagingUser = updatedUser
-      },
-      error: () => this.notification.showError("There was an error on updating the access role. Please try again later")
-    })
-  }
-
-  private getDropdownOptionDependingOnUsersAccessRole(user: User): ColoredDropdownOption {
-    return user.accessRole === "ADMINISTRATOR" ?
-      this.accessRoleOptions[0] :
-      this.accessRoleOptions[1]
   }
 
 }

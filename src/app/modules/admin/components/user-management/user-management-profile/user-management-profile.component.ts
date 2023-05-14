@@ -1,11 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {SelectOption} from "../../../../../shared/components/shared-dropdown/shared-dropdown.component";
 import {FormBuilder, Validators} from "@angular/forms";
 import {RestApiService} from "../../../../../core/services/rest-api.service";
 import {UsernameValidators} from "../../../validators/username-validators";
 import {User} from "../../../../../shared/models/user";
 import {ActivatedRoute} from "@angular/router";
 import {NotificationService} from "../../../../../core/services/notification.service";
+import {SelectOption} from "../../../../../shared/components/shared-dropdown/shared-dropdown.component";
+import {DepartmentService} from "../../../service/department.service";
+import {Department} from "../../../model/department";
+import {UserUpdateDto} from "../../../dto/user-update-dto";
 
 @Component({
   selector: 'app-user-management-profile',
@@ -14,36 +17,32 @@ import {NotificationService} from "../../../../../core/services/notification.ser
 })
 export class UserManagementProfileComponent implements OnInit {
 
-  currentManagingUser: User = new User()
+  currentManagingUser!: User
+  departmentDropdownSelectOptions!: SelectOption[]
 
-  readonly genderSelectOptions: SelectOption[] = [
-    { label: "Male", value: "MALE" },
-    { label: "Female", value: "FEMALE" },
-    { label: "Diverse", value: "DIVERSE" },
-  ]
-
-  private readonly roomNumberPattern: RegExp = new RegExp("^\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}$")
   private readonly namePattern: RegExp = new RegExp("^[a-zA-Z\x7f-\xff-]{2,}(\\s?[a-zA-Z\x7f-\xff-]{2,})*$")
 
   userEditingForm = this.formBuilder.group({
     firstName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(this.namePattern)]],
     lastName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(this.namePattern)]],
-    username: ['', [Validators.required, Validators.minLength(7)]],
-    dateOfBirth: [''],
-    gender: ['', Validators.required],
-    profession: ['', [Validators.required, Validators.pattern(this.namePattern)]],
-    department: ['', [Validators.required, Validators.pattern(this.namePattern)]],
-    roomNumber: ['', Validators.pattern(this.roomNumberPattern)]
+    email: ['', Validators.required],
+    department: ['', Validators.required],
   })
 
   constructor(
     private formBuilder: FormBuilder,
     private restApiService: RestApiService,
+    private departmentService: DepartmentService,
     private activatedRoute: ActivatedRoute,
     private notification: NotificationService
     ) { }
 
   ngOnInit(): void {
+    this.initializeUserToEdit();
+    this.initializeDepartmentDropdownOptions()
+  }
+
+  private initializeUserToEdit() {
     const userIdProvidedInRoute: number = this.activatedRoute.snapshot.params['userId']
 
     this.restApiService.getUserById(userIdProvidedInRoute).subscribe({
@@ -53,31 +52,43 @@ export class UserManagementProfileComponent implements OnInit {
       },
       error: () => this.notification.showError("Der zu bearbeitende Nutzer konnte nicht geladen werden")
     })
-
   }
 
   private insertUsersDataIntoForm(user: User) {
     this.userEditingForm.controls.firstName.setValue(user.firstName)
     this.userEditingForm.controls.lastName.setValue(user.lastName)
-    this.userEditingForm.controls.username.setValue(user.username)
-    if (user.dateOfBirth) this.userEditingForm.controls.dateOfBirth.setValue(user.dateOfBirth.toString())
-    this.userEditingForm.controls.gender.setValue(user.gender)
-    this.userEditingForm.controls.profession.setValue(user.profession)
-    this.userEditingForm.controls.department.setValue(user.department)
-    if (user.roomNumber) this.userEditingForm.controls.roomNumber.setValue(user.roomNumber)
+    this.userEditingForm.controls.email.setValue(user.email)
+    this.userEditingForm.controls.department.setValue(user.department.id.toString())
   }
 
   onSubmit() {
     this.trimAllFormValues()
-    Object.assign(this.currentManagingUser, this.userEditingForm.value)
 
-    this.restApiService.updateUserById(this.currentManagingUser).subscribe({
+    const userUpdateDto: UserUpdateDto = new UserUpdateDto()
+    Object.assign(userUpdateDto, this.userEditingForm.value)
+    userUpdateDto.departmentId = parseInt(this.userEditingForm.controls.department.value!)
+
+    this.restApiService.updateUserById(this.currentManagingUser.id, userUpdateDto).subscribe({
       next: updatedUser => {
-        this.notification.showSuccess(`${updatedUser.username} was updated successfully.`)
+        this.notification.showSuccess(`${updatedUser.email} was updated successfully.`)
         this.currentManagingUser = updatedUser
       },
       error: () => this.notification.showError("Wasn't able to perform the update. Please try again later.")
     })
+  }
+
+  private initializeDepartmentDropdownOptions() {
+    this.departmentService.getAllDepartments().subscribe({
+        next: departments => this.departmentDropdownSelectOptions = this.mapDepartmentsToDropdownSelect(departments)
+      })
+
+  }
+
+  private mapDepartmentsToDropdownSelect(departments: Department[]): SelectOption[] {
+    return departments.map(department => ({
+      label: department.name,
+      value: department.id
+    }));
   }
 
   private trimAllFormValues() {
@@ -90,8 +101,8 @@ export class UserManagementProfileComponent implements OnInit {
   }
 
   skipUsernameAvailableValidatorIfUsernameDidntChange() {
-    const usernameInput = this.userEditingForm.get('username')
-    const usernameIsSameAsBefore = usernameInput?.value === this.currentManagingUser.username
+    const usernameInput = this.userEditingForm.get('email')
+    const usernameIsSameAsBefore = usernameInput?.value === this.currentManagingUser.email
 
     usernameIsSameAsBefore ?
       usernameInput?.clearAsyncValidators() :

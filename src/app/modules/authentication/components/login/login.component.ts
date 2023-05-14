@@ -14,7 +14,7 @@ import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 export class LoginComponent {
 
   readonly loginForm = this.formBuilder.group({
-    username: ['', Validators.required],
+    email: ['', Validators.required],
     password: ['', Validators.required]
   })
 
@@ -27,7 +27,7 @@ export class LoginComponent {
 
   onSubmit() {
     const loginCredentials: LoginCredentials = {
-      username: this.loginForm.get('username')?.value ?? '',
+      email: this.loginForm.get('email')?.value ?? '',
       password: this.loginForm.get('password')?.value ?? ''
     }
 

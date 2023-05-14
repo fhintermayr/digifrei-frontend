@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {LoginCredentials} from "../model/login.credentials";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {User} from "../../../shared/models/user";
+import {AccessRole} from "../../../shared/enum/access-role";
 
 @Injectable({
   providedIn: 'root'
@@ -37,24 +38,24 @@ export class AuthService {
     localStorage.removeItem("bearer_token")
   }
 
-  public getUsersRole(): string {
+  public getUsersRole(): AccessRole {
 
     const token = this.getToken()
     const decodedToken = this.jwtHelper.decodeToken(token);
 
-    return decodedToken.role;
+    return AccessRole[decodedToken.role as keyof typeof AccessRole];
   }
 
-  public hasAnyRole(requiredRoles: string[]): boolean {
+  public hasAnyRole(requiredRoles: AccessRole[]): boolean {
     const usersRole = this.getUsersRole()
 
-    return requiredRoles.some(requiredRole => requiredRole === usersRole)
+    return requiredRoles.some(requiredRole => requiredRole.valueOf() === usersRole.valueOf())
   }
 
-  public hasRole(requiredRole: string): boolean {
+  public hasRole(requiredRole: AccessRole): boolean {
     const usersRole = this.getUsersRole()
 
-    return requiredRole === usersRole
+    return requiredRole.valueOf() === usersRole.valueOf()
   }
 
   public isLoggedIn(): boolean {

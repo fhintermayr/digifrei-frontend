@@ -1,4 +1,4 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {RestApiService} from "../../../../core/services/rest-api.service";
 import {User} from "../../../../shared/models/user";
@@ -7,40 +7,37 @@ import {NotificationService} from "../../../../core/services/notification.servic
 import {UsernameValidators} from "../../validators/username-validators";
 import {Subject, takeUntil} from "rxjs";
 import {SiteNavigationLink} from "../../../../shared/types/site-navigation-link";
+import {AccessRole} from "../../../../shared/enum/access-role";
+import {UserCreationDto} from "../../dto/user-creation-dto";
+import {ApprenticeCreationDto} from "../../dto/apprentice-creation-dto";
+import {TrainerCreationDto} from "../../dto/trainer-creation-dto";
+import {DepartmentService} from "../../service/department.service";
+import {Department} from "../../model/department";
 
 @Component({
   selector: 'app-user-registration',
   templateUrl: './user-registration.component.html',
   styleUrls: ['./user-registration.component.css']
 })
-export class UserRegistrationComponent implements OnDestroy{
+export class UserRegistrationComponent implements OnInit, OnDestroy{
   private unsubscribe$ = new Subject<void>();
-  private readonly roomNumberPattern: RegExp = new RegExp("^\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}$")
   private readonly namePattern: RegExp = new RegExp("^[a-zA-Z\x7f-\xff-]{2,}(\\s?[a-zA-Z\x7f-\xff-]{2,})*$")
 
   readonly registrationForm = this.formBuilder.group({
     firstName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(this.namePattern)]],
     lastName: ['', [Validators.required, Validators.minLength(3),Validators.pattern(this.namePattern)]],
-    username: ['', [Validators.required, Validators.minLength(7)], UsernameValidators.usernameAvailable(this.restApiService)],
+    email: ['', [Validators.required, Validators.minLength(7)], UsernameValidators.usernameAvailable(this.restApiService)],
     password: [null, [Validators.required, Validators.minLength(8)]],
-    dateOfBirth: [null],
-    gender: [null, Validators.required],
-    profession: [null, [Validators.required, Validators.pattern(this.namePattern)]],
-    department: [null, [Validators.required, Validators.pattern(this.namePattern)]],
-    roomNumber: [null, Validators.pattern(this.roomNumberPattern)],
-    accessRole: [null, Validators.required]
+    departmentId: [null, Validators.required],
+    userType: [null, Validators.required]
   })
 
   readonly accessRoleSelectOptions: SelectOption[] = [
-    { label: "Member", value: "MEMBER" },
-    { label: "Administrator", value: "ADMINISTRATOR" },
+    { label: "Azubi", value: AccessRole[AccessRole.APPRENTICE] },
+    { label: "Ausbilder", value: AccessRole[AccessRole.TRAINER] },
   ]
 
-  readonly genderSelectOptions: SelectOption[] = [
-    { label: "Male", value: "MALE" },
-    { label: "Female", value: "FEMALE" },
-    { label: "Diverse", value: "DIVERSE" },
-  ]
+  departmentDropdownSelectOptions: SelectOption[] = []
 
   readonly breadcrumbs: SiteNavigationLink[] = [
     {displayName: "Admin", routerLink: "/admin"},
@@ -50,18 +47,24 @@ export class UserRegistrationComponent implements OnDestroy{
   constructor(
     private formBuilder: FormBuilder,
     private restApiService: RestApiService,
+    private departmentService: DepartmentService,
     private notification: NotificationService
   ) { }
 
+  ngOnInit(): void {
+    this.initializeDepartmentDropdownOptions()
+  }
+
   onSubmit() {
-    const formValues = this.registrationForm.value
-    const userToRegister: User = Object.assign(new User(), formValues)
+    const userToRegister: UserCreationDto = this.createUserCreationDto()
+
+    console.debug(userToRegister)
 
     this.restApiService.createUser(userToRegister)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe({
         next: (createdUser: User) => {
-      this.notification.showSuccess(`Nutzer ${createdUser.username} wurde erstellt`)
+      this.notification.showSuccess(`Nutzer ${createdUser.email} wurde erstellt`)
       this.registrationForm.reset()
       },
       error: () => this.notification.showError("Nutzer konnte nicht erstellt werden. Bitte versuche es erneut")
@@ -72,7 +75,7 @@ export class UserRegistrationComponent implements OnDestroy{
   autofillDefaultUsername() {
     const firstName = this.registrationForm.get('firstName')?.value
     const lastName = this.registrationForm.get('lastName')?.value
-    const username = this.registrationForm.get('username')
+    const username = this.registrationForm.get('email')
 
     firstName && lastName ?
       username?.setValue(`${firstName}.${lastName}`.toLowerCase()) :
@@ -81,9 +84,52 @@ export class UserRegistrationComponent implements OnDestroy{
     username?.markAsTouched()
   }
 
+  createUserCreationDto(): UserCreationDto {
+
+    const formValues = this.registrationForm.value
+
+    switch (this.registrationForm.controls.userType.value!) {
+      case AccessRole.APPRENTICE:
+        return new ApprenticeCreationDto(
+          formValues.firstName!,
+          formValues.lastName!,
+          formValues.email!,
+          formValues.password!,
+          parseInt(formValues.departmentId!),
+          1
+        )
+      case AccessRole.TRAINER:
+        return new TrainerCreationDto(
+          formValues.firstName!,
+          formValues.lastName!,
+          formValues.email!,
+          formValues.password!,
+          parseInt(formValues.departmentId!)
+        )
+      default:
+        throw new Error("Unknown user type. Must be apprentice or trainer")
+    }
+  }
+
+  private initializeDepartmentDropdownOptions() {
+
+    this.departmentService.getAllDepartments()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: departments => this.departmentDropdownSelectOptions = this.mapDepartmentsToDropdownSelect(departments)
+      })
+
+  }
+
+  private mapDepartmentsToDropdownSelect(departments: Department[]): SelectOption[] {
+    return departments.map(department => ({
+      label: department.name,
+      value: department.id
+    }));
+  }
+
   ngOnDestroy(): void {
     this.unsubscribe$.next()
     this.unsubscribe$.complete()
   }
-
 }

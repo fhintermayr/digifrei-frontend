@@ -1,7 +1,7 @@
 <div class="mt-2 px-4 py-8 sm:p-6">
   <app-section-heading class="col-span-6">Edit profile</app-section-heading>
 
-  <form [formGroup]="userEditingForm" (ngSubmit)="onSubmit()">
+  <form *ngIf="currentManagingUser && departmentDropdownSelectOptions" [formGroup]="userEditingForm" (ngSubmit)="onSubmit()">
     <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
 
       <div class="sm:col-span-3">
@@ -23,60 +23,20 @@
       <div class="sm:col-span-4">
         <app-shared-input
           (input)="skipUsernameAvailableValidatorIfUsernameDidntChange()"
-          [control]="userEditingForm.controls.username"
-          [inputId]="'username'"
+          [control]="userEditingForm.controls.email"
+          [inputId]="'email'"
           [placeholder]="'max.mustermann'"
-        >Username</app-shared-input>
+        >E-Mail</app-shared-input>
       </div>
 
-      <div class="ml-4 sm:col-start-1 sm:col-span-2 sm:mb-1">
-        <label class="block text-xs font-medium text-gray-900">Photo</label>
-        <div class="mt-1 flex items-center">
-          <span class="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100">
-            <img src="assets/images/default_profile_picture.svg" alt="Profile picture of {{currentManagingUser.firstName}}">
-          </span>
-          <app-shared-button [buttonDesign]="'secondary'" class="ml-5">Remove</app-shared-button>
-        </div>
-      </div>
-
-      <div class="sm:col-start-1 sm:col-span-2">
+      <div class="sm:col-span-2">
         <app-shared-dropdown
-          [control]="userEditingForm.controls.gender"
-          [options]="genderSelectOptions"
-        >Gender</app-shared-dropdown>
-      </div>
-
-      <div class="sm:col-span-2">
-        <app-shared-input
-          [control]="userEditingForm.controls.dateOfBirth"
-          [inputId]="'date-of-birth'"
-          [inputType]="'date'"
-        >Date of birth</app-shared-input>
-      </div>
-
-      <div class="sm:col-start-1 sm:col-span-2">
-        <app-shared-input
-          [control]="userEditingForm.controls.profession"
-          [inputId]="'profession'"
-          [placeholder]="'Fachpraktiker Zerspanungsmechanik'"
-        >Profession</app-shared-input>
-      </div>
-
-      <div class="sm:col-span-2">
-        <app-shared-input
           [control]="userEditingForm.controls.department"
           [inputId]="'department'"
-          [placeholder]="'Metalltechnik'"
-        >Department</app-shared-input>
+          [options]="departmentDropdownSelectOptions"
+        >Department</app-shared-dropdown>
       </div>
 
-      <div class="sm:col-span-2">
-        <app-shared-input
-          [control]="userEditingForm.controls.roomNumber"
-          [inputId]="'room-number'"
-          [placeholder]="'2.1.13'"
-        >Room number</app-shared-input>
-      </div>
     </div>
 
     <div class="flex justify-end space-x-2 bg-gray-50 mt-8 -mb-8 sm:-mb-6 -mx-8 sm:-mx-6 px-8 py-3 text-right sm:px-6">
