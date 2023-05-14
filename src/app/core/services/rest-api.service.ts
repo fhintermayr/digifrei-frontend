@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {User} from "../../shared/models/user";
 import {UserCreationDto} from "../../modules/admin/dto/user-creation-dto";
+import {UserUpdateDto} from "../../modules/admin/dto/user-update-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -44,9 +45,9 @@ export class RestApiService {
     return this.httpClient.get<User[]>(url, {params})
   }
 
-  public updateUserById(userWithUpdatedData: User): Observable<User> {
+  public updateUserById(userId: number, userWithUpdatedData: UserUpdateDto): Observable<User> {
 
-    const url = `${environment.apiUrl}/user/${userWithUpdatedData.id}`
+    const url = `${environment.apiUrl}/user/${userId}`
 
     return this.httpClient.put<User>(url, userWithUpdatedData)
   }
