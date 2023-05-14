@@ -5,6 +5,9 @@ import {UsernameValidators} from "../../../validators/username-validators";
 import {User} from "../../../../../shared/models/user";
 import {ActivatedRoute} from "@angular/router";
 import {NotificationService} from "../../../../../core/services/notification.service";
+import {SelectOption} from "../../../../../shared/components/shared-dropdown/shared-dropdown.component";
+import {DepartmentService} from "../../../service/department.service";
+import {Department} from "../../../model/department";
 
 @Component({
   selector: 'app-user-management-profile',
@@ -13,25 +16,32 @@ import {NotificationService} from "../../../../../core/services/notification.ser
 })
 export class UserManagementProfileComponent implements OnInit {
 
-  currentManagingUser: User = new User()
+  currentManagingUser!: User
+  departmentDropdownSelectOptions!: SelectOption[]
 
   private readonly namePattern: RegExp = new RegExp("^[a-zA-Z\x7f-\xff-]{2,}(\\s?[a-zA-Z\x7f-\xff-]{2,})*$")
 
   userEditingForm = this.formBuilder.group({
     firstName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(this.namePattern)]],
     lastName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(this.namePattern)]],
-    email: ['', [Validators.required, Validators.minLength(7)]],
-    department: ['', [Validators.required, Validators.pattern(this.namePattern)]],
+    email: ['', Validators.required],
+    department: ['', Validators.required],
   })
 
   constructor(
     private formBuilder: FormBuilder,
     private restApiService: RestApiService,
+    private departmentService: DepartmentService,
     private activatedRoute: ActivatedRoute,
     private notification: NotificationService
     ) { }
 
   ngOnInit(): void {
+    this.initializeUserToEdit();
+    this.initializeDepartmentDropdownOptions()
+  }
+
+  private initializeUserToEdit() {
     const userIdProvidedInRoute: number = this.activatedRoute.snapshot.params['userId']
 
     this.restApiService.getUserById(userIdProvidedInRoute).subscribe({
@@ -41,14 +51,13 @@ export class UserManagementProfileComponent implements OnInit {
       },
       error: () => this.notification.showError("Der zu bearbeitende Nutzer konnte nicht geladen werden")
     })
-
   }
 
   private insertUsersDataIntoForm(user: User) {
     this.userEditingForm.controls.firstName.setValue(user.firstName)
     this.userEditingForm.controls.lastName.setValue(user.lastName)
     this.userEditingForm.controls.email.setValue(user.email)
-    this.userEditingForm.controls.department.setValue(user.department)
+    this.userEditingForm.controls.department.setValue(user.department.id.toString())
   }
 
   onSubmit() {
@@ -62,6 +71,20 @@ export class UserManagementProfileComponent implements OnInit {
       },
       error: () => this.notification.showError("Wasn't able to perform the update. Please try again later.")
     })
+  }
+
+  private initializeDepartmentDropdownOptions() {
+    this.departmentService.getAllDepartments().subscribe({
+        next: departments => this.departmentDropdownSelectOptions = this.mapDepartmentsToDropdownSelect(departments)
+      })
+
+  }
+
+  private mapDepartmentsToDropdownSelect(departments: Department[]): SelectOption[] {
+    return departments.map(department => ({
+      label: department.name,
+      value: department.id
+    }));
   }
 
   private trimAllFormValues() {
