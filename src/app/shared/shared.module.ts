@@ -15,6 +15,7 @@ import { ClickedOutsideDirective } from './directives/clicked-outside.directive'
 import { CardComponent } from './components/card/card.component';
 import { CardFooterComponent } from './components/card/card-footer/card-footer.component';
 import { CardBodyComponent } from './components/card/card-body/card-body.component';
+import { SharedCheckboxComponent } from './components/shared-checkbox/shared-checkbox.component';
 
 
 
@@ -31,7 +32,8 @@ import { CardBodyComponent } from './components/card/card-body/card-body.compone
     ClickedOutsideDirective,
     CardComponent,
     CardFooterComponent,
-    CardBodyComponent
+    CardBodyComponent,
+    SharedCheckboxComponent
   ],
   exports: [
     SharedButtonComponent,
@@ -45,7 +47,8 @@ import { CardBodyComponent } from './components/card/card-body/card-body.compone
     ClickedOutsideDirective,
     CardComponent,
     CardFooterComponent,
-    CardBodyComponent
+    CardBodyComponent,
+    SharedCheckboxComponent
   ],
     imports: [
         CommonModule,
