@@ -36,7 +36,8 @@ export class SharedInputComponent implements OnChanges {
                   "Bitte überprüfe deine Internetverbindung",
     passwordsDoNotMatch: "Passwörter stimmen nicht überein",
     dateNotInFuture: "Das Datum muss in der Zukunft liegen",
-    dateNotInPast: "Das Datum muss in der Vergangenheit liegen"
+    dateNotInPast: "Das Datum muss in der Vergangenheit liegen",
+    dateNotPastOther: "Das Enddatum muss nach dem Startdatum liegen"
   }
 
   ngOnChanges(changes: SimpleChanges): void {

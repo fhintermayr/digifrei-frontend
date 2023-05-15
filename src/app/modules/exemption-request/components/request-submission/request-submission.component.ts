@@ -21,7 +21,7 @@ export class RequestSubmissionComponent {
 
   readonly submissionForm = this.formBuilder.group({
     startTime: [null, [Validators.required, DateValidators.futureOrPresent()]],
-    endTime: [null, [Validators.required, DateValidators.futureOrPresent()]],
+    endTime: [null, [Validators.required, DateValidators.futureOrPresent(), DateValidators.isPast('startTime')]],
     reason: [null, Validators.required],
     exemptionCategory: [null, Validators.required],
     appointmentCancelled: [null, Validators.required]
