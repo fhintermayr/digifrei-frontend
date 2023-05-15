@@ -1,9 +1,9 @@
-<div class="relative flex items-start">
+<div class="relative flex items-center">
   <div class="flex h-6 items-center">
-    <input id="comments" aria-describedby="comments-description" name="comments" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary">
+    <input [attr.id]="inputId ? inputId : null" [attr.name]="inputId ? inputId : null" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary">
   </div>
-  <div class="ml-3 text-sm leading-6 items-center">
-    <label for="comments" class="font-medium text-gray-900">
+  <div class="ml-3 leading-6">
+    <label [attr.for]="inputId ? inputId : null" class="font-medium">
       <ng-content></ng-content>
     </label>
   </div>

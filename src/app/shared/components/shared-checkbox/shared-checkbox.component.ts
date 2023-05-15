@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-shared-checkbox',
@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./shared-checkbox.component.css']
 })
 export class SharedCheckboxComponent {
+
+  @Input()
+  inputId?: string
 
 }
