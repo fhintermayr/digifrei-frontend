@@ -1,1 +1,2 @@
-<app-self-submitted-requests-overview></app-self-submitted-requests-overview>
+<app-self-submitted-requests-overview *ngIf="currentUsersRole.valueOf() === AccessRole.APPRENTICE"></app-self-submitted-requests-overview>
+<app-department-requests-overview *ngIf="currentUsersRole.valueOf() === AccessRole.TRAINER"></app-department-requests-overview>
