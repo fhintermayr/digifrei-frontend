@@ -37,9 +37,6 @@ export class RequestSubmissionComponent {
   async onSubmit() {
     const requestSubmission: RequestSubmissionDto = await this.buildRequestSubmissionFromSubmissionForm()
 
-    console.log(requestSubmission)
-    console.log(new Date(requestSubmission.startTime))
-
     this.exemptionRequestService.submitExemptionRequest(requestSubmission).subscribe({
       next: () => this.notificationService.showSuccess(`Deine Dienstbefreiung wurde eingereicht`),
       error: () => this.notificationService.showError("Etwas ist schiefgelaufen. Versuche es später erneut")
@@ -65,10 +62,6 @@ export class RequestSubmissionComponent {
         label: key,
         value: value
       }))
-  }
-
-  log() {
-    console.log(this.submissionForm)
   }
 
 }

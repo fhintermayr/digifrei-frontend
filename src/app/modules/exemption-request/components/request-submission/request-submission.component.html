@@ -13,7 +13,9 @@
 
         <app-shared-dropdown [control]="submissionForm.controls.exemptionCategory" [options]="exemptionCategoryDropdownOptions">Befreiungskategorie</app-shared-dropdown>
         <app-shared-input [control]="submissionForm.controls.reason" [inputType]="'text'">Befreiungsgrund</app-shared-input>
-        <app-shared-checkbox [control]="submissionForm.controls.appointmentCancelled">Termine im Haus wurden abgesagt</app-shared-checkbox>
+        <app-shared-checkbox [control]="submissionForm.controls.appointmentCancelled">
+          Termine im Haus wurden abgesagt (Krankengymnastik, Ergotherapie, etc.)
+        </app-shared-checkbox>
 
       </div>
     </app-card-body>
