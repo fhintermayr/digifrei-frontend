@@ -1,7 +1,7 @@
 <app-page-heading>Neuen Antrag einreichen</app-page-heading>
 
 <app-card>
-  <form [formGroup]="submissionForm">
+  <form [formGroup]="submissionForm" (ngSubmit)="onSubmit()">
 
     <app-card-body>
       <div class="grid gap-y-6">
