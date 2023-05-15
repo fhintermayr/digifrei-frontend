@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-shared-checkbox',
@@ -9,5 +10,8 @@ export class SharedCheckboxComponent {
 
   @Input()
   inputId?: string
+
+  @Input()
+  control: FormControl = new FormControl()
 
 }
