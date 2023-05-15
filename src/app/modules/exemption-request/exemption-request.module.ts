@@ -6,6 +6,7 @@ import {SharedModule} from "../../shared/shared.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { RequestOverviewComponent } from './components/request-overview/request-overview.component';
 import { SelfSubmittedRequestsOverviewComponent } from './components/request-overview/self-submitted-requests-overview/self-submitted-requests-overview.component';
+import { ExemptionRequestsTableComponent } from './components/request-overview/exemption-requests-table/exemption-requests-table.component';
 
 
 
@@ -13,7 +14,8 @@ import { SelfSubmittedRequestsOverviewComponent } from './components/request-ove
   declarations: [
     RequestSubmissionComponent,
     RequestOverviewComponent,
-    SelfSubmittedRequestsOverviewComponent
+    SelfSubmittedRequestsOverviewComponent,
+    ExemptionRequestsTableComponent
   ],
     imports: [
         CommonModule,
