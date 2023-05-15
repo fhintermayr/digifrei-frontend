@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RequestSubmissionComponent } from './components/request-submission/request-submission.component';
 import {ExemptionRequestRoutingModule} from "./exemption-request-routing.module";
 import {SharedModule} from "../../shared/shared.module";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -11,11 +11,12 @@ import {FormsModule} from "@angular/forms";
   declarations: [
     RequestSubmissionComponent
   ],
-  imports: [
-    CommonModule,
-    ExemptionRequestRoutingModule,
-    SharedModule,
-    FormsModule
-  ]
+    imports: [
+        CommonModule,
+        ExemptionRequestRoutingModule,
+        SharedModule,
+        FormsModule,
+        ReactiveFormsModule
+    ]
 })
 export class ExemptionRequestModule { }
