@@ -8,6 +8,7 @@ import {lastValueFrom} from "rxjs";
 import {User} from "../../../../shared/models/user";
 import {ExemptionRequestService} from "../../service/exemption-request.service";
 import {NotificationService} from "../../../../core/services/notification.service";
+import {DateValidators} from "../../validators/date-validators";
 
 @Component({
   selector: 'app-request-submission',
@@ -19,8 +20,8 @@ export class RequestSubmissionComponent {
   readonly exemptionCategoryDropdownOptions: SelectOption[] = this.getExemptionCategoryDropdownOptions()
 
   readonly submissionForm = this.formBuilder.group({
-    startTime: [null, Validators.required],
-    endTime: [null, Validators.required],
+    startTime: [null, [Validators.required, DateValidators.futureOrPresent()]],
+    endTime: [null, [Validators.required, DateValidators.futureOrPresent()]],
     reason: [null, Validators.required],
     exemptionCategory: [null, Validators.required],
     appointmentCancelled: [null, Validators.required]
@@ -64,6 +65,10 @@ export class RequestSubmissionComponent {
         label: key,
         value: value
       }))
+  }
+
+  log() {
+    console.log(this.submissionForm)
   }
 
 }
