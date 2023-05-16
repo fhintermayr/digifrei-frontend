@@ -11,10 +11,16 @@ import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {RouterTestingModule} from "@angular/router/testing";
 import {NgIconsModule} from "@ng-icons/core";
 import {heroChevronLeftMini, heroChevronRightMini} from "@ng-icons/heroicons/mini";
+import {AuthService} from "../../../authentication/service/auth.service";
 
 describe('RequestOverviewComponent', () => {
   let component: RequestOverviewComponent;
   let fixture: ComponentFixture<RequestOverviewComponent>;
+
+  const authServiceMock = {
+    getToken: () => 'dummy-token', // Dummy-Token zurückgeben
+    getUsersRole: () => 'dummy-role' // Dummy-Rolle zurückgeben
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,6 +30,9 @@ describe('RequestOverviewComponent', () => {
       imports: [
         HttpClientTestingModule, RouterTestingModule,
         NgIconsModule.withIcons({heroChevronLeftMini, heroChevronRightMini})
+      ],
+      providers: [
+        { provide: AuthService, useValue: authServiceMock } // AuthService Mock bereitstellen
       ]
     })
     .compileComponents();
