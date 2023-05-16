@@ -10,7 +10,7 @@ import {lastValueFrom} from "rxjs";
 })
 export class SelfSubmittedRequestsOverviewComponent implements OnInit {
 
-  selfSubmittedRequests?: ExemptionRequest[]
+  selfSubmittedRequests: ExemptionRequest[] = []
 
   constructor(private exemptionRequestService: ExemptionRequestService) { }
 

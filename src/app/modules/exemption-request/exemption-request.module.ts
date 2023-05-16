@@ -7,6 +7,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { RequestOverviewComponent } from './components/request-overview/request-overview.component';
 import { SelfSubmittedRequestsOverviewComponent } from './components/request-overview/self-submitted-requests-overview/self-submitted-requests-overview.component';
 import { ExemptionRequestsTableComponent } from './components/request-overview/exemption-requests-table/exemption-requests-table.component';
+import { DepartmentRequestsOverviewComponent } from './components/request-overview/department-requests-overview/department-requests-overview.component';
 
 
 
@@ -15,7 +16,8 @@ import { ExemptionRequestsTableComponent } from './components/request-overview/e
     RequestSubmissionComponent,
     RequestOverviewComponent,
     SelfSubmittedRequestsOverviewComponent,
-    ExemptionRequestsTableComponent
+    ExemptionRequestsTableComponent,
+    DepartmentRequestsOverviewComponent
   ],
     imports: [
         CommonModule,

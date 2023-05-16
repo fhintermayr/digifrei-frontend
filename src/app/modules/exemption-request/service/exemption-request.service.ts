@@ -26,4 +26,11 @@ export class ExemptionRequestService {
     return this.httpClient.get<ExemptionRequest[]>(url)
   }
 
+  public getRequestsOfOwnDepartment(): Observable<ExemptionRequest[]> {
+
+    const url = `${environment.apiUrl}/exemption/own-department`
+
+    return this.httpClient.get<ExemptionRequest[]>(url)
+  }
+
 }
