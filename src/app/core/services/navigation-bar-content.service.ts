@@ -14,19 +14,9 @@ export class NavigationBarContentService {
       ngIconName: 'heroHomeSolid'
     },
     {
-      title: "Match",
-      routerLink: "/match",
+      title: "Dienstbefreiungsanträge",
+      routerLink: "/exemption-request",
       ngIconName: 'heroFireSolid'
-    },
-    {
-      title: "Events",
-      routerLink: "/events",
-      ngIconName: 'heroCalendarDaysSolid'
-    },
-    {
-      title: "Chat",
-      routerLink: "/chat",
-      ngIconName: 'heroChatBubbleOvalLeftSolid'
     }
   ]
 
