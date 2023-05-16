@@ -9,6 +9,6 @@ import {ExemptionRequest} from "../../../model/exemption-request";
 export class ExemptionRequestsTableComponent {
 
   @Input()
-  exemptionRequests?: ExemptionRequest[]
+  exemptionRequests: ExemptionRequest[] = []
 
 }

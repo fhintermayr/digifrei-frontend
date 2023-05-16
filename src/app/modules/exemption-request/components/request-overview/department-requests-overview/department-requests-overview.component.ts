@@ -12,7 +12,7 @@ import {AuthService} from "../../../../authentication/service/auth.service";
 })
 export class DepartmentRequestsOverviewComponent implements OnInit {
 
-  requestsOfOwnDepartment?: ExemptionRequest[]
+  requestsOfOwnDepartment: ExemptionRequest[] = []
   currentUser?: User
 
   constructor(
