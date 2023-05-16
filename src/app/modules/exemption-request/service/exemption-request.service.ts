@@ -19,4 +19,11 @@ export class ExemptionRequestService {
     return this.httpClient.post<ExemptionRequest>(url, submissionDto)
   }
 
+  public getSelfSubmittedExemptionRequests(): Observable<ExemptionRequest[]> {
+
+    const url = `${environment.apiUrl}/exemption/self`
+
+    return this.httpClient.get<ExemptionRequest[]>(url)
+  }
+
 }

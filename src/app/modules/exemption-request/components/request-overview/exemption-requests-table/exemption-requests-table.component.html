@@ -1,0 +1,48 @@
+<div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+  <table *ngIf="exemptionRequests; else noExemptionRequests" class="min-w-full divide-y divide-gray-300">
+
+    <thead class="bg-gray-50">
+    <tr>
+      <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900">Antragsteller</th>
+      <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Beantragt am</th>
+      <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Befreiungsgrund</th>
+      <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Von - Bis</th>
+      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
+      <th scope="col" class="relative py-3.5 pl-3 pr-4">
+        <span class="sr-only">Details</span>
+      </th>
+    </tr>
+    </thead>
+
+    <tbody *ngFor="let exemptionRequest of exemptionRequests" class="divide-y divide-gray-200 bg-white">
+    <tr>
+      <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none">
+        {{ exemptionRequest.applicant.firstName }} {{ exemptionRequest.applicant.firstName }}
+        <dl class="font-normal lg:hidden">
+          <dt class="sr-only">Befreiungsgrund</dt>
+          <dd class="mt-1 truncate text-gray-700">{{ exemptionRequest.reason }}</dd>
+          <dt class="sr-only sm:hidden">Von - Bis</dt>
+          <dd class="mt-1 text-gray-500 sm:hidden">
+            {{ exemptionRequest.startTime | date: 'dd.MM.y, H:mm' }} - {{ exemptionRequest.endTime | date: 'H:mm' }}
+          </dd>
+        </dl>
+      </td>
+      <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">{{ exemptionRequest.submissionDate | date: 'dd.MM.y, H:mm' }}</td>
+      <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">{{ exemptionRequest.reason }}</td>
+      <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
+        {{ exemptionRequest.startTime | date: 'dd.MM.y, H:mm' }} - {{ exemptionRequest.endTime | date: 'H:mm' }}
+      </td>
+      <td class="px-3 py-4 text-sm text-gray-500">Genehmigt</td>
+      <td class="py-4 pl-3 pr-4 text-right text-sm font-medium">
+        <a href="#" class="text-primary hover:text-primary-dark">Details</a>
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
+
+  <ng-template #noExemptionRequests>
+    <app-alert [alertType]="'info'">Es liegen keine Dienstbefreiungsanträge vor</app-alert>
+  </ng-template>
+
+</div>
