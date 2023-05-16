@@ -17,20 +17,20 @@
     <tbody *ngFor="let exemptionRequest of exemptionRequests" class="divide-y divide-gray-200 bg-white">
     <tr>
       <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none">
-        {{ exemptionRequest.applicant.firstName }} {{ exemptionRequest.applicant.firstName }}
+        {{ exemptionRequest.applicant.firstName }} {{ exemptionRequest.applicant.lastName }}
         <dl class="font-normal lg:hidden">
           <dt class="sr-only">Befreiungsgrund</dt>
           <dd class="mt-1 truncate text-gray-700">{{ exemptionRequest.reason }}</dd>
           <dt class="sr-only sm:hidden">Von - Bis</dt>
           <dd class="mt-1 text-gray-500 sm:hidden">
-            {{ exemptionRequest.startTime | date: 'dd.MM.y, H:mm' }} - {{ exemptionRequest.endTime | date: 'H:mm' }}
+            {{ exemptionRequest.startTime | date: 'short' }} - {{ exemptionRequest.endTime | date: 'shortTime' }}
           </dd>
         </dl>
       </td>
-      <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">{{ exemptionRequest.submissionDate | date: 'dd.MM.y, H:mm' }}</td>
+      <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">{{ exemptionRequest.submissionDate | date: 'short' }}</td>
       <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">{{ exemptionRequest.reason }}</td>
       <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
-        {{ exemptionRequest.startTime | date: 'dd.MM.y, H:mm' }} - {{ exemptionRequest.endTime | date: 'H:mm' }}
+        {{ exemptionRequest.startTime | date: 'short' }} - {{ exemptionRequest.endTime | date: 'shortTime' }}
       </td>
       <td class="px-3 py-4 text-sm text-gray-500">Genehmigt</td>
       <td class="py-4 pl-3 pr-4 text-right text-sm font-medium">
