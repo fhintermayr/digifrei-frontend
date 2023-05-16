@@ -12,6 +12,10 @@ import { SharedColoredDropdownComponent } from './components/shared-colored-drop
 import { AlertComponent } from './components/alert/alert.component';
 import {NgIconComponent} from "@ng-icons/core";
 import { ClickedOutsideDirective } from './directives/clicked-outside.directive';
+import { CardComponent } from './components/card/card.component';
+import { CardFooterComponent } from './components/card/card-footer/card-footer.component';
+import { CardBodyComponent } from './components/card/card-body/card-body.component';
+import { SharedCheckboxComponent } from './components/shared-checkbox/shared-checkbox.component';
 
 
 
@@ -25,19 +29,27 @@ import { ClickedOutsideDirective } from './directives/clicked-outside.directive'
     SectionHeadingComponent,
     SharedColoredDropdownComponent,
     AlertComponent,
-    ClickedOutsideDirective
+    ClickedOutsideDirective,
+    CardComponent,
+    CardFooterComponent,
+    CardBodyComponent,
+    SharedCheckboxComponent
   ],
-    exports: [
-        SharedButtonComponent,
-        SharedInputComponent,
-        SharedDropdownComponent,
-        PageHeadingComponent,
-        TabsComponent,
-        SectionHeadingComponent,
-        SharedColoredDropdownComponent,
-        AlertComponent,
-        ClickedOutsideDirective
-    ],
+  exports: [
+    SharedButtonComponent,
+    SharedInputComponent,
+    SharedDropdownComponent,
+    PageHeadingComponent,
+    TabsComponent,
+    SectionHeadingComponent,
+    SharedColoredDropdownComponent,
+    AlertComponent,
+    ClickedOutsideDirective,
+    CardComponent,
+    CardFooterComponent,
+    CardBodyComponent,
+    SharedCheckboxComponent
+  ],
     imports: [
         CommonModule,
         ReactiveFormsModule,

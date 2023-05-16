@@ -34,7 +34,10 @@ export class SharedInputComponent implements OnChanges {
     usernameIsTaken: "Der Benutzername ist bereits vergeben",
     unknownError: "Verfügbarkeit des Benutzernamens konnte nicht überprüft werden. " +
                   "Bitte überprüfe deine Internetverbindung",
-    passwordsDoNotMatch: "Passwörter stimmen nicht überein"
+    passwordsDoNotMatch: "Passwörter stimmen nicht überein",
+    dateNotInFuture: "Das Datum muss in der Zukunft liegen",
+    dateNotInPast: "Das Datum muss in der Vergangenheit liegen",
+    dateNotPastOther: "Das Enddatum muss nach dem Startdatum liegen"
   }
 
   ngOnChanges(changes: SimpleChanges): void {

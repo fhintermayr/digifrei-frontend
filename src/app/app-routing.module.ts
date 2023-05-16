@@ -20,6 +20,10 @@ const routes: Routes = [
     },
     loadChildren: () => import('./modules/admin/admin.module').then(module => module.AdminModule)
   },
+  {
+    path: 'exemption-request',
+    loadChildren: () => import('./modules/exemption-request/exemption-request.module').then(module => module.ExemptionRequestModule)
+  },
   { path: 'login', component: LoginComponent },
   { path: '**', component: PageNotFoundComponent }
 ];

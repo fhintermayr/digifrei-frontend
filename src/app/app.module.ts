@@ -14,6 +14,7 @@ import {ngIcons} from "./ng-icons";
 import {AuthenticationModule} from "./modules/authentication/authentication.module";
 import {JwtInterceptor} from "./core/interceptors/jwt.interceptor";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {ExemptionRequestModule} from "./modules/exemption-request/exemption-request.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
+    ExemptionRequestModule,
     RouterOutlet,
     ToastrModule.forRoot({
       toastComponent: NotificationComponent,
