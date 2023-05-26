@@ -4,6 +4,7 @@ import {ExemptionRequestService} from "../../../service/exemption-request.servic
 import {lastValueFrom} from "rxjs";
 import {User} from "../../../../../shared/models/user";
 import {AuthService} from "../../../../authentication/service/auth.service";
+import {SiteNavigationLink} from "../../../../../shared/types/site-navigation-link";
 
 @Component({
   selector: 'app-department-requests-overview',
@@ -14,6 +15,11 @@ export class DepartmentRequestsOverviewComponent implements OnInit {
 
   requestsOfOwnDepartment: ExemptionRequest[] = []
   currentUser?: User
+
+  readonly breadcrumbs: SiteNavigationLink[] = [
+    {displayName: "Dienstbefreiungsanträge", routerLink: "/exemption-request"},
+    {displayName: "Übersicht", routerLink: "/exemption-request/overview"},
+  ]
 
   constructor(
     private authService: AuthService,
