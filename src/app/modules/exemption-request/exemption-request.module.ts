@@ -9,6 +9,8 @@ import { SelfSubmittedRequestsOverviewComponent } from './components/request-ove
 import { ExemptionRequestsTableComponent } from './components/request-overview/exemption-requests-table/exemption-requests-table.component';
 import { DepartmentRequestsOverviewComponent } from './components/request-overview/department-requests-overview/department-requests-overview.component';
 import {NgIconComponent} from "@ng-icons/core";
+import { RequestDetailsComponent } from './components/request-details/request-details.component';
+import { FormatExemptionCategoryPipe } from './pipes/format-exemption-category.pipe';
 
 
 
@@ -18,7 +20,9 @@ import {NgIconComponent} from "@ng-icons/core";
     RequestOverviewComponent,
     SelfSubmittedRequestsOverviewComponent,
     ExemptionRequestsTableComponent,
-    DepartmentRequestsOverviewComponent
+    DepartmentRequestsOverviewComponent,
+    RequestDetailsComponent,
+    FormatExemptionCategoryPipe
   ],
     imports: [
         CommonModule,
