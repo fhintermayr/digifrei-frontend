@@ -17,6 +17,7 @@ import { CardFooterComponent } from './components/card/card-footer/card-footer.c
 import { CardBodyComponent } from './components/card/card-body/card-body.component';
 import { SharedCheckboxComponent } from './components/shared-checkbox/shared-checkbox.component';
 import { BadgeComponent } from './components/badge/badge.component';
+import { CardHeaderComponent } from './components/card/card-header/card-header.component';
 
 
 
@@ -35,24 +36,26 @@ import { BadgeComponent } from './components/badge/badge.component';
     CardFooterComponent,
     CardBodyComponent,
     SharedCheckboxComponent,
-    BadgeComponent
+    BadgeComponent,
+    CardHeaderComponent
   ],
-    exports: [
-        SharedButtonComponent,
-        SharedInputComponent,
-        SharedDropdownComponent,
-        PageHeadingComponent,
-        TabsComponent,
-        SectionHeadingComponent,
-        SharedColoredDropdownComponent,
-        AlertComponent,
-        ClickedOutsideDirective,
-        CardComponent,
-        CardFooterComponent,
-        CardBodyComponent,
-        SharedCheckboxComponent,
-        BadgeComponent
-    ],
+  exports: [
+    SharedButtonComponent,
+    SharedInputComponent,
+    SharedDropdownComponent,
+    PageHeadingComponent,
+    TabsComponent,
+    SectionHeadingComponent,
+    SharedColoredDropdownComponent,
+    AlertComponent,
+    ClickedOutsideDirective,
+    CardComponent,
+    CardFooterComponent,
+    CardBodyComponent,
+    SharedCheckboxComponent,
+    BadgeComponent,
+    CardHeaderComponent
+  ],
     imports: [
         CommonModule,
         ReactiveFormsModule,
