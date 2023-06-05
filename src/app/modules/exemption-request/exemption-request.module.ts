@@ -8,6 +8,7 @@ import { RequestOverviewComponent } from './components/request-overview/request-
 import { SelfSubmittedRequestsOverviewComponent } from './components/request-overview/self-submitted-requests-overview/self-submitted-requests-overview.component';
 import { ExemptionRequestsTableComponent } from './components/request-overview/exemption-requests-table/exemption-requests-table.component';
 import { DepartmentRequestsOverviewComponent } from './components/request-overview/department-requests-overview/department-requests-overview.component';
+import {NgIconComponent} from "@ng-icons/core";
 
 
 
@@ -24,7 +25,8 @@ import { DepartmentRequestsOverviewComponent } from './components/request-overvi
         ExemptionRequestRoutingModule,
         SharedModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgIconComponent
     ]
 })
 export class ExemptionRequestModule { }

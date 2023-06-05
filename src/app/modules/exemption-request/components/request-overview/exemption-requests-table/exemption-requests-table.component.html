@@ -23,18 +23,20 @@
           <dd class="mt-1 truncate text-gray-700">{{ exemptionRequest.reason }}</dd>
           <dt class="sr-only sm:hidden">Befreiungszeitraum</dt>
           <dd class="mt-1 text-gray-500 sm:hidden">
-            {{ exemptionRequest.startTime | date: 'short' }} - {{ exemptionRequest.endTime | date: 'shortTime' }}
+            {{ exemptionRequest.startTime | date: 'short' }} - {{ exemptionRequest.endTime | date: 'shortTime' }} Uhr
           </dd>
         </dl>
       </td>
-      <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">{{ exemptionRequest.submissionDate | date: 'short' }}</td>
+      <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">{{ exemptionRequest.submissionDate | date: 'short' }} Uhr</td>
       <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">{{ exemptionRequest.reason }}</td>
       <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
-        {{ exemptionRequest.startTime | date: 'short' }} - {{ exemptionRequest.endTime | date: 'shortTime' }}
+        {{ exemptionRequest.startTime | date: 'short' }} - {{ exemptionRequest.endTime | date: 'shortTime' }} Uhr
       </td>
-      <td class="px-3 py-4 text-sm text-gray-500">Genehmigt</td>
+      <td class="px-3 py-4 text-sm text-gray-500"><app-badge>Genehmigt</app-badge></td>
       <td class="py-4 pl-3 pr-4 text-right text-sm font-medium">
-        <a href="#" class="text-primary hover:text-primary-dark">Details</a>
+        <a href="#" class="text-primary hover:text-primary-dark">
+          <span class="flex flex-row items-center">Details<ng-icon name="heroArrowRightSolid" size="24" class="text-primary ml-2"></ng-icon></span>
+        </a>
       </td>
     </tr>
     </tbody>

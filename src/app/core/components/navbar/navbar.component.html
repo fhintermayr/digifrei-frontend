@@ -4,10 +4,10 @@
 
       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
         <div class="flex flex-shrink-0 items-center">
-          <img routerLink="/" class="block h-6 w-auto cursor-pointer" src="../../../../assets/images/match_logo_black.png" alt="ICP Match Logo">
+          <img routerLink="/" class="block h-10 w-auto cursor-pointer" src="../../../../assets/images/logo-icp-muenchen.png" alt="ICP Logo">
         </div>
         <div class="hidden lg:ml-6 lg:flex lg:space-x-8">
-          <a *ngFor="let navbarItem of navigationLinks" [routerLink]="navbarItem.routerLink" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm text-gray-500 hover:border-gray-300 hover:text-gray-700" routerLinkActive="border-primary text-gray-800">{{ navbarItem.title }}</a>
+          <a *ngFor="let navbarItem of navigationLinks" [routerLink]="navbarItem.routerLink" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm text-gray-500 hover:border-gray-300 hover:text-gray-700" routerLinkActive="border-b-2 border-primary font-semibold text-primary">{{ navbarItem.title }}</a>
         </div>
       </div>
 
@@ -39,3 +39,10 @@
     </div>
   </div>
 </nav>
+
+<div class="flex flex-row w-full h-1">
+  <div class="w-7/12 bg-icp_blue">&nbsp;</div>
+  <div class="w-2/12 bg-icp_yellow">&nbsp;</div>
+  <div class="w-2/12 bg-icp_red">&nbsp;</div>
+  <div class="w-1/12 bg-icp_green">&nbsp;</div>
+</div>
