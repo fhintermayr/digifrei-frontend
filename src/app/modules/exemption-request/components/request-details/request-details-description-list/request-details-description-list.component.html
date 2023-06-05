@@ -1,0 +1,26 @@
+<dl *ngIf="exemptionRequest" class="divide-y divide-gray-100">
+  <div class="pb-6 sm:grid sm:grid-cols-3 sm:gap-4">
+    <dt class="text-sm font-medium text-gray-900">Antragsteller</dt>
+    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ exemptionRequest.applicant.firstName }} {{ exemptionRequest.applicant.lastName }}</dd>
+  </div>
+  <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
+    <dt class="text-sm font-medium text-gray-900">Befreiung von</dt>
+    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ exemptionRequest.startTime | date: 'short' }} Uhr</dd>
+  </div>
+  <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
+    <dt class="text-sm font-medium text-gray-900">Bis</dt>
+    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ exemptionRequest.endTime | date: 'short' }} Uhr</dd>
+  </div>
+  <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
+    <dt class="text-sm font-medium text-gray-900">Eingereicht am</dt>
+    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ exemptionRequest.submissionDate | date: 'short' }} Uhr</dd>
+  </div>
+  <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
+    <dt class="text-sm font-medium text-gray-900">Kategorie</dt>
+    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ exemptionRequest.exemptionCategory | formatExemptionCategory }}</dd>
+  </div>
+  <div class="pt-6 sm:grid sm:grid-cols-3 sm:gap-4">
+    <dt class="text-sm font-medium text-gray-900">Grund</dt>
+    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ exemptionRequest.reason }}</dd>
+  </div>
+</dl>

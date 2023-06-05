@@ -11,6 +11,7 @@ import { DepartmentRequestsOverviewComponent } from './components/request-overvi
 import {NgIconComponent} from "@ng-icons/core";
 import { RequestDetailsComponent } from './components/request-details/request-details.component';
 import { FormatExemptionCategoryPipe } from './pipes/format-exemption-category.pipe';
+import { RequestDetailsDescriptionListComponent } from './components/request-details/request-details-description-list/request-details-description-list.component';
 
 
 
@@ -22,7 +23,8 @@ import { FormatExemptionCategoryPipe } from './pipes/format-exemption-category.p
     ExemptionRequestsTableComponent,
     DepartmentRequestsOverviewComponent,
     RequestDetailsComponent,
-    FormatExemptionCategoryPipe
+    FormatExemptionCategoryPipe,
+    RequestDetailsDescriptionListComponent
   ],
     imports: [
         CommonModule,
