@@ -3,7 +3,6 @@ import {ActivatedRoute} from "@angular/router";
 import {ExemptionRequest} from "../../model/exemption-request";
 import {Observable} from "rxjs";
 import {ExemptionRequestService} from "../../service/exemption-request.service";
-import {ExemptionCategory} from "../../enum/exemption-category";
 
 @Component({
   selector: 'app-request-details',
@@ -14,6 +13,7 @@ export class RequestDetailsComponent implements OnInit {
 
   private exemptionRequestId!: number
   exemptionRequest$!: Observable<ExemptionRequest>
+  isCurrentlyEditing: boolean = false
 
   constructor(
     private route: ActivatedRoute,
@@ -32,5 +32,9 @@ export class RequestDetailsComponent implements OnInit {
     return parseInt(<string>routeId)
   }
 
-  protected readonly ExemptionCategory = ExemptionCategory;
+  toggleEditingState() {
+    this.isCurrentlyEditing = !this.isCurrentlyEditing
+  }
+
+  protected readonly onabort = onabort;
 }

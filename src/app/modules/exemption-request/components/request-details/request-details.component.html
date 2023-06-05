@@ -5,17 +5,32 @@
   <app-card>
     <app-card-header>
       <div class="-ml-4 -mt-4 flex flex-wrap items-center justify-between sm:flex-nowrap">
+
           <div class="ml-4 mt-4">
             <h3 class="text-base font-semibold leading-6 text-gray-900">Job Postings</h3>
           </div>
+
           <div class="ml-4 mt-4 flex-shrink-0">
-            <app-shared-button>Bearbeiten</app-shared-button>
+
+            <app-shared-button *ngIf="!isCurrentlyEditing else submitAndCancelButtons" (click)="toggleEditingState()">Bearbeiten</app-shared-button>
+
+            <ng-template #submitAndCancelButtons>
+              <app-shared-button class="mr-2">Speichern</app-shared-button>
+              <app-shared-button [buttonDesign]="'secondary'" (click)="toggleEditingState()">Abbrechen</app-shared-button>
+            </ng-template>
+
           </div>
       </div>
     </app-card-header>
 
     <app-card-body>
-     <app-request-details-description-list [exemptionRequest]="exemptionRequest"></app-request-details-description-list>
+
+      <app-request-details-editing-form *ngIf="isCurrentlyEditing else descriptionList" [exemptionRequest]="exemptionRequest"></app-request-details-editing-form>
+
+      <ng-template #descriptionList>
+        <app-request-details-description-list [exemptionRequest]="exemptionRequest"></app-request-details-description-list>
+      </ng-template>
+
     </app-card-body>
   </app-card>
 
