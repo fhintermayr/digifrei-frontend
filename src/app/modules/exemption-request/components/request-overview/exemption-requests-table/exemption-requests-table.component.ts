@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {ExemptionRequest} from "../../../model/exemption-request";
+import {ProcessingStatus} from "../../../enum/processing-status";
 
 @Component({
   selector: 'app-exemption-requests-table',
@@ -11,4 +12,5 @@ export class ExemptionRequestsTableComponent {
   @Input()
   exemptionRequests: ExemptionRequest[] = []
 
+  protected readonly ProcessingStatus = ProcessingStatus;
 }
