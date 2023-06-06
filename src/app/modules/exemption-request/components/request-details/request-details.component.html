@@ -15,7 +15,7 @@
             <app-shared-button *ngIf="!isCurrentlyEditing else submitAndCancelButtons" (click)="toggleEditingState()">Bearbeiten</app-shared-button>
 
             <ng-template #submitAndCancelButtons>
-              <app-shared-button class="mr-2">Speichern</app-shared-button>
+              <app-shared-button (click)="attemptExemptionRequestUpdate()" class="mr-2">Speichern</app-shared-button>
               <app-shared-button [buttonDesign]="'secondary'" (click)="toggleEditingState()">Abbrechen</app-shared-button>
             </ng-template>
 

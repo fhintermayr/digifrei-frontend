@@ -40,4 +40,11 @@ export class ExemptionRequestService {
     return this.httpClient.get<ExemptionRequest[]>(url)
   }
 
+  public updateExemptionRequestById(id: number, updatedExemptionRequest: ExemptionRequest) {
+
+    const url = `${environment.apiUrl}/exemption/${id}`
+
+    return this.httpClient.put<ExemptionRequest>(url, updatedExemptionRequest)
+  }
+
 }
