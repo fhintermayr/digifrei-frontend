@@ -1,8 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RequestDetailsComponent } from './request-details.component';
-import {ActivatedRoute} from "@angular/router";
-import {of} from "rxjs";
+import {ActivatedRoute, convertToParamMap} from "@angular/router";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('RequestDetailsComponent', () => {
@@ -18,7 +17,7 @@ describe('RequestDetailsComponent', () => {
           provide: ActivatedRoute,
           useValue: {
             snapshot: {
-              params: of({id: 123})
+              paramMap: convertToParamMap({ id: '123' })
             }
           }
         }
