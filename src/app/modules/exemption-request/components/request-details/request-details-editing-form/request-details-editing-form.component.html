@@ -1,26 +1,35 @@
 <dl *ngIf="exemptionRequest" class="divide-y divide-gray-100">
-  <div class="pb-6 sm:grid sm:grid-cols-3 sm:gap-4">
-    <dt class="text-sm font-medium text-gray-900">Antragsteller</dt>
-    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ exemptionRequest.applicant.firstName }} {{ exemptionRequest.applicant.lastName }}</dd>
-  </div>
-  <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
-    <dt class="text-sm font-medium text-gray-900">Befreiung von</dt>
-    <app-shared-input [control]="exemptionRequestEditingForm.controls.startTime" [inputType]="'datetime-local'" [showRequiredStar]="false"></app-shared-input>
-  </div>
-  <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
-    <dt class="text-sm font-medium text-gray-900">Bis</dt>
-    <app-shared-input [control]="exemptionRequestEditingForm.controls.startTime" [inputType]="'datetime-local'" [showRequiredStar]="false"></app-shared-input>
-  </div>
-  <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
-    <dt class="text-sm font-medium text-gray-900">Eingereicht am</dt>
-    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ exemptionRequest.submissionDate | date: 'short' }} Uhr</dd>
-  </div>
-  <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
-    <dt class="text-sm font-medium text-gray-900">Kategorie</dt>
-    <app-shared-dropdown [control]="exemptionRequestEditingForm.controls.exemptionCategory" [showRequiredStar]="false"></app-shared-dropdown>
-  </div>
-  <div class="pt-6 sm:grid sm:grid-cols-3 sm:gap-4">
-    <dt class="text-sm font-medium text-gray-900">Grund</dt>
-    <app-shared-input [control]="exemptionRequestEditingForm.controls.reason" [inputType]="'text'" [showRequiredStar]="false"></app-shared-input>
-  </div>
+  <form [formGroup]="exemptionRequestEditingForm">
+
+    <div class="pb-6 sm:grid sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-900">Antragsteller</dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ exemptionRequest.applicant.firstName }} {{ exemptionRequest.applicant.lastName }}</dd>
+    </div>
+
+    <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-900">Befreiung von</dt>
+      <app-shared-input [control]="exemptionRequestEditingForm.controls.startTime" [inputType]="'datetime-local'" [showRequiredStar]="false"></app-shared-input>
+    </div>
+
+    <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-900">Bis</dt>
+      <app-shared-input [control]="exemptionRequestEditingForm.controls.endTime" [inputType]="'datetime-local'" [showRequiredStar]="false"></app-shared-input>
+    </div>
+
+    <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-900">Eingereicht am</dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ exemptionRequest.submissionDate | date: 'short' }} Uhr</dd>
+    </div>
+
+    <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-900">Kategorie</dt>
+      <app-shared-dropdown  [control]="exemptionRequestEditingForm.controls.exemptionCategory" [options]="exemptionCategoryDropdownOptions" [showRequiredStar]="false"></app-shared-dropdown>
+    </div>
+
+    <div class="pt-6 sm:grid sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-900">Grund</dt>
+      <app-shared-input [control]="exemptionRequestEditingForm.controls.reason" [inputType]="'text'" [showRequiredStar]="false"></app-shared-input>
+    </div>
+
+  </form>
 </dl>
