@@ -22,7 +22,7 @@ import {
 } from "@ng-icons/heroicons/mini";
 import {
   heroCheck,
-  heroCheckCircle,
+  heroCheckCircle, heroDocumentPlus,
   heroExclamationCircle,
   heroExclamationTriangle,
   heroInformationCircle,
@@ -46,6 +46,7 @@ export const ngIcons = {
   heroChevronLeftMini,
   heroChevronRightMini,
   heroChevronUpMini,
+  heroDocumentPlus,
   heroExclamationCircle,
   heroExclamationCircleMini,
   heroExclamationTriangle,

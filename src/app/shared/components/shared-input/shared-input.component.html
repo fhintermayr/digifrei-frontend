@@ -10,7 +10,7 @@
      >
 
   <label [attr.for]="inputId ? inputId : null"
-         [class.required-field]="isRequired()"
+         [class.required-field]="isRequired() && showRequiredStar"
          [class.invalid-form-label]="isInvalidAndTouched()"
          class="absolute -top-2 left-2 -mt-px inline-block bg-white px-1 text-xs font-medium text-gray-900"
   >

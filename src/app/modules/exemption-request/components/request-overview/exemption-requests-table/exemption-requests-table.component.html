@@ -32,10 +32,13 @@
       <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
         {{ exemptionRequest.startTime | date: 'short' }} - {{ exemptionRequest.endTime | date: 'shortTime' }} Uhr
       </td>
-      <td class="px-3 py-4 text-sm text-gray-500"><app-badge>Genehmigt</app-badge></td>
+      <td class="px-3 py-4 text-sm text-gray-500">
+        <app-processing-status-badge *ngIf="exemptionRequest.requestProcessing" [processingStatus]="exemptionRequest.requestProcessing.processingStatus"></app-processing-status-badge>
+        <app-processing-status-badge *ngIf="!exemptionRequest.requestProcessing" [processingStatus]="ProcessingStatus.SUBMITTED"></app-processing-status-badge>
+      </td>
       <td class="py-4 pl-3 pr-4 text-right text-sm font-medium">
-        <a href="#" class="text-primary hover:text-primary-dark">
-          <span class="flex flex-row items-center">Details<ng-icon name="heroArrowRightSolid" size="24" class="text-primary ml-2"></ng-icon></span>
+        <a [routerLink]="'../' + exemptionRequest.id + '/details'" class="text-primary hover:text-primary-dark">
+          <span  class="flex flex-row items-center">Details<ng-icon name="heroArrowRightSolid" size="24" class="text-primary ml-2"></ng-icon></span>
         </a>
       </td>
     </tr>
