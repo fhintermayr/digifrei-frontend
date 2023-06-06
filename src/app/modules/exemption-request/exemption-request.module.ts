@@ -14,6 +14,7 @@ import { FormatExemptionCategoryPipe } from './pipes/format-exemption-category.p
 import { RequestDetailsDescriptionListComponent } from './components/request-details/request-details-description-list/request-details-description-list.component';
 import { RequestDetailsEditingFormComponent } from './components/request-details/request-details-editing-form/request-details-editing-form.component';
 import { RequestProcessingDescriptionListComponent } from './components/request-details/request-processing-description-list/request-processing-description-list.component';
+import { ProcessingStatusBadgeComponent } from './components/processing-status-badge/processing-status-badge.component';
 
 
 
@@ -28,7 +29,8 @@ import { RequestProcessingDescriptionListComponent } from './components/request-
     FormatExemptionCategoryPipe,
     RequestDetailsDescriptionListComponent,
     RequestDetailsEditingFormComponent,
-    RequestProcessingDescriptionListComponent
+    RequestProcessingDescriptionListComponent,
+    ProcessingStatusBadgeComponent
   ],
     imports: [
         CommonModule,
