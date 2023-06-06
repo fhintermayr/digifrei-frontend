@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RequestDetailsComponent } from './request-details.component';
 import {ActivatedRoute, convertToParamMap} from "@angular/router";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {ToastrModule} from "ngx-toastr";
 
 describe('RequestDetailsComponent', () => {
   let component: RequestDetailsComponent;
@@ -11,7 +12,7 @@ describe('RequestDetailsComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [RequestDetailsComponent],
-      imports: [ HttpClientTestingModule ],
+      imports: [ HttpClientTestingModule, ToastrModule.forRoot() ],
       providers: [
         {
           provide: ActivatedRoute,
