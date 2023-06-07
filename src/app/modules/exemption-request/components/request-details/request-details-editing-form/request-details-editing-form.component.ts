@@ -7,6 +7,7 @@ import {ExemptionCategory} from "../../../enum/exemption-category";
 import {DatePipe} from "@angular/common";
 import {ModalContent} from "../../../../../shared/components/danger-confirmation-modal/modal-content";
 import {ModalService} from "../../../../../shared/service/modal.service";
+import {ModalResponse} from "../../../../../shared/enum/modal-response";
 
 @Component({
   selector: 'app-request-details-editing-form',
@@ -41,6 +42,7 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
 
   }
 
+  // FIXME: Maybe just initialize form with default values when exemptionRequest is set?
   private setDefaultValuesOfForm() {
     this.exemptionRequestEditingForm.controls.startTime.setValue(this.datePipe.transform(this.exemptionRequest?.startTime, 'yyyy-MM-ddTHH:mm'))
     this.exemptionRequestEditingForm.controls.endTime.setValue(this.datePipe.transform(this.exemptionRequest?.endTime, 'yyyy-MM-ddTHH:mm'))
@@ -56,6 +58,16 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
     }
 
     const modalRef = this.modalService.createDangerConfirmationModal(modalContent)
+
+    modalRef.closed.subscribe({
+      next: response => {
+        if (response === ModalResponse.Confirm) this.deleteExemptionRequest()
+      }
+    })
+  }
+
+  deleteExemptionRequest() {
+    // TODO: Implement
   }
 
   // TODO: In Enum Datei auslagern?
