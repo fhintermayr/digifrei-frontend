@@ -3,7 +3,6 @@ import {ExemptionRequest} from "../../../model/exemption-request";
 import {FormBuilder, Validators} from "@angular/forms";
 import {DateValidators} from "../../../validators/date-validators";
 import {SelectOption} from "../../../../../shared/components/shared-dropdown/shared-dropdown.component";
-import {ExemptionCategory} from "../../../enum/exemption-category";
 import {DatePipe} from "@angular/common";
 import {ModalContent} from "../../../../../shared/components/danger-confirmation-modal/modal-content";
 import {ModalService} from "../../../../../shared/service/modal.service";
@@ -11,6 +10,7 @@ import {ModalResponse} from "../../../../../shared/enum/modal-response";
 import {ExemptionRequestService} from "../../../service/exemption-request.service";
 import {NotificationService} from "../../../../../core/services/notification.service";
 import {Router} from "@angular/router";
+import {ExemptionCategoryUtil} from "../../../util/exemption-category-util";
 
 @Component({
   selector: 'app-request-details-editing-form',
@@ -23,7 +23,7 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
   @Input()
   exemptionRequest?: ExemptionRequest
 
-  readonly exemptionCategoryDropdownOptions: SelectOption[] = this.getExemptionCategoryDropdownOptions()
+  readonly exemptionCategoryDropdownOptions: SelectOption[] = ExemptionCategoryUtil.getCategoriesAsDropdownOption()
 
   public readonly exemptionRequestEditingForm = this.formBuilder.group({
     startTime: [new Date().toISOString().slice(0, 16), [Validators.required, DateValidators.futureOrPresent()]],
@@ -81,15 +81,6 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
       },
       error: () => this.notificationService.showSuccess("Der Antrag konnte nicht gelöscht werden. Versuche es später erneut")
     })
-  }
-
-  // TODO: In Enum Datei auslagern?
-  private getExemptionCategoryDropdownOptions(): SelectOption[] {
-    return Object.entries(ExemptionCategory)
-      .map(([key, value]) => ({
-        label: key,
-        value: value
-      }))
   }
 
 }
