@@ -8,6 +8,9 @@ import {DatePipe} from "@angular/common";
 import {ModalContent} from "../../../../../shared/components/danger-confirmation-modal/modal-content";
 import {ModalService} from "../../../../../shared/service/modal.service";
 import {ModalResponse} from "../../../../../shared/enum/modal-response";
+import {ExemptionRequestService} from "../../../service/exemption-request.service";
+import {NotificationService} from "../../../../../core/services/notification.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-request-details-editing-form',
@@ -32,8 +35,11 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
     private datePipe: DatePipe,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private exemptionRequestService: ExemptionRequestService,
+    private notificationService: NotificationService
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -67,7 +73,14 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
   }
 
   deleteExemptionRequest() {
-    // TODO: Implement
+
+    this.exemptionRequestService.deleteExemptionRequestById(<number>this.exemptionRequest?.id).subscribe({
+      next: () => {
+        this.router.navigate(['/exemption-request'])
+        this.notificationService.showSuccess("Der Dienstbefreiungsantrag wurde gelöscht")
+      },
+      error: () => this.notificationService.showSuccess("Der Antrag konnte nicht gelöscht werden. Versuche es später erneut")
+    })
   }
 
   // TODO: In Enum Datei auslagern?

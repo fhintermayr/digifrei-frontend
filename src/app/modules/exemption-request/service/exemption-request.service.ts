@@ -47,4 +47,11 @@ export class ExemptionRequestService {
     return this.httpClient.put<ExemptionRequest>(url, updatedExemptionRequest)
   }
 
+  public deleteExemptionRequestById(id: number): Observable<void> {
+
+    const url = `${environment.apiUrl}/exemption/${id}`
+
+    return this.httpClient.delete<void>(url)
+  }
+
 }
