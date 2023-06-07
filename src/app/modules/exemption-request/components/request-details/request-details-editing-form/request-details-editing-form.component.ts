@@ -5,6 +5,11 @@ import {DateValidators} from "../../../validators/date-validators";
 import {SelectOption} from "../../../../../shared/components/shared-dropdown/shared-dropdown.component";
 import {ExemptionCategory} from "../../../enum/exemption-category";
 import {DatePipe} from "@angular/common";
+import {Dialog} from "@angular/cdk/dialog";
+import {
+  DangerConfirmationModalComponent
+} from "../../../../../shared/components/danger-confirmation-modal/danger-confirmation-modal.component";
+import {ScrollStrategyOptions} from "@angular/cdk/overlay";
 
 @Component({
   selector: 'app-request-details-editing-form',
@@ -29,7 +34,9 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
 
   constructor(
     private formBuilder: FormBuilder,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    public confirmationModal: Dialog,
+    private scrollStrategyOptions: ScrollStrategyOptions
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -43,6 +50,17 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
     this.exemptionRequestEditingForm.controls.endTime.setValue(this.datePipe.transform(this.exemptionRequest?.endTime, 'yyyy-MM-ddTHH:mm'))
     this.exemptionRequestEditingForm.controls.exemptionCategory.setValue(this.exemptionRequest?.exemptionCategory)
     this.exemptionRequestEditingForm.controls.reason.setValue(this.exemptionRequest?.reason)
+  }
+
+  openDeleteExemptionRequestModal() {
+    const modalConfig = {
+      scrollStrategy: this.scrollStrategyOptions.block(),
+      data: {
+        title: "Dienstbefreiung löschen?",
+        content: "Bist du sicher, dass du die Dienstbefreiung löschen möchtest? Dieser Schritt kann nicht rückgängig gemacht werden."
+      }
+    }
+    const modalRef = this.confirmationModal.open(DangerConfirmationModalComponent, modalConfig)
   }
 
   // TODO: In Enum Datei auslagern?
