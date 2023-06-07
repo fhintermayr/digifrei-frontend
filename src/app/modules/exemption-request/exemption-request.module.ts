@@ -15,6 +15,7 @@ import { RequestDetailsDescriptionListComponent } from './components/request-det
 import { RequestDetailsEditingFormComponent } from './components/request-details/request-details-editing-form/request-details-editing-form.component';
 import { RequestProcessingDescriptionListComponent } from './components/request-details/request-processing-description-list/request-processing-description-list.component';
 import { ProcessingStatusBadgeComponent } from './components/processing-status-badge/processing-status-badge.component';
+import {DialogModule} from "@angular/cdk/dialog";
 
 
 
@@ -34,6 +35,7 @@ import { ProcessingStatusBadgeComponent } from './components/processing-status-b
   ],
     imports: [
         CommonModule,
+        DialogModule,
         ExemptionRequestRoutingModule,
         SharedModule,
         FormsModule,

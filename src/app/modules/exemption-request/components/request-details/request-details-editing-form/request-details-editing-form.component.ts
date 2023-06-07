@@ -5,6 +5,9 @@ import {DateValidators} from "../../../validators/date-validators";
 import {SelectOption} from "../../../../../shared/components/shared-dropdown/shared-dropdown.component";
 import {ExemptionCategory} from "../../../enum/exemption-category";
 import {DatePipe} from "@angular/common";
+import {ModalContent} from "../../../../../shared/components/danger-confirmation-modal/modal-content";
+import {ModalService} from "../../../../../shared/service/modal.service";
+import {ModalResponse} from "../../../../../shared/enum/modal-response";
 
 @Component({
   selector: 'app-request-details-editing-form',
@@ -29,7 +32,8 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
 
   constructor(
     private formBuilder: FormBuilder,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private modalService: ModalService
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -38,11 +42,32 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
 
   }
 
+  // FIXME: Maybe just initialize form with default values when exemptionRequest is set?
   private setDefaultValuesOfForm() {
     this.exemptionRequestEditingForm.controls.startTime.setValue(this.datePipe.transform(this.exemptionRequest?.startTime, 'yyyy-MM-ddTHH:mm'))
     this.exemptionRequestEditingForm.controls.endTime.setValue(this.datePipe.transform(this.exemptionRequest?.endTime, 'yyyy-MM-ddTHH:mm'))
     this.exemptionRequestEditingForm.controls.exemptionCategory.setValue(this.exemptionRequest?.exemptionCategory)
     this.exemptionRequestEditingForm.controls.reason.setValue(this.exemptionRequest?.reason)
+  }
+
+  openDeleteExemptionRequestModal() {
+
+    const modalContent: ModalContent = {
+      title: "Dienstbefreiung löschen?",
+      content: "Bist du sicher, dass du die Dienstbefreiung löschen möchtest? Dieser Schritt kann nicht rückgängig gemacht werden."
+    }
+
+    const modalRef = this.modalService.createDangerConfirmationModal(modalContent)
+
+    modalRef.closed.subscribe({
+      next: response => {
+        if (response === ModalResponse.Confirm) this.deleteExemptionRequest()
+      }
+    })
+  }
+
+  deleteExemptionRequest() {
+    // TODO: Implement
   }
 
   // TODO: In Enum Datei auslagern?

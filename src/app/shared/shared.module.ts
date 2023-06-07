@@ -18,6 +18,7 @@ import { CardBodyComponent } from './components/card/card-body/card-body.compone
 import { SharedCheckboxComponent } from './components/shared-checkbox/shared-checkbox.component';
 import { BadgeComponent } from './components/badge/badge.component';
 import { CardHeaderComponent } from './components/card/card-header/card-header.component';
+import { DangerConfirmationModalComponent } from './components/danger-confirmation-modal/danger-confirmation-modal.component';
 
 
 
@@ -37,7 +38,8 @@ import { CardHeaderComponent } from './components/card/card-header/card-header.c
     CardBodyComponent,
     SharedCheckboxComponent,
     BadgeComponent,
-    CardHeaderComponent
+    CardHeaderComponent,
+    DangerConfirmationModalComponent
   ],
   exports: [
     SharedButtonComponent,
