@@ -11,6 +11,7 @@ import {ExemptionRequestService} from "../../../service/exemption-request.servic
 import {NotificationService} from "../../../../../core/services/notification.service";
 import {Router} from "@angular/router";
 import {ExemptionCategoryUtil} from "../../../util/exemption-category-util";
+import {lastValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-request-details-editing-form',
@@ -32,7 +33,6 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
     reason: [this.exemptionRequest?.reason, Validators.required],
   })
 
-
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -48,7 +48,6 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
 
   }
 
-  // FIXME: Maybe just initialize form with default values when exemptionRequest is set?
   private setDefaultValuesOfForm() {
     this.exemptionRequestEditingForm.controls.startTime.setValue(this.datePipe.transform(this.exemptionRequest?.startTime, 'yyyy-MM-ddTHH:mm'))
     this.exemptionRequestEditingForm.controls.endTime.setValue(this.datePipe.transform(this.exemptionRequest?.endTime, 'yyyy-MM-ddTHH:mm'))
@@ -56,7 +55,7 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
     this.exemptionRequestEditingForm.controls.reason.setValue(this.exemptionRequest?.reason)
   }
 
-  openDeleteExemptionRequestModal() {
+  async openDeleteExemptionRequestModal() {
 
     const modalContent: ModalContent = {
       title: "Dienstbefreiung löschen?",
@@ -64,12 +63,9 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
     }
 
     const modalRef = this.modalService.createDangerConfirmationModal(modalContent)
+    const modalResponse = await lastValueFrom(modalRef.closed)
 
-    modalRef.closed.subscribe({
-      next: response => {
-        if (response === ModalResponse.Confirm) this.deleteExemptionRequest()
-      }
-    })
+    if (modalResponse === ModalResponse.Confirm) this.deleteExemptionRequest()
   }
 
   deleteExemptionRequest() {
