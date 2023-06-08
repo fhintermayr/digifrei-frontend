@@ -1,12 +1,15 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ExemptionRequest} from "../../model/exemption-request";
-import {Observable, of} from "rxjs";
+import {lastValueFrom, Observable, of} from "rxjs";
 import {ExemptionRequestService} from "../../service/exemption-request.service";
 import {
   RequestDetailsEditingFormComponent
 } from "./request-details-editing-form/request-details-editing-form.component";
 import {NotificationService} from "../../../../core/services/notification.service";
+import {ModalService} from "../../../../shared/service/modal.service";
+import {RequestProcessingUpdateDto} from "../../dto/request-processing-update-dto";
+import {RequestProcessingService} from "../../service/request-processing.service";
 
 @Component({
   selector: 'app-request-details',
@@ -25,7 +28,9 @@ export class RequestDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private exemptionRequestService: ExemptionRequestService,
-    private notificationService: NotificationService
+    private requestProcessingService: RequestProcessingService,
+    private notificationService: NotificationService,
+    private modalService: ModalService
   ) { }
 
   ngOnInit(): void {
@@ -62,6 +67,30 @@ export class RequestDetailsComponent implements OnInit {
         this.toggleEditingState()
         this.notificationService.showSuccess("Der Antrag wurde aktualisiert")
         this.exemptionRequest$ = of(value)
+      },
+      error: () => this.notificationService.showError("Etwas ist schiefgelaufen. Versuche es erneut oder wende dich an den Support")
+    })
+
+  }
+
+  async openNewProcessingModal() {
+    const modalRef = this.modalService.createNewRequestProcessingModal()
+    const modalResponse = await lastValueFrom(modalRef.closed)
+
+    const responseContainsRequestProcessing = modalResponse && typeof modalResponse === "string"
+
+    if (responseContainsRequestProcessing) {
+      const requestProcessingUpdateDto = JSON.parse(modalResponse)
+      this.processExemptionRequest(requestProcessingUpdateDto)
+    }
+  }
+
+  private processExemptionRequest(requestProcessingUpdateDto: RequestProcessingUpdateDto) {
+
+    this.requestProcessingService.processExemptionRequest(this.exemptionRequestId, requestProcessingUpdateDto).subscribe({
+      next: processedExemptionRequest => {
+        this.exemptionRequest$ = of(processedExemptionRequest)
+        this.notificationService.showSuccess("Antragsbearbeitung gespeichert")
       },
       error: () => this.notificationService.showError("Etwas ist schiefgelaufen. Versuche es erneut oder wende dich an den Support")
     })
