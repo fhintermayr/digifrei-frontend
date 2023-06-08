@@ -14,7 +14,7 @@ export class RequestProcessingService {
 
   public processExemptionRequest(exemptionRequestId: number, requestProcessingUpdateDto: RequestProcessingUpdateDto): Observable<ExemptionRequest> {
 
-    const url = `${environment.apiUrl}/exemption/${exemptionRequestId}/process`
+    const url = `${environment.apiUrl}/exemption/${exemptionRequestId}/processing`
 
     return this.httpClient.post<ExemptionRequest>(url, requestProcessingUpdateDto)
   }
