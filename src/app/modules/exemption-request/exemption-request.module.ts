@@ -17,6 +17,7 @@ import { RequestProcessingDescriptionListComponent } from './components/request-
 import { ProcessingStatusBadgeComponent } from './components/processing-status-badge/processing-status-badge.component';
 import {DialogModule} from "@angular/cdk/dialog";
 import { NewRequestProcessingModalComponent } from './components/new-request-processing-modal/new-request-processing-modal.component';
+import { RequestProcessingDetailsComponent } from './components/request-processing/request-processing-details/request-processing-details.component';
 
 
 
@@ -33,7 +34,8 @@ import { NewRequestProcessingModalComponent } from './components/new-request-pro
     RequestDetailsEditingFormComponent,
     RequestProcessingDescriptionListComponent,
     ProcessingStatusBadgeComponent,
-    NewRequestProcessingModalComponent
+    NewRequestProcessingModalComponent,
+    RequestProcessingDetailsComponent
   ],
     imports: [
         CommonModule,
