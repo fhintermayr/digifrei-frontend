@@ -5,6 +5,9 @@ import {ModalContent} from "../components/danger-confirmation-modal/modal-conten
 import {
   DangerConfirmationModalComponent
 } from "../components/danger-confirmation-modal/danger-confirmation-modal.component";
+import {
+  NewRequestProcessingModalComponent
+} from "../../modules/exemption-request/components/new-request-processing-modal/new-request-processing-modal.component";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +15,7 @@ import {
 export class ModalService {
 
   constructor(
-    private confirmationModal: Dialog,
+    private dialog: Dialog,
     private scrollStrategyOptions: ScrollStrategyOptions
   ) { }
 
@@ -21,7 +24,13 @@ export class ModalService {
       scrollStrategy: this.scrollStrategyOptions.block(),
       data: content
     }
-    return this.confirmationModal.open(DangerConfirmationModalComponent, modalConfig)
+    return this.dialog.open(DangerConfirmationModalComponent, modalConfig)
+  }
+
+  public createNewRequestProcessingModal() {
+    const modalConfig = { scrollStrategy: this.scrollStrategyOptions.block() }
+
+    return this.dialog.open(NewRequestProcessingModalComponent, modalConfig)
   }
 
 }
