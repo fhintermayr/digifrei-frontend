@@ -39,7 +39,7 @@
   <br>
 
   <ng-container *ngIf="exemptionRequest.requestProcessing else notYetProcessed">
-    <app-request-processing-details [requestProcessing]="exemptionRequest.requestProcessing"></app-request-processing-details>
+    <app-request-processing-details [requestProcessing]="exemptionRequest.requestProcessing" (requestProcessingWithdrawal)="onRequestProcessingWithdrawal()"></app-request-processing-details>
   </ng-container>
 
   <ng-template #notYetProcessed>

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {RequestProcessing} from "../../../model/request-processing";
 import {SelectOption} from "../../../../../shared/components/shared-dropdown/shared-dropdown.component";
 import {ProcessingStatusUtil} from "../../../util/processing-status-util";
@@ -16,6 +16,9 @@ export class EditRequestProcessingComponent implements OnInit {
 
   @Input()
   requestProcessing!: RequestProcessing
+  @Output()
+  withdrawal: EventEmitter<void> = new EventEmitter<void>()
+
   processingStatusDropdownOptions: SelectOption[] = ProcessingStatusUtil.getStatusForNewProcessingAsDropdownOption()
 
   public editProcessingStatusForm = this.formBuilder.group({

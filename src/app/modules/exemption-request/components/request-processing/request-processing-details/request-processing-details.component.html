@@ -21,6 +21,6 @@
 
   <app-card-body *ngIf="requestProcessing">
     <app-request-processing-description-list *ngIf="!isCurrentlyEditing" [requestProcessing]="requestProcessing"></app-request-processing-description-list>
-    <app-edit-request-processing *ngIf="isCurrentlyEditing" [requestProcessing]="requestProcessing"></app-edit-request-processing>
+    <app-edit-request-processing *ngIf="isCurrentlyEditing" [requestProcessing]="requestProcessing" (withdrawal)="onWithdrawal()"></app-edit-request-processing>
   </app-card-body>
 </app-card>
