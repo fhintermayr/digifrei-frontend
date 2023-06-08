@@ -22,7 +22,7 @@ describe('RequestProcessingDescriptionListComponent', () => {
     });
     fixture = TestBed.createComponent(RequestProcessingDescriptionListComponent);
     component = fixture.componentInstance;
-    component.requestProcessing = {processing_date: new Date(), processingStatus: ProcessingStatus.SUBMITTED, comment: "foo", processor: {} as Trainer, id: 1}
+    component.requestProcessing = {processingDate: new Date(), processingStatus: ProcessingStatus.SUBMITTED, comment: "foo", processor: {} as Trainer, id: 1}
     fixture.detectChanges();
   });
 

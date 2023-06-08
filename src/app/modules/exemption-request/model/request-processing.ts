@@ -5,6 +5,6 @@ export class RequestProcessing {
   id!: number
   processingStatus!: ProcessingStatus
   comment!: string
-  processing_date!: Date
+  processingDate!: Date
   processor!: Trainer
 }
