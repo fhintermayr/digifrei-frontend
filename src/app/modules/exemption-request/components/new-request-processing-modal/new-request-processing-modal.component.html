@@ -23,7 +23,7 @@
           From: "opacity-100 translate-y-0 sm:scale-100"
           To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
       -->
-      <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+      <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 w-full sm:max-w-lg">
         <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
 
           <h3 class="text-base font-semibold leading-6 text-gray-900 mb-6" id="modal-title">Antrag verwalten</h3>
@@ -34,8 +34,8 @@
           </form>
 
         </div>
-        <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-          <app-shared-button (click)="onSubmit()" [isDisabled]="requestProcessingForm.invalid" [buttonDesign]="'primary'" class="sm:ml-3">Bestätigen</app-shared-button>
+        <div class="bg-gray-50 px-4 py-3 flex flex-row-reverse sm:px-6">
+          <app-shared-button (click)="onSubmit()" [isDisabled]="requestProcessingForm.invalid" [buttonDesign]="'primary'" class="ml-3">Bestätigen</app-shared-button>
           <app-shared-button (click)="dialogRef.close()" [buttonDesign]="'secondary'">Abbrechen</app-shared-button>
         </div>
       </div>
