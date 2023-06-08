@@ -7,6 +7,9 @@ import {SharedButtonComponent} from "../../../../../shared/components/shared-but
 import {ProcessingStatus} from "../../../enum/processing-status";
 import {Trainer} from "../../../../../shared/models/trainer";
 import {ReactiveFormsModule} from "@angular/forms";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {ToastrModule} from "ngx-toastr";
+import {DialogModule} from "@angular/cdk/dialog";
 
 describe('EditRequestProcessingComponent', () => {
   let component: EditRequestProcessingComponent;
@@ -15,7 +18,7 @@ describe('EditRequestProcessingComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [EditRequestProcessingComponent, SharedDropdownComponent, SharedInputComponent, SharedButtonComponent],
-      imports: [ ReactiveFormsModule ]
+      imports: [ ReactiveFormsModule, HttpClientTestingModule, ToastrModule.forRoot(), DialogModule ]
     });
     fixture = TestBed.createComponent(EditRequestProcessingComponent);
     component = fixture.componentInstance;
