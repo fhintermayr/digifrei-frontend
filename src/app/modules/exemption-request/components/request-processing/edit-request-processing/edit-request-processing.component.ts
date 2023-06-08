@@ -4,6 +4,8 @@ import {SelectOption} from "../../../../../shared/components/shared-dropdown/sha
 import {ProcessingStatusUtil} from "../../../util/processing-status-util";
 import {FormBuilder, Validators} from "@angular/forms";
 import {ProcessingStatus} from "../../../enum/processing-status";
+import {RequestProcessingService} from "../../../service/request-processing.service";
+import {NotificationService} from "../../../../../core/services/notification.service";
 
 @Component({
   selector: 'app-edit-request-processing',
@@ -21,7 +23,11 @@ export class EditRequestProcessingComponent implements OnInit {
     comment: ['']
   })
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private requestProcessingService: RequestProcessingService,
+    private notificationService: NotificationService
+  ) { }
 
   ngOnInit(): void {
     this.setDefaultOptionsOfEditingForm()
@@ -31,4 +37,17 @@ export class EditRequestProcessingComponent implements OnInit {
     this.editProcessingStatusForm.controls.processingStatus.setValue(this.requestProcessing.processingStatus)
     this.editProcessingStatusForm.controls.comment.setValue(this.requestProcessing.comment)
   }
+
+  withdrawRequestProcessing() {
+
+    this.requestProcessingService.withdrawRequestProcessing(this.requestProcessing.id).subscribe({
+      next: () => {
+        this.withdrawal.emit()
+        this.notificationService.showSuccess("Die Antragsbearbeitung wurde zurückgezogen")
+      },
+      error: () => this.notificationService.showSuccess("Etwas ist schiefgelaufen. Versuche es später erneut")
+    })
+
+  }
+
 }

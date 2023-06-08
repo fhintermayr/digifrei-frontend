@@ -26,4 +26,11 @@ export class RequestProcessingService {
     return this.httpClient.put<ExemptionRequest>(url, requestProcessingUpdateDto)
   }
 
+  public withdrawRequestProcessing(exemptionRequestId: number): Observable<void> {
+
+    const url = `${environment.apiUrl}/exemption/${exemptionRequestId}/processing`
+
+    return this.httpClient.delete<void>(url)
+  }
+
 }
