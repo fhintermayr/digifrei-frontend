@@ -3,11 +3,15 @@ import {ExemptionRequest} from "../../../model/exemption-request";
 import {FormBuilder, Validators} from "@angular/forms";
 import {DateValidators} from "../../../validators/date-validators";
 import {SelectOption} from "../../../../../shared/components/shared-dropdown/shared-dropdown.component";
-import {ExemptionCategory} from "../../../enum/exemption-category";
 import {DatePipe} from "@angular/common";
 import {ModalContent} from "../../../../../shared/components/danger-confirmation-modal/modal-content";
 import {ModalService} from "../../../../../shared/service/modal.service";
 import {ModalResponse} from "../../../../../shared/enum/modal-response";
+import {ExemptionRequestService} from "../../../service/exemption-request.service";
+import {NotificationService} from "../../../../../core/services/notification.service";
+import {Router} from "@angular/router";
+import {ExemptionCategoryUtil} from "../../../util/exemption-category-util";
+import {lastValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-request-details-editing-form',
@@ -20,7 +24,7 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
   @Input()
   exemptionRequest?: ExemptionRequest
 
-  readonly exemptionCategoryDropdownOptions: SelectOption[] = this.getExemptionCategoryDropdownOptions()
+  readonly exemptionCategoryDropdownOptions: SelectOption[] = ExemptionCategoryUtil.getCategoriesAsDropdownOption()
 
   public readonly exemptionRequestEditingForm = this.formBuilder.group({
     startTime: [new Date().toISOString().slice(0, 16), [Validators.required, DateValidators.futureOrPresent()]],
@@ -29,11 +33,13 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
     reason: [this.exemptionRequest?.reason, Validators.required],
   })
 
-
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
     private datePipe: DatePipe,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private exemptionRequestService: ExemptionRequestService,
+    private notificationService: NotificationService
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -42,7 +48,6 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
 
   }
 
-  // FIXME: Maybe just initialize form with default values when exemptionRequest is set?
   private setDefaultValuesOfForm() {
     this.exemptionRequestEditingForm.controls.startTime.setValue(this.datePipe.transform(this.exemptionRequest?.startTime, 'yyyy-MM-ddTHH:mm'))
     this.exemptionRequestEditingForm.controls.endTime.setValue(this.datePipe.transform(this.exemptionRequest?.endTime, 'yyyy-MM-ddTHH:mm'))
@@ -50,7 +55,7 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
     this.exemptionRequestEditingForm.controls.reason.setValue(this.exemptionRequest?.reason)
   }
 
-  openDeleteExemptionRequestModal() {
+  async openDeleteExemptionRequestModal() {
 
     const modalContent: ModalContent = {
       title: "Dienstbefreiung löschen?",
@@ -58,25 +63,20 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
     }
 
     const modalRef = this.modalService.createDangerConfirmationModal(modalContent)
+    const modalResponse = await lastValueFrom(modalRef.closed)
 
-    modalRef.closed.subscribe({
-      next: response => {
-        if (response === ModalResponse.Confirm) this.deleteExemptionRequest()
-      }
-    })
+    if (modalResponse === ModalResponse.Confirm) this.deleteExemptionRequest()
   }
 
   deleteExemptionRequest() {
-    // TODO: Implement
-  }
 
-  // TODO: In Enum Datei auslagern?
-  private getExemptionCategoryDropdownOptions(): SelectOption[] {
-    return Object.entries(ExemptionCategory)
-      .map(([key, value]) => ({
-        label: key,
-        value: value
-      }))
+    this.exemptionRequestService.deleteExemptionRequestById(<number>this.exemptionRequest?.id).subscribe({
+      next: () => {
+        this.router.navigate(['/exemption-request'])
+        this.notificationService.showSuccess("Der Dienstbefreiungsantrag wurde gelöscht")
+      },
+      error: () => this.notificationService.showSuccess("Der Antrag konnte nicht gelöscht werden. Versuche es später erneut")
+    })
   }
 
 }
