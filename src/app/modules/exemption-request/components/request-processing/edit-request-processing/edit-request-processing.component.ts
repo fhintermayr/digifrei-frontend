@@ -16,7 +16,7 @@ export class EditRequestProcessingComponent implements OnInit {
   requestProcessing!: RequestProcessing
   processingStatusDropdownOptions: SelectOption[] = ProcessingStatusUtil.getStatusForNewProcessingAsDropdownOption()
 
-  editProcessingStatusForm = this.formBuilder.group({
+  public editProcessingStatusForm = this.formBuilder.group({
     processingStatus: [ProcessingStatus.DRAFT, Validators.required],
     comment: ['']
   })
