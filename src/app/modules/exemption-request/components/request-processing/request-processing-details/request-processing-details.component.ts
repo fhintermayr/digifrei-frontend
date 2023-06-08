@@ -2,8 +2,8 @@ import {Component, Input, ViewChild} from '@angular/core';
 import {EditRequestProcessingComponent} from "../edit-request-processing/edit-request-processing.component";
 import {RequestProcessingUpdateDto} from "../../../dto/request-processing-update-dto";
 import {RequestProcessingService} from "../../../service/request-processing.service";
-import {ExemptionRequest} from "../../../model/exemption-request";
 import {NotificationService} from "../../../../../core/services/notification.service";
+import {RequestProcessing} from "../../../model/request-processing";
 
 @Component({
   selector: 'app-request-processing-details',
@@ -13,7 +13,7 @@ import {NotificationService} from "../../../../../core/services/notification.ser
 export class RequestProcessingDetailsComponent {
 
   @Input()
-  exemptionRequest!: ExemptionRequest
+  requestProcessing!: RequestProcessing
 
   @ViewChild(EditRequestProcessingComponent)
   editRequestProcessingComponent!: EditRequestProcessingComponent
@@ -30,9 +30,9 @@ export class RequestProcessingDetailsComponent {
     const editingFormValues = this.editRequestProcessingComponent.editProcessingStatusForm.value
     const requestProcessingUpdateDto: RequestProcessingUpdateDto = Object.assign(new RequestProcessingUpdateDto(), editingFormValues)
 
-    this.requestProcessingService.updateExemptionRequestProcessing(this.exemptionRequest.id, requestProcessingUpdateDto).subscribe({
+    this.requestProcessingService.updateExemptionRequestProcessing(this.requestProcessing.id, requestProcessingUpdateDto).subscribe({
       next: updatedExemptionRequest => {
-        this.exemptionRequest = updatedExemptionRequest
+        this.requestProcessing = updatedExemptionRequest.requestProcessing
         this.toggleEditingState()
         this.notificationService.showSuccess("Die Bearbeitungsdetails wurden aktualisiert")
       },
