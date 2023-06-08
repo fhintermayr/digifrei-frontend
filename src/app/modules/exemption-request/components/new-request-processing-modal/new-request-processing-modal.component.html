@@ -28,14 +28,14 @@
 
           <h3 class="text-base font-semibold leading-6 text-gray-900 mb-6" id="modal-title">Antrag verwalten</h3>
 
-          <form class="grid grid-cols-1 gap-y-4">
-            <app-shared-dropdown>Antragsstatus</app-shared-dropdown>
-            <app-shared-input>Kommentar (optional)</app-shared-input>
+          <form [formGroup]="requestProcessingForm" class="grid grid-cols-1 gap-y-4">
+            <app-shared-dropdown [control]="requestProcessingForm.controls.processingStatus" [options]="processingStatusDropdownOptions">Antragsstatus</app-shared-dropdown>
+            <app-shared-input [control]="requestProcessingForm.controls.comment">Kommentar (optional)</app-shared-input>
           </form>
 
         </div>
         <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-          <app-shared-button [buttonDesign]="'primary'" class="sm:ml-3">Bestätigen</app-shared-button>
+          <app-shared-button (click)="onSubmit()" [isDisabled]="requestProcessingForm.invalid" [buttonDesign]="'primary'" class="sm:ml-3">Bestätigen</app-shared-button>
           <app-shared-button (click)="dialogRef.close()" [buttonDesign]="'secondary'">Abbrechen</app-shared-button>
         </div>
       </div>
