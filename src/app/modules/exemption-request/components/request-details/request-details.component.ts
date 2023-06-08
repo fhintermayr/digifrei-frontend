@@ -59,6 +59,7 @@ export class RequestDetailsComponent implements OnInit {
 
     this.exemptionRequestService.updateExemptionRequestById(this.exemptionRequestId, updatedExemptionRequest).subscribe({
       next: value => {
+        this.toggleEditingState()
         this.notificationService.showSuccess("Der Antrag wurde aktualisiert")
         this.exemptionRequest$ = of(value)
       },
