@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {EditRequestProcessingComponent} from "../edit-request-processing/edit-request-processing.component";
 import {RequestProcessingUpdateDto} from "../../../dto/request-processing-update-dto";
 import {RequestProcessingService} from "../../../service/request-processing.service";
@@ -14,6 +14,9 @@ export class RequestProcessingDetailsComponent {
 
   @Input()
   requestProcessing!: RequestProcessing
+
+  @Output()
+  requestProcessingWithdrawal: EventEmitter<void> = new EventEmitter<void>()
 
   @ViewChild(EditRequestProcessingComponent)
   editRequestProcessingComponent!: EditRequestProcessingComponent
@@ -38,6 +41,10 @@ export class RequestProcessingDetailsComponent {
       },
       error: () => this.notificationService.showError("Etwas ist schiefgelaufen. Versuche es später erneut")
     })
+  }
+
+  onWithdrawal() {
+    this.requestProcessingWithdrawal.emit()
   }
 
   toggleEditingState() {

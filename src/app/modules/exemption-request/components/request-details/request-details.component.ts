@@ -97,6 +97,10 @@ export class RequestDetailsComponent implements OnInit {
 
   }
 
+  onRequestProcessingWithdrawal() {
+    this.exemptionRequest$ = this.exemptionRequestService.getExemptionRequestById(this.exemptionRequestId)
+  }
+
   toggleEditingState() {
     this.isCurrentlyEditing = !this.isCurrentlyEditing
   }
