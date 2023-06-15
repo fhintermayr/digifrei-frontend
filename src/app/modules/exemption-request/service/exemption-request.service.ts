@@ -4,6 +4,7 @@ import {RequestSubmissionDto} from "../dto/request-submission-dto";
 import {Observable} from "rxjs";
 import {ExemptionRequest} from "../model/exemption-request";
 import {environment} from "../../../../environments/environment";
+import {Page} from "../../../shared/models/page";
 
 @Injectable({
   providedIn: 'root'
@@ -26,18 +27,18 @@ export class ExemptionRequestService {
     return this.httpClient.get<ExemptionRequest>(url)
 }
 
-  public getSelfSubmittedExemptionRequests(): Observable<ExemptionRequest[]> {
+  public getSelfSubmittedExemptionRequests(): Observable<Page<ExemptionRequest>> {
 
     const url = `${environment.apiUrl}/exemption/self`
 
-    return this.httpClient.get<ExemptionRequest[]>(url)
+    return this.httpClient.get<Page<ExemptionRequest>>(url)
   }
 
-  public getRequestsOfOwnDepartment(): Observable<ExemptionRequest[]> {
+  public getRequestsOfOwnDepartment(): Observable<Page<ExemptionRequest>> {
 
     const url = `${environment.apiUrl}/exemption/own-department`
 
-    return this.httpClient.get<ExemptionRequest[]>(url)
+    return this.httpClient.get<Page<ExemptionRequest>>(url)
   }
 
   public updateExemptionRequestById(id: number, updatedExemptionRequest: ExemptionRequest) {

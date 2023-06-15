@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ExemptionRequest} from "../../../model/exemption-request";
 import {ExemptionRequestService} from "../../../service/exemption-request.service";
 import {lastValueFrom} from "rxjs";
+import {Page} from "../../../../../shared/models/page";
 
 @Component({
   selector: 'app-self-submitted-requests-overview',
@@ -10,7 +11,7 @@ import {lastValueFrom} from "rxjs";
 })
 export class SelfSubmittedRequestsOverviewComponent implements OnInit {
 
-  selfSubmittedRequests: ExemptionRequest[] = []
+  selfSubmittedRequests: Page<ExemptionRequest> | undefined
 
   constructor(private exemptionRequestService: ExemptionRequestService) { }
 
