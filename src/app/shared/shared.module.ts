@@ -19,6 +19,7 @@ import { SharedCheckboxComponent } from './components/shared-checkbox/shared-che
 import { BadgeComponent } from './components/badge/badge.component';
 import { CardHeaderComponent } from './components/card/card-header/card-header.component';
 import { DangerConfirmationModalComponent } from './components/danger-confirmation-modal/danger-confirmation-modal.component';
+import { TablePaginationComponent } from './components/table-pagination/table-pagination.component';
 
 
 
@@ -39,25 +40,27 @@ import { DangerConfirmationModalComponent } from './components/danger-confirmati
     SharedCheckboxComponent,
     BadgeComponent,
     CardHeaderComponent,
-    DangerConfirmationModalComponent
+    DangerConfirmationModalComponent,
+    TablePaginationComponent
   ],
-  exports: [
-    SharedButtonComponent,
-    SharedInputComponent,
-    SharedDropdownComponent,
-    PageHeadingComponent,
-    TabsComponent,
-    SectionHeadingComponent,
-    SharedColoredDropdownComponent,
-    AlertComponent,
-    ClickedOutsideDirective,
-    CardComponent,
-    CardFooterComponent,
-    CardBodyComponent,
-    SharedCheckboxComponent,
-    BadgeComponent,
-    CardHeaderComponent
-  ],
+    exports: [
+        SharedButtonComponent,
+        SharedInputComponent,
+        SharedDropdownComponent,
+        PageHeadingComponent,
+        TabsComponent,
+        SectionHeadingComponent,
+        SharedColoredDropdownComponent,
+        AlertComponent,
+        ClickedOutsideDirective,
+        CardComponent,
+        CardFooterComponent,
+        CardBodyComponent,
+        SharedCheckboxComponent,
+        BadgeComponent,
+        CardHeaderComponent,
+        TablePaginationComponent
+    ],
     imports: [
         CommonModule,
         ReactiveFormsModule,
