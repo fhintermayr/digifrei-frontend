@@ -8,6 +8,7 @@ import {CardBodyComponent} from "../../../../../shared/components/card/card-body
 import {ProcessingStatusBadgeComponent} from "../../processing-status-badge/processing-status-badge.component";
 import {ProcessingStatus} from "../../../enum/processing-status";
 import {Trainer} from "../../../../../shared/models/trainer";
+import {FormatProcessingStatusPipe} from "../../../pipes/format-processing-status.pipe";
 
 describe('RequestProcessingDescriptionListComponent', () => {
   let component: RequestProcessingDescriptionListComponent;
@@ -17,7 +18,7 @@ describe('RequestProcessingDescriptionListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         RequestProcessingDescriptionListComponent, CardComponent, CardHeaderComponent, SharedButtonComponent,
-        CardBodyComponent, ProcessingStatusBadgeComponent
+        CardBodyComponent, ProcessingStatusBadgeComponent, FormatProcessingStatusPipe
       ]
     });
     fixture = TestBed.createComponent(RequestProcessingDescriptionListComponent);

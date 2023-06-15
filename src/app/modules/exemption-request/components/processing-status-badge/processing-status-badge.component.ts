@@ -9,7 +9,7 @@ import {ProcessingStatus} from "../../enum/processing-status";
 export class ProcessingStatusBadgeComponent {
 
   @Input()
-  processingStatus?: ProcessingStatus
+  processingStatus!: ProcessingStatus
 
   getClasses(): string[] {
     switch (this.processingStatus) {
