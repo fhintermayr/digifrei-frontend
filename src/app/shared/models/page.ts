@@ -6,6 +6,7 @@ export interface Page<T> {
   last: boolean
   totalPages: number
   totalElements: number
+  number: number
   size: number
   first: boolean
   numberOfElements: number
