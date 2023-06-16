@@ -6,6 +6,7 @@ import {ToastrModule} from "ngx-toastr";
 import {CardComponent} from "../../../../../shared/components/card/card.component";
 import {CardHeaderComponent} from "../../../../../shared/components/card/card-header/card-header.component";
 import {SharedButtonComponent} from "../../../../../shared/components/shared-button/shared-button.component";
+import {IfRoleDirective} from "../../../../../shared/directives/if-role.directive";
 
 describe('RequestProcessingDetailsComponent', () => {
   let component: RequestProcessingDetailsComponent;
@@ -13,7 +14,9 @@ describe('RequestProcessingDetailsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RequestProcessingDetailsComponent, CardComponent, CardHeaderComponent, SharedButtonComponent],
+      declarations: [
+        RequestProcessingDetailsComponent, CardComponent, CardHeaderComponent, SharedButtonComponent, IfRoleDirective
+      ],
       imports: [ HttpClientTestingModule, ToastrModule.forRoot() ]
     });
     fixture = TestBed.createComponent(RequestProcessingDetailsComponent);
