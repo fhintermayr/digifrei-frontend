@@ -4,6 +4,7 @@ import {RequestProcessingUpdateDto} from "../../../dto/request-processing-update
 import {RequestProcessingService} from "../../../service/request-processing.service";
 import {NotificationService} from "../../../../../core/services/notification.service";
 import {RequestProcessing} from "../../../model/request-processing";
+import {AccessRole} from "../../../../../shared/enum/access-role";
 
 @Component({
   selector: 'app-request-processing-details',
@@ -51,4 +52,5 @@ export class RequestProcessingDetailsComponent {
     this.isCurrentlyEditing = !this.isCurrentlyEditing
   }
 
+  protected readonly AccessRole = AccessRole;
 }
