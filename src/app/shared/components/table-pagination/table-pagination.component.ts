@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Page} from "../../models/page";
 
 @Component({
@@ -10,5 +10,10 @@ export class TablePaginationComponent {
 
   @Input()
   page: Page<any> | undefined
+  @Output()
+  pageChange: EventEmitter<number> = new EventEmitter<number>()
 
+  changePage(newPageNumber: number) {
+    this.pageChange.emit(newPageNumber)
+  }
 }

@@ -46,7 +46,7 @@
 
   </table>
 
-  <app-table-pagination *ngIf="!exemptionRequests?.empty" [page]="exemptionRequests"></app-table-pagination>
+  <app-table-pagination *ngIf="!exemptionRequests?.empty" [page]="exemptionRequests" (pageChange)="pageChange.emit($event)"></app-table-pagination>
 
   <ng-template #noExemptionRequests>
     <app-alert [alertType]="'info'">Es liegen keine Dienstbefreiungsanträge vor</app-alert>
