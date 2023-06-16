@@ -5,6 +5,7 @@ import {lastValueFrom} from "rxjs";
 import {User} from "../../../../../shared/models/user";
 import {AuthService} from "../../../../authentication/service/auth.service";
 import {SiteNavigationLink} from "../../../../../shared/types/site-navigation-link";
+import {Page} from "../../../../../shared/models/page";
 
 @Component({
   selector: 'app-department-requests-overview',
@@ -13,7 +14,7 @@ import {SiteNavigationLink} from "../../../../../shared/types/site-navigation-li
 })
 export class DepartmentRequestsOverviewComponent implements OnInit {
 
-  requestsOfOwnDepartment: ExemptionRequest[] = []
+  requestsOfOwnDepartment?: Page<ExemptionRequest>
   currentUser?: User
 
   readonly breadcrumbs: SiteNavigationLink[] = [
@@ -31,6 +32,11 @@ export class DepartmentRequestsOverviewComponent implements OnInit {
     this.currentUser = await lastValueFrom(currentUser$)
 
     const exemptionRequests$ = this.exemptionRequestService.getRequestsOfOwnDepartment()
+    this.requestsOfOwnDepartment = await lastValueFrom(exemptionRequests$)
+  }
+
+  async onPageChange(newPageNumber: number) {
+    const exemptionRequests$ = this.exemptionRequestService.getRequestsOfOwnDepartment(newPageNumber)
     this.requestsOfOwnDepartment = await lastValueFrom(exemptionRequests$)
   }
 

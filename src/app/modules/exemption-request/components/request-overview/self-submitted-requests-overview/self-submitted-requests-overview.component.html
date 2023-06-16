@@ -1,2 +1,2 @@
 <app-page-heading>Eingereichten Anträge</app-page-heading>
-<app-exemption-requests-table [exemptionRequests]="selfSubmittedRequests"></app-exemption-requests-table>
+<app-exemption-requests-table *ngIf="selfSubmittedRequests" [exemptionRequests]="selfSubmittedRequests" (pageChange)="onPageChange($event)"></app-exemption-requests-table>
