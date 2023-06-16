@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {RequestSubmissionDto} from "../dto/request-submission-dto";
 import {Observable} from "rxjs";
 import {ExemptionRequest} from "../model/exemption-request";
@@ -27,18 +27,24 @@ export class ExemptionRequestService {
     return this.httpClient.get<ExemptionRequest>(url)
 }
 
-  public getSelfSubmittedExemptionRequests(): Observable<Page<ExemptionRequest>> {
+  public getSelfSubmittedExemptionRequests(page?: number): Observable<Page<ExemptionRequest>> {
 
     const url = `${environment.apiUrl}/exemption/self`
 
-    return this.httpClient.get<Page<ExemptionRequest>>(url)
+    const params = new HttpParams()
+    if (page) params.set("page", page)
+
+    return this.httpClient.get<Page<ExemptionRequest>>(url, {params})
   }
 
-  public getRequestsOfOwnDepartment(): Observable<Page<ExemptionRequest>> {
+  public getRequestsOfOwnDepartment(page?: number): Observable<Page<ExemptionRequest>> {
 
     const url = `${environment.apiUrl}/exemption/own-department`
 
-    return this.httpClient.get<Page<ExemptionRequest>>(url)
+    let params = new HttpParams()
+    if (page) params = params.set("page", page)
+
+    return this.httpClient.get<Page<ExemptionRequest>>(url, {params})
   }
 
   public updateExemptionRequestById(id: number, updatedExemptionRequest: ExemptionRequest) {

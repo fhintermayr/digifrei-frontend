@@ -19,4 +19,9 @@ export class SelfSubmittedRequestsOverviewComponent implements OnInit {
     const exemptionRequests$ = this.exemptionRequestService.getSelfSubmittedExemptionRequests()
     this.selfSubmittedRequests = await lastValueFrom(exemptionRequests$)
   }
+
+  async onPageChange(newPageNumber: number) {
+    const exemptionRequests$ = this.exemptionRequestService.getRequestsOfOwnDepartment(newPageNumber)
+    this.selfSubmittedRequests = await lastValueFrom(exemptionRequests$)
+  }
 }

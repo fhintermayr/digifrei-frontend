@@ -35,4 +35,9 @@ export class DepartmentRequestsOverviewComponent implements OnInit {
     this.requestsOfOwnDepartment = await lastValueFrom(exemptionRequests$)
   }
 
+  async onPageChange(newPageNumber: number) {
+    const exemptionRequests$ = this.exemptionRequestService.getRequestsOfOwnDepartment(newPageNumber)
+    this.requestsOfOwnDepartment = await lastValueFrom(exemptionRequests$)
+  }
+
 }
