@@ -12,7 +12,9 @@
 
           <div class="ml-4 mt-4 flex-shrink-0">
 
-            <app-shared-button *ngIf="!isCurrentlyEditing else submitAndCancelButtons" (click)="toggleEditingState()">Bearbeiten</app-shared-button>
+            <ng-container *ifRole="[AccessRole.TRAINER]">
+              <app-shared-button *ngIf="!isCurrentlyEditing else submitAndCancelButtons" (click)="toggleEditingState()">Bearbeiten</app-shared-button>
+            </ng-container>
 
             <ng-template #submitAndCancelButtons>
               <app-shared-button (click)="attemptExemptionRequestUpdate()" class="mr-2">Speichern</app-shared-button>
@@ -44,7 +46,7 @@
 
   <ng-template #notYetProcessed>
 
-    <button (click)="openNewProcessingModal()" type="button" class="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400">
+    <button *ifRole="[AccessRole.TRAINER]" (click)="openNewProcessingModal()" type="button" class="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400">
       <ng-icon name="heroDocumentPlus" size="48" class="mx-auto text-gray-400"></ng-icon>
       <span class="mt-2 block text-sm font-semibold text-gray-900">Antrag genehmigen oder ablehnen</span>
     </button>

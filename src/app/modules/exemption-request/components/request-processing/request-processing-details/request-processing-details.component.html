@@ -8,7 +8,9 @@
 
       <div class="ml-4 mt-4 flex-shrink-0">
 
-        <app-shared-button *ngIf="!isCurrentlyEditing else submitAndCancelButtons" (click)="toggleEditingState()">Bearbeiten</app-shared-button>
+        <ng-container *ifRole="[AccessRole.TRAINER]">
+          <app-shared-button *ngIf="!isCurrentlyEditing else submitAndCancelButtons" (click)="toggleEditingState()">Bearbeiten</app-shared-button>
+        </ng-container>
 
         <ng-template #submitAndCancelButtons>
           <app-shared-button (click)="onSaveRequestProcessing()" class="mr-2">Speichern</app-shared-button>

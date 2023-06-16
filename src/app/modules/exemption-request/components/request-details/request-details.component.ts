@@ -10,6 +10,7 @@ import {NotificationService} from "../../../../core/services/notification.servic
 import {ModalService} from "../../../../shared/service/modal.service";
 import {RequestProcessingUpdateDto} from "../../dto/request-processing-update-dto";
 import {RequestProcessingService} from "../../service/request-processing.service";
+import {AccessRole} from "../../../../shared/enum/access-role";
 
 @Component({
   selector: 'app-request-details',
@@ -105,4 +106,5 @@ export class RequestDetailsComponent implements OnInit {
     this.isCurrentlyEditing = !this.isCurrentlyEditing
   }
 
+  protected readonly AccessRole = AccessRole;
 }

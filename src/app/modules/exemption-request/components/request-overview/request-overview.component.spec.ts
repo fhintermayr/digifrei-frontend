@@ -12,6 +12,7 @@ import {RouterTestingModule} from "@angular/router/testing";
 import {NgIconsModule} from "@ng-icons/core";
 import {heroChevronLeftMini, heroChevronRightMini} from "@ng-icons/heroicons/mini";
 import {AuthService} from "../../../authentication/service/auth.service";
+import {IfRoleDirective} from "../../../../shared/directives/if-role.directive";
 
 describe('RequestOverviewComponent', () => {
   let component: RequestOverviewComponent;
@@ -26,7 +27,7 @@ describe('RequestOverviewComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         RequestOverviewComponent, SelfSubmittedRequestsOverviewComponent, PageHeadingComponent,
-        ExemptionRequestsTableComponent, AlertComponent ],
+        ExemptionRequestsTableComponent, AlertComponent, IfRoleDirective ],
       imports: [
         HttpClientTestingModule, RouterTestingModule,
         NgIconsModule.withIcons({heroChevronLeftMini, heroChevronRightMini})
