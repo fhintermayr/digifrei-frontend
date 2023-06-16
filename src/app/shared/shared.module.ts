@@ -20,6 +20,7 @@ import { BadgeComponent } from './components/badge/badge.component';
 import { CardHeaderComponent } from './components/card/card-header/card-header.component';
 import { DangerConfirmationModalComponent } from './components/danger-confirmation-modal/danger-confirmation-modal.component';
 import { TablePaginationComponent } from './components/table-pagination/table-pagination.component';
+import { IfRoleDirective } from './directives/if-role.directive';
 
 
 
@@ -41,7 +42,8 @@ import { TablePaginationComponent } from './components/table-pagination/table-pa
     BadgeComponent,
     CardHeaderComponent,
     DangerConfirmationModalComponent,
-    TablePaginationComponent
+    TablePaginationComponent,
+    IfRoleDirective
   ],
     exports: [
         SharedButtonComponent,
@@ -59,7 +61,8 @@ import { TablePaginationComponent } from './components/table-pagination/table-pa
         SharedCheckboxComponent,
         BadgeComponent,
         CardHeaderComponent,
-        TablePaginationComponent
+        TablePaginationComponent,
+        IfRoleDirective
     ],
     imports: [
         CommonModule,
