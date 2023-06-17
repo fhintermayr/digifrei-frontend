@@ -22,6 +22,8 @@ export class SharedInputComponent implements OnChanges {
   @Input()
   inputId?: string
   @Input()
+  showRequiredStar: boolean = true
+  @Input()
   control: FormControl = new FormControl()
 
   errorMessages: Record<string, string> = {

@@ -1,0 +1,25 @@
+<form [formGroup]="editProcessingStatusForm">
+  <dl class="divide-y divide-gray-100">
+    <div class="pb-6 sm:grid sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-900">Status</dt>
+      <app-shared-dropdown [control]="editProcessingStatusForm.controls.processingStatus" [options]="processingStatusDropdownOptions" [showRequiredStar]="false"></app-shared-dropdown>
+    </div>
+    <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-900">Zuletzt bearbeitet von</dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0" >{{ requestProcessing.processor.firstName }} {{ requestProcessing.processor.lastName }}</dd>
+    </div>
+    <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-900">Kommentar</dt>
+      <app-shared-input [control]="editProcessingStatusForm.controls.comment" [showRequiredStar]="false"></app-shared-input>
+    </div>
+    <div class="py-6 sm:grid sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-900">Zuletzt bearbeitet am</dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ requestProcessing.processingDate | date: 'short' }} Uhr</dd>
+    </div>
+
+    <div class="pt-6 sm:grid sm:grid-cols-3 sm:gap-4">
+      <dt class="text-sm font-medium text-gray-900">Genehmigung zurückziehen</dt>
+      <app-shared-button (click)="openWithdrawalConfirmationModal()" [buttonDesign]="'danger'">Genehmigung zurückziehen?</app-shared-button>
+    </div>
+  </dl>
+</form>

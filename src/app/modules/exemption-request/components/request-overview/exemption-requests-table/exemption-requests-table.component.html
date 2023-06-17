@@ -1,5 +1,5 @@
 <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-  <table *ngIf="exemptionRequests.length > 0; else noExemptionRequests" class="min-w-full divide-y divide-gray-300">
+  <table *ngIf="exemptionRequests && exemptionRequests?.content!.length > 0; else noExemptionRequests" class="min-w-full divide-y divide-gray-300">
 
     <thead class="bg-gray-50">
     <tr>
@@ -15,7 +15,7 @@
     </thead>
 
     <tbody class="divide-y divide-gray-200 bg-white">
-    <tr *ngFor="let exemptionRequest of exemptionRequests">
+    <tr *ngFor="let exemptionRequest of exemptionRequests?.content">
       <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none">
         {{ exemptionRequest.applicant.firstName }} {{ exemptionRequest.applicant.lastName }}
         <dl class="font-normal lg:hidden">
@@ -32,16 +32,21 @@
       <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
         {{ exemptionRequest.startTime | date: 'short' }} - {{ exemptionRequest.endTime | date: 'shortTime' }} Uhr
       </td>
-      <td class="px-3 py-4 text-sm text-gray-500"><app-badge>Genehmigt</app-badge></td>
+      <td class="px-3 py-4 text-sm text-gray-500">
+        <app-processing-status-badge *ngIf="exemptionRequest.requestProcessing" [processingStatus]="exemptionRequest.requestProcessing.processingStatus"></app-processing-status-badge>
+        <app-processing-status-badge *ngIf="!exemptionRequest.requestProcessing" [processingStatus]="ProcessingStatus.SUBMITTED"></app-processing-status-badge>
+      </td>
       <td class="py-4 pl-3 pr-4 text-right text-sm font-medium">
-        <a href="#" class="text-primary hover:text-primary-dark">
-          <span class="flex flex-row items-center">Details<ng-icon name="heroArrowRightSolid" size="24" class="text-primary ml-2"></ng-icon></span>
+        <a [routerLink]="'../' + exemptionRequest.id + '/details'" class="text-primary hover:text-primary-dark">
+          <span  class="flex flex-row items-center">Details<ng-icon name="heroArrowRightSolid" size="24" class="text-primary ml-2"></ng-icon></span>
         </a>
       </td>
     </tr>
     </tbody>
 
   </table>
+
+  <app-table-pagination *ngIf="!exemptionRequests?.empty" [page]="exemptionRequests" (pageChange)="pageChange.emit($event)"></app-table-pagination>
 
   <ng-template #noExemptionRequests>
     <app-alert [alertType]="'info'">Es liegen keine Dienstbefreiungsanträge vor</app-alert>

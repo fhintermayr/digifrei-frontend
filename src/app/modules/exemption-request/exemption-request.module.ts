@@ -9,6 +9,17 @@ import { SelfSubmittedRequestsOverviewComponent } from './components/request-ove
 import { ExemptionRequestsTableComponent } from './components/request-overview/exemption-requests-table/exemption-requests-table.component';
 import { DepartmentRequestsOverviewComponent } from './components/request-overview/department-requests-overview/department-requests-overview.component';
 import {NgIconComponent} from "@ng-icons/core";
+import { RequestDetailsComponent } from './components/request-details/request-details.component';
+import { FormatExemptionCategoryPipe } from './pipes/format-exemption-category.pipe';
+import { RequestDetailsDescriptionListComponent } from './components/request-details/request-details-description-list/request-details-description-list.component';
+import { RequestDetailsEditingFormComponent } from './components/request-details/request-details-editing-form/request-details-editing-form.component';
+import { RequestProcessingDescriptionListComponent } from './components/request-details/request-processing-description-list/request-processing-description-list.component';
+import { ProcessingStatusBadgeComponent } from './components/processing-status-badge/processing-status-badge.component';
+import {DialogModule} from "@angular/cdk/dialog";
+import { NewRequestProcessingModalComponent } from './components/new-request-processing-modal/new-request-processing-modal.component';
+import { RequestProcessingDetailsComponent } from './components/request-processing/request-processing-details/request-processing-details.component';
+import { EditRequestProcessingComponent } from './components/request-processing/edit-request-processing/edit-request-processing.component';
+import { FormatProcessingStatusPipe } from './pipes/format-processing-status.pipe';
 
 
 
@@ -18,10 +29,21 @@ import {NgIconComponent} from "@ng-icons/core";
     RequestOverviewComponent,
     SelfSubmittedRequestsOverviewComponent,
     ExemptionRequestsTableComponent,
-    DepartmentRequestsOverviewComponent
+    DepartmentRequestsOverviewComponent,
+    RequestDetailsComponent,
+    FormatExemptionCategoryPipe,
+    RequestDetailsDescriptionListComponent,
+    RequestDetailsEditingFormComponent,
+    RequestProcessingDescriptionListComponent,
+    ProcessingStatusBadgeComponent,
+    NewRequestProcessingModalComponent,
+    RequestProcessingDetailsComponent,
+    EditRequestProcessingComponent,
+    FormatProcessingStatusPipe
   ],
     imports: [
         CommonModule,
+        DialogModule,
         ExemptionRequestRoutingModule,
         SharedModule,
         FormsModule,

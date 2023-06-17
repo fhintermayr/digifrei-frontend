@@ -17,6 +17,10 @@ import { CardFooterComponent } from './components/card/card-footer/card-footer.c
 import { CardBodyComponent } from './components/card/card-body/card-body.component';
 import { SharedCheckboxComponent } from './components/shared-checkbox/shared-checkbox.component';
 import { BadgeComponent } from './components/badge/badge.component';
+import { CardHeaderComponent } from './components/card/card-header/card-header.component';
+import { DangerConfirmationModalComponent } from './components/danger-confirmation-modal/danger-confirmation-modal.component';
+import { TablePaginationComponent } from './components/table-pagination/table-pagination.component';
+import { IfRoleDirective } from './directives/if-role.directive';
 
 
 
@@ -35,7 +39,11 @@ import { BadgeComponent } from './components/badge/badge.component';
     CardFooterComponent,
     CardBodyComponent,
     SharedCheckboxComponent,
-    BadgeComponent
+    BadgeComponent,
+    CardHeaderComponent,
+    DangerConfirmationModalComponent,
+    TablePaginationComponent,
+    IfRoleDirective
   ],
     exports: [
         SharedButtonComponent,
@@ -51,7 +59,10 @@ import { BadgeComponent } from './components/badge/badge.component';
         CardFooterComponent,
         CardBodyComponent,
         SharedCheckboxComponent,
-        BadgeComponent
+        BadgeComponent,
+        CardHeaderComponent,
+        TablePaginationComponent,
+        IfRoleDirective
     ],
     imports: [
         CommonModule,

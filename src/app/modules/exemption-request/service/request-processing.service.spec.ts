@@ -1,19 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AccessRoleGuard } from './access-role.guard';
+import { RequestProcessingService } from './request-processing.service';
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 
-describe('AccessRoleGuard', () => {
-  let guard: AccessRoleGuard;
+describe('RequestProcessingService', () => {
+  let service: RequestProcessingService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ]
     });
-    guard = TestBed.inject(AccessRoleGuard);
+    service = TestBed.inject(RequestProcessingService);
   });
 
   it('should be created', () => {
-    expect(guard).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 });

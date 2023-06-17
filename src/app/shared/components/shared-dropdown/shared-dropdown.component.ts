@@ -17,6 +17,8 @@ export class SharedDropdownComponent implements OnChanges {
   @Input()
   isDisabled: boolean = false
   @Input()
+  showRequiredStar: boolean = true
+  @Input()
   control: FormControl = new FormControl()
 
   ngOnChanges(changes: SimpleChanges): void {

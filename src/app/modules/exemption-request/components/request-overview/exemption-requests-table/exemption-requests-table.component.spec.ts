@@ -4,6 +4,7 @@ import { ExemptionRequestsTableComponent } from './exemption-requests-table.comp
 import {AlertComponent} from "../../../../../shared/components/alert/alert.component";
 import {NgIconsModule} from "@ng-icons/core";
 import {heroChevronLeftMini, heroChevronRightMini} from "@ng-icons/heroicons/mini";
+import {TablePaginationComponent} from "../../../../../shared/components/table-pagination/table-pagination.component";
 
 describe('ExemptionRequestsTableComponent', () => {
   let component: ExemptionRequestsTableComponent;
@@ -11,7 +12,7 @@ describe('ExemptionRequestsTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExemptionRequestsTableComponent, AlertComponent ],
+      declarations: [ ExemptionRequestsTableComponent, TablePaginationComponent,AlertComponent ],
       imports: [NgIconsModule.withIcons({heroChevronLeftMini, heroChevronRightMini})]
     })
     .compileComponents();
