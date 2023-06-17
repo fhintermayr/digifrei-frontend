@@ -27,8 +27,8 @@ export class RequestDetailsEditingFormComponent implements OnChanges {
   readonly exemptionCategoryDropdownOptions: SelectOption[] = ExemptionCategoryUtil.getCategoriesAsDropdownOption()
 
   public readonly exemptionRequestEditingForm = this.formBuilder.group({
-    startTime: [new Date().toISOString().slice(0, 16), [Validators.required, DateValidators.futureOrPresent()]],
-    endTime: [new Date().toISOString().slice(0, 16), [Validators.required, DateValidators.futureOrPresent(), DateValidators.isPast('startTime')]],
+    startTime: [new Date().toISOString().slice(0, 16), Validators.required],
+    endTime: [new Date().toISOString().slice(0, 16), [Validators.required, DateValidators.isPast('startTime')]],
     exemptionCategory: [this.exemptionRequest?.exemptionCategory, Validators.required],
     reason: [this.exemptionRequest?.reason, Validators.required],
   })
