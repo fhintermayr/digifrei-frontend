@@ -1,0 +1,29 @@
+<div appClickedOutside (clickedOutside)="onClickedOutside()" class="relative inline-block text-left">
+  <div>
+    <button (click)="toggleDropdown()" type="button" class="group inline-flex items-center justify-center" aria-expanded="false">
+      <span>Status</span>
+      <svg class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+      </svg>
+    </button>
+  </div>
+
+  <!--
+    Entering: "transition ease-out duration-100"
+      From: "transform opacity-0 scale-95"
+      To: "transform opacity-100 scale-100"
+    Leaving: "transition ease-in duration-75"
+      From: "transform opacity-100 scale-100"
+      To: "transform opacity-0 scale-95"
+  -->
+  <div [ngClass]="isDropdownOpen ? 'opacity-100' : 'opacity-0'" class="absolute z-10 min-w mt-2 origin-top-right rounded-md bg-white p-4 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+    <form [formGroup]="filterStatusForm" class="grid gap-y-2">
+      <app-shared-checkbox [control]="filterStatusForm.controls.submitted" class="min-w-max">Eingereicht</app-shared-checkbox>
+      <app-shared-checkbox [control]="filterStatusForm.controls.approved" class="min-w-max">Genehmigt</app-shared-checkbox>
+      <app-shared-checkbox [control]="filterStatusForm.controls.rejected" class="min-w-max">Abgelehnt</app-shared-checkbox>
+      <app-shared-checkbox [control]="filterStatusForm.controls.recordedInSystem" class="min-w-max">In IS+ Reha eingetragen</app-shared-checkbox>
+      <app-shared-checkbox [control]="filterStatusForm.controls.confirmationPresent" class="min-w-max">Bestätigung erhalten</app-shared-checkbox>
+      <app-shared-checkbox [control]="filterStatusForm.controls.confirmationMissing" class="min-w-max">Bestätigung fehlt</app-shared-checkbox>
+    </form>
+  </div>
+</div>

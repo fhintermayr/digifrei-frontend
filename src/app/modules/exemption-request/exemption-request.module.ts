@@ -20,6 +20,7 @@ import { NewRequestProcessingModalComponent } from './components/new-request-pro
 import { RequestProcessingDetailsComponent } from './components/request-processing/request-processing-details/request-processing-details.component';
 import { EditRequestProcessingComponent } from './components/request-processing/edit-request-processing/edit-request-processing.component';
 import { FormatProcessingStatusPipe } from './pipes/format-processing-status.pipe';
+import { FilterStatusTableHeaderComponent } from './components/request-overview/filter-status-table-header/filter-status-table-header.component';
 
 
 
@@ -39,7 +40,8 @@ import { FormatProcessingStatusPipe } from './pipes/format-processing-status.pip
     NewRequestProcessingModalComponent,
     RequestProcessingDetailsComponent,
     EditRequestProcessingComponent,
-    FormatProcessingStatusPipe
+    FormatProcessingStatusPipe,
+    FilterStatusTableHeaderComponent
   ],
     imports: [
         CommonModule,
