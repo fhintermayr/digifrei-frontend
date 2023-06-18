@@ -7,11 +7,21 @@
       <p class="font-medium text-gray-900 hover:text-gray-600">{{ department?.name }}</p>
       <p class="text-gray-500">x Mitarbeiter</p>
     </div>
-    <div class="flex-shrink-0 pr-2">
-      <button type="button" class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent bg-white text-gray-400 hover:text-gray-500">
+    <div appClickedOutside (clickedOutside)="onClickedOutside()" class="flex-shrink-0 pr-2">
+      <button (click)="toggleDropdown()" type="button" class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent bg-white text-gray-400 hover:text-gray-500">
         <span class="sr-only">Open options</span>
         <ng-icon size="24" name="heroEllipsisVertical"></ng-icon>
       </button>
+
+      <div [ngClass]="isDropdownOpen ? 'opacity-100 z-10' : 'opacity-0 -z-10'" class="absolute min-w origin-top-right rounded-md bg-white p-4 shadow-lg ring-2 ring-gray-900/5">
+        <div class="grid grid-flow-col auto-cols-max justify-items-start items-center gap-x-2 cursor-pointer">
+          <ng-icon name="heroPencil" size="20" class="text-gray-500"></ng-icon>
+          <p>Bearbeiten</p>
+        </div>
+      </div>
+
     </div>
   </div>
+
+
 </li>

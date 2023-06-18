@@ -11,4 +11,14 @@ export class DepartmentGridListItemComponent {
   @Input()
   department?: Department
 
+  isDropdownOpen = false
+
+  onClickedOutside() {
+    if (this.isDropdownOpen) this.isDropdownOpen = false
+  }
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen
+  }
+
 }

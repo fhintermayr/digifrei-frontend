@@ -27,7 +27,7 @@ import {
   heroExclamationTriangle,
   heroInformationCircle,
   heroLightBulb,
-  heroMagnifyingGlass,
+  heroMagnifyingGlass, heroPencil,
   heroUserGroup
 } from "@ng-icons/heroicons/outline";
 
@@ -59,6 +59,7 @@ export const ngIcons = {
   heroInformationCircleMini,
   heroLightBulb,
   heroMagnifyingGlass,
+  heroPencil,
   heroUserGroup,
   heroUserPlusSolid
 }
