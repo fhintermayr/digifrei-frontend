@@ -10,10 +10,14 @@ import {
 import {
   UserManagementAccountComponent
 } from "./components/user-management/user-management-account/user-management-account.component";
+import {
+  DepartmentManagementComponent
+} from "./components/department/department-management/department-management.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: "full" },
   { path: 'dashboard', component: AdminDashboardComponent },
+  { path: 'departments', component: DepartmentManagementComponent },
   { path: 'register', component: UserRegistrationComponent },
   { path: 'search', component: UserSearchComponent },
   { path: 'user/:userId', component: UserManagementComponent, children: [
