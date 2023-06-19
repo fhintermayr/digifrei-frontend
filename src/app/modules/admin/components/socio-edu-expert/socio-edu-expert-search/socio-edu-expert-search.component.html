@@ -1,0 +1,48 @@
+<div class="mx-auto max-w-lg">
+  <div class="text-center">
+
+    <ng-icon name="heroMagnifyingGlass" size="48" class="text-icon mx-auto"></ng-icon>
+    <h3>Fachdienst Suche</h3>
+    <p class="mt-1">Suche hier nach einen Fachdienst zur Verwaltung</p>
+
+    <form class="mt-6 flex">
+      <app-shared-input
+        #searchBar (input)="onInput(searchBar.control.value)"
+        [inputType]="'search'"
+        [placeholder]="'Gibt den Vornamen, Nachnamen oder die E-Mail-Adresse ein'"
+        class="w-full bg-white">
+      </app-shared-input>
+    </form>
+
+  </div>
+
+
+  <div class="mt-10">
+
+    <ng-container *ngIf="matchingSocioEduExperts$ | async as matchingSocioEduExpert" role="list" class="mt-4">
+
+      <ul *ngIf="(matchingSocioEduExpert.length > 0) && isSearchTermProvided; else noResults" class="max-h-[25rem] divide-y divide-gray-200 border-t border-gray-200">
+        <app-socio-edu-expert-search-result *ngFor="let socioEduExpert of matchingSocioEduExpert" [socioEduExpert]="socioEduExpert"></app-socio-edu-expert-search-result>
+      </ul>
+
+      <div *ngIf="matchingSocioEduExpert.length >= 10" class="mt-12 text-center">
+        <ng-icon name="heroLightBulb" size="20" strokeWidth="2" class="text-icon mx-auto"></ng-icon>
+        <p class="text-sm">
+          Hinweis: Es werden nur die ersten 10 Ergebnisse angezeigt, die dem Suchbegriff entsprechen.
+          Wenn dein gewünschtes Ergebnis nicht in der Suche ist, verwende einen detaillierten Suchbegriff
+        </p>
+      </div>
+
+    </ng-container>
+
+    <ng-template #noResults>
+      <p *ngIf="isSearchTermProvided" class="flex flex-wrap justify-center">Es wurde kein Fachdienst gefunden.
+        <a [routerLink]="'/admin/register'" class="inline-flex align-baseline text-primary font-bold ml-1">
+          Erstelle stattdessen einen neuen
+          <ng-icon name="heroArrowLongRightMini" size="24" class="text-primary ml-1"></ng-icon>
+        </a>
+      </p>
+    </ng-template>
+
+  </div>
+</div>
