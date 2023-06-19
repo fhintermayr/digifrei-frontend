@@ -45,4 +45,15 @@ export class DepartmentManagementComponent {
     })
   }
 
+  async onDepartmentNameChange(departmentId: number, newDepartmentName: string) {
+
+    this.departmentService.editDepartment(departmentId, newDepartmentName).subscribe({
+      next: department => {
+        this.notificationService.showSuccess(`Abteilung wurde nach ${department.name} umbenannt`)
+        this.getAllDepartments()
+      },
+      error: () => this.notificationService.showError("Etwas ist schiefgelaufen. Bitte wende dich an den Support, oder versuche es später erneut")
+    })
+  }
+
 }

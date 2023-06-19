@@ -4,7 +4,7 @@
   </div>
   <div class="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-gray-200 bg-white">
     <div class="flex-1 truncate px-4 py-2 text-sm">
-      <p class="font-medium text-gray-900 hover:text-gray-600">{{ department?.name }}</p>
+      <p class="font-medium text-gray-900 hover:text-gray-600">{{ department.name }}</p>
       <p class="text-gray-500">x Mitarbeiter</p>
     </div>
     <div appClickedOutside (clickedOutside)="onClickedOutside()" class="flex-shrink-0 pr-2">
@@ -14,7 +14,7 @@
       </button>
 
       <div [ngClass]="isDropdownOpen ? 'opacity-100 z-10' : 'opacity-0 -z-10'" class="absolute min-w origin-top-right rounded-md bg-white p-4 shadow-lg ring-2 ring-gray-900/5">
-        <div class="grid grid-flow-col auto-cols-max justify-items-start items-center gap-x-2 cursor-pointer">
+        <div (click)="openEditDepartmentModal(department)" class="grid grid-flow-col auto-cols-max justify-items-start items-center gap-x-2 cursor-pointer">
           <ng-icon name="heroPencil" size="20" class="text-gray-500"></ng-icon>
           <p>Bearbeiten</p>
         </div>
