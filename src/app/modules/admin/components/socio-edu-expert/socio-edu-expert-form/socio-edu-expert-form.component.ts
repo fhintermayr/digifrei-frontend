@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SocioEduExpert} from "../../../../../shared/models/socio-edu-expert";
 import {FormBuilder, Validators} from "@angular/forms";
+import {SocioEduExpertCreationDto} from "../../../dto/socio-edu-expert-creation-dto";
 
 @Component({
   selector: 'app-socio-edu-expert-form',
@@ -12,7 +13,7 @@ export class SocioEduExpertFormComponent implements OnInit {
   @Input()
   socioEduExpert?: SocioEduExpert
   @Output()
-  submit: EventEmitter<SocioEduExpert> = new EventEmitter<SocioEduExpert>()
+  submit: EventEmitter<SocioEduExpertCreationDto> = new EventEmitter<SocioEduExpertCreationDto>()
 
   readonly form = this.formBuilder.group({
     firstName: ['', Validators.required],
@@ -33,9 +34,8 @@ export class SocioEduExpertFormComponent implements OnInit {
   }
 
   onSubmit() {
-    const socioEduExpert: SocioEduExpert = this.form.value as SocioEduExpert
+    const socioEduExpert: SocioEduExpertCreationDto = this.form.value as SocioEduExpertCreationDto
     this.submit.emit(socioEduExpert)
-    this.form.reset()
   }
 
 }
