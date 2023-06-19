@@ -1,0 +1,16 @@
+<li [routerLink]="'/admin/socio-edu-expert/' + socioEduExpert?.id" class="flex items-center justify-between space-x-3 py-4 border-b border-gray-200 cursor-pointer">
+  <div class="flex min-w-0 flex-1 items-center space-x-3">
+    <div class="flex-shrink-0">
+      <img class="h-10 w-10 rounded-full" src="assets/images/default_profile_picture.svg" alt="profile picture of {{socioEduExpert?.firstName}} {{socioEduExpert?.lastName}}">
+    </div>
+
+    <div class="min-w-0 flex-1">
+      <p class="truncate text-sm font-medium text-gray-900">{{socioEduExpert?.firstName}} {{socioEduExpert?.lastName}}</p>
+      <p class="truncate text-sm font-medium text-gray-500">{{socioEduExpert?.email}}</p>
+    </div>
+  </div>
+
+  <div class="flex-shrink-0">
+    <ng-icon name="heroArrowRightSolid" size="24" class="text-primary"></ng-icon>
+  </div>
+</li>

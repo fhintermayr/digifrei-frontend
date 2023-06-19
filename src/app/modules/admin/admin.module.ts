@@ -19,6 +19,8 @@ import { CreateDepartmentModalComponent } from './components/department/create-d
 import { EditDepartmentModalComponent } from './components/department/edit-department-modal/edit-department-modal.component';
 import { SocioEduExpertFormComponent } from './components/socio-edu-expert/socio-edu-expert-form/socio-edu-expert-form.component';
 import { SocioEduExpertRegistrationComponent } from './components/socio-edu-expert/socio-edu-expert-registration/socio-edu-expert-registration.component';
+import { SocioEduExpertSearchComponent } from './components/socio-edu-expert/socio-edu-expert-search/socio-edu-expert-search.component';
+import { SocioEduExpertSearchResultComponent } from './components/socio-edu-expert/socio-edu-expert-search/socio-edu-expert-search-result/socio-edu-expert-search-result.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { SocioEduExpertRegistrationComponent } from './components/socio-edu-expe
     CreateDepartmentModalComponent,
     EditDepartmentModalComponent,
     SocioEduExpertFormComponent,
-    SocioEduExpertRegistrationComponent
+    SocioEduExpertRegistrationComponent,
+    SocioEduExpertSearchComponent,
+    SocioEduExpertSearchResultComponent
   ],
   imports: [
     CommonModule,
