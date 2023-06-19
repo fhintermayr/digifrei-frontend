@@ -12,7 +12,7 @@ export class DepartmentService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public createDepartments(name: string): Observable<Department> {
+  public createDepartment(name: string): Observable<Department> {
 
     const departmentCreationDto = new DepartmentCreationDto(name)
 
