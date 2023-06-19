@@ -26,7 +26,7 @@
       <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 w-full sm:max-w-lg">
         <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
 
-          <h3 class="text-base font-semibold leading-6 text-gray-900 mb-6" id="modal-title">Abteilung erstellen</h3>
+          <h3 class="text-base font-semibold leading-6 text-gray-900 mb-6" id="modal-title">Abteilung bearbeiten</h3>
 
           <form [formGroup]="editDepartmentForm" class="grid grid-cols-1 gap-y-4">
             <app-shared-input [control]="editDepartmentForm.controls.name">Name</app-shared-input>
@@ -34,7 +34,7 @@
 
         </div>
         <div class="bg-gray-50 px-4 py-3 flex flex-row-reverse sm:px-6">
-          <app-shared-button (click)="onSubmit()" [isDisabled]="editDepartmentForm.invalid" [buttonDesign]="'primary'" class="ml-3">Erstellen</app-shared-button>
+          <app-shared-button (click)="onSubmit()" [isDisabled]="editDepartmentForm.invalid" [buttonDesign]="'primary'" class="ml-3">Speichern</app-shared-button>
           <app-shared-button (click)="dialogRef.close()" [buttonDesign]="'secondary'">Abbrechen</app-shared-button>
         </div>
       </div>
