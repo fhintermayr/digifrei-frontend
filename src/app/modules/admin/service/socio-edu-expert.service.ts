@@ -19,6 +19,14 @@ export class SocioEduExpertService {
     return this.httpClient.post<SocioEduExpert>(url, creationDto)
   }
 
+  public getSocioEduExpertById(id: number): Observable<SocioEduExpert> {
+
+    const url = `${environment.apiUrl}/socio-edu-expert/${id}`
+
+    return this.httpClient.get<SocioEduExpert>(url)
+  }
+
+
   public findAllContainingSearchTerm(searchTerm?: string): Observable<SocioEduExpert[]> {
 
     let params = new HttpParams()
