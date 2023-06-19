@@ -16,6 +16,7 @@ import {NgIconComponent} from "@ng-icons/core";
 import { DepartmentManagementComponent } from './components/department/department-management/department-management.component';
 import { DepartmentGridListItemComponent } from './components/department/department-grid-list-item/department-grid-list-item.component';
 import { CreateDepartmentModalComponent } from './components/department/create-department-modal/create-department-modal.component';
+import { EditDepartmentModalComponent } from './components/department/edit-department-modal/edit-department-modal.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { CreateDepartmentModalComponent } from './components/department/create-d
     UserManagementAccountComponent,
     DepartmentManagementComponent,
     DepartmentGridListItemComponent,
-    CreateDepartmentModalComponent
+    CreateDepartmentModalComponent,
+    EditDepartmentModalComponent
   ],
   imports: [
     CommonModule,

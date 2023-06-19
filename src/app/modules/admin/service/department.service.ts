@@ -27,4 +27,12 @@ export class DepartmentService {
 
     return this.httpClient.get<Department[]>(url)
   }
+
+  public editDepartment(departmentId: number, newDepartmentName: string) {
+    const departmentCreationDto = new DepartmentCreationDto(newDepartmentName)
+
+    const url = `${environment.apiUrl}/department/${departmentId}`
+
+    return this.httpClient.put<Department>(url, departmentCreationDto)
+  }
 }
