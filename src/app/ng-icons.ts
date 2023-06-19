@@ -1,6 +1,6 @@
 import {
   heroAdjustmentsHorizontalSolid,
-  heroArrowRightSolid,
+  heroArrowRightSolid, heroBuildingOffice2Solid,
   heroCalendarDaysSolid,
   heroCalendarSolid,
   heroChatBubbleOvalLeftSolid,
@@ -22,12 +22,12 @@ import {
 } from "@ng-icons/heroicons/mini";
 import {
   heroCheck,
-  heroCheckCircle, heroDocumentPlus,
+  heroCheckCircle, heroDocumentPlus, heroEllipsisVertical,
   heroExclamationCircle,
   heroExclamationTriangle,
   heroInformationCircle,
   heroLightBulb,
-  heroMagnifyingGlass,
+  heroMagnifyingGlass, heroPencil,
   heroUserGroup
 } from "@ng-icons/heroicons/outline";
 
@@ -35,6 +35,7 @@ export const ngIcons = {
   heroAdjustmentsHorizontalSolid,
   heroArrowLongRightMini,
   heroArrowRightSolid,
+  heroBuildingOffice2Solid,
   heroCalendarDaysSolid,
   heroCalendarSolid,
   heroChatBubbleOvalLeftSolid,
@@ -47,6 +48,7 @@ export const ngIcons = {
   heroChevronRightMini,
   heroChevronUpMini,
   heroDocumentPlus,
+  heroEllipsisVertical,
   heroExclamationCircle,
   heroExclamationCircleMini,
   heroExclamationTriangle,
@@ -57,6 +59,7 @@ export const ngIcons = {
   heroInformationCircleMini,
   heroLightBulb,
   heroMagnifyingGlass,
+  heroPencil,
   heroUserGroup,
   heroUserPlusSolid
 }

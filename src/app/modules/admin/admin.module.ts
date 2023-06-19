@@ -13,6 +13,9 @@ import { UserManagementComponent } from './components/user-management/user-manag
 import { UserManagementProfileComponent } from './components/user-management/user-management-profile/user-management-profile.component';
 import { UserManagementAccountComponent } from './components/user-management/user-management-account/user-management-account.component';
 import {NgIconComponent} from "@ng-icons/core";
+import { DepartmentManagementComponent } from './components/department/department-management/department-management.component';
+import { DepartmentGridListItemComponent } from './components/department/department-grid-list-item/department-grid-list-item.component';
+import { CreateDepartmentModalComponent } from './components/department/create-department-modal/create-department-modal.component';
 
 
 @NgModule({
@@ -24,7 +27,10 @@ import {NgIconComponent} from "@ng-icons/core";
     UserSearchResultComponent,
     UserManagementComponent,
     UserManagementProfileComponent,
-    UserManagementAccountComponent
+    UserManagementAccountComponent,
+    DepartmentManagementComponent,
+    DepartmentGridListItemComponent,
+    CreateDepartmentModalComponent
   ],
   imports: [
     CommonModule,

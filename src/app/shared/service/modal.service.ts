@@ -8,6 +8,9 @@ import {
 import {
   NewRequestProcessingModalComponent
 } from "../../modules/exemption-request/components/new-request-processing-modal/new-request-processing-modal.component";
+import {
+  CreateDepartmentModalComponent
+} from "../../modules/admin/components/department/create-department-modal/create-department-modal.component";
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +34,12 @@ export class ModalService {
     const modalConfig = { scrollStrategy: this.scrollStrategyOptions.block() }
 
     return this.dialog.open(NewRequestProcessingModalComponent, modalConfig)
+  }
+
+  public createNewDepartmentModal() {
+    const modalConfig = { scrollStrategy: this.scrollStrategyOptions.block() }
+
+    return this.dialog.open(CreateDepartmentModalComponent, modalConfig)
   }
 
 }

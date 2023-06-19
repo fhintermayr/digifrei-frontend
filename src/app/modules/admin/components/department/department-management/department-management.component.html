@@ -1,0 +1,15 @@
+<app-page-heading>Abteilungen verwalten</app-page-heading>
+
+<div class="flex justify-end items-end mb-6 sm:-mt-4">
+  <app-shared-button (click)="openCreateDepartmentModal()">Abteilung erstellen</app-shared-button>
+</div>
+
+<div *ngIf="departments$ | async as departments">
+  <ul *ngIf="departments.length > 0 else noDepartments" role="list" class="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+    <app-department-grid-list-item *ngFor="let department of departments" [department]="department"></app-department-grid-list-item>
+  </ul>
+
+  <ng-template #noDepartments>
+    <app-alert alertType="info">Es sind aktuell keine Abteilungen vorhanden</app-alert>
+  </ng-template>
+</div>
