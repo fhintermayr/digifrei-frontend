@@ -11,6 +11,7 @@ export class AdminDashboardComponent {
     { title: "Benutzer registrieren", description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor ", routerLink: "/admin/register", ngIconName: "heroUserPlusSolid" },
     { title: "Benutzer verwalten", description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor ", routerLink: "/admin/search", ngIconName: "heroAdjustmentsHorizontalSolid" },
     { title: "Fachdienst registrieren", description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor ", routerLink: "/admin/socio-edu-expert/register", ngIconName: "heroUserPlusSolid" },
+    { title: "Fachdienst verwalten", description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor ", routerLink: "/admin/socio-edu-expert/search", ngIconName: "heroAdjustmentsHorizontalSolid" },
     { title: "Abteilungen verwalten", description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor ", routerLink: "/admin/departments", ngIconName: "heroBuildingOffice2Solid" },
   ]
 

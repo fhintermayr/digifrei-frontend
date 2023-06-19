@@ -19,6 +19,9 @@ import {
 import {
   SocioEduExpertSearchComponent
 } from "./components/socio-edu-expert/socio-edu-expert-search/socio-edu-expert-search.component";
+import {
+  SocioEduExpertEditingComponent
+} from "./components/socio-edu-expert/socio-edu-expert-editing/socio-edu-expert-editing.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: "full" },
@@ -28,6 +31,8 @@ const routes: Routes = [
   { path: 'search', component: UserSearchComponent },
   { path: 'socio-edu-expert', component: SocioEduExpertSearchComponent },
   { path: 'socio-edu-expert/register', component: SocioEduExpertRegistrationComponent },
+  { path: 'socio-edu-expert/search', component: SocioEduExpertSearchComponent },
+  { path: 'socio-edu-expert/:id', component: SocioEduExpertEditingComponent },
   { path: 'user/:userId', component: UserManagementComponent, children: [
       {path: '', redirectTo: 'profile', pathMatch: 'full' },
       {path: 'profile', component: UserManagementProfileComponent},
