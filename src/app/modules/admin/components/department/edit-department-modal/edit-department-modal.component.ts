@@ -17,11 +17,11 @@ export class EditDepartmentModalComponent implements OnInit {
     private departmentService: DepartmentService,
     public dialogRef: DialogRef<string>,
     private formBuilder: FormBuilder,
-    @Inject(DIALOG_DATA) private currentDepartmentName: string
+    @Inject(DIALOG_DATA) private data: any
   ) { }
 
   ngOnInit(): void {
-    this.editDepartmentForm.controls.name.setValue(this.currentDepartmentName)
+    this.editDepartmentForm.controls.name.setValue(this.data.currentDepartmentName)
   }
 
   onSubmit() {

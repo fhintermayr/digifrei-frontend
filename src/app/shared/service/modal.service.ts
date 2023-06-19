@@ -48,7 +48,7 @@ export class ModalService {
   public creatEditDepartmentModal(currentDepartmentName: string) {
     const modalConfig = {
       scrollStrategy: this.scrollStrategyOptions.block(),
-      currentDepartmentName: currentDepartmentName
+      data: {currentDepartmentName: currentDepartmentName}
     }
 
     return this.dialog.open(EditDepartmentModalComponent, modalConfig)
