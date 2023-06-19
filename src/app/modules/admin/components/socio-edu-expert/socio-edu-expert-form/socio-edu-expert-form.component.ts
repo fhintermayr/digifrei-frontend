@@ -27,7 +27,7 @@ export class SocioEduExpertFormComponent implements OnInit {
   }
 
   private initForm() {
-    this.form.controls.firstName.setValue(<string>this.socioEduExpert?.fistName)
+    this.form.controls.firstName.setValue(<string>this.socioEduExpert?.firstName)
     this.form.controls.lastName.setValue(<string>this.socioEduExpert?.lastName)
     this.form.controls.email.setValue(<string>this.socioEduExpert?.email)
   }
