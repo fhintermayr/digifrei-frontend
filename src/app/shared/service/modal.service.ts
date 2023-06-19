@@ -11,6 +11,9 @@ import {
 import {
   CreateDepartmentModalComponent
 } from "../../modules/admin/components/department/create-department-modal/create-department-modal.component";
+import {
+  EditDepartmentModalComponent
+} from "../../modules/admin/components/department/edit-department-modal/edit-department-modal.component";
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +44,15 @@ export class ModalService {
 
     return this.dialog.open(CreateDepartmentModalComponent, modalConfig)
   }
+
+  public creatEditDepartmentModal(currentDepartmentName: string) {
+    const modalConfig = {
+      scrollStrategy: this.scrollStrategyOptions.block(),
+      currentDepartmentName: currentDepartmentName
+    }
+
+    return this.dialog.open(EditDepartmentModalComponent, modalConfig)
+  }
+
 
 }
