@@ -21,6 +21,7 @@ import { SocioEduExpertFormComponent } from './components/socio-edu-expert/socio
 import { SocioEduExpertRegistrationComponent } from './components/socio-edu-expert/socio-edu-expert-registration/socio-edu-expert-registration.component';
 import { SocioEduExpertSearchComponent } from './components/socio-edu-expert/socio-edu-expert-search/socio-edu-expert-search.component';
 import { SocioEduExpertSearchResultComponent } from './components/socio-edu-expert/socio-edu-expert-search/socio-edu-expert-search-result/socio-edu-expert-search-result.component';
+import { SocioEduExpertEditingComponent } from './components/socio-edu-expert/socio-edu-expert-editing/socio-edu-expert-editing.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { SocioEduExpertSearchResultComponent } from './components/socio-edu-expe
     SocioEduExpertFormComponent,
     SocioEduExpertRegistrationComponent,
     SocioEduExpertSearchComponent,
-    SocioEduExpertSearchResultComponent
+    SocioEduExpertSearchResultComponent,
+    SocioEduExpertEditingComponent
   ],
   imports: [
     CommonModule,
