@@ -1,0 +1,18 @@
+<app-page-heading>{{ socioEduExpert ? 'Fachdienst bearbeiten' : 'Fachdienst registrieren' }}</app-page-heading>
+
+<app-card>
+  <app-card-body>
+    <form [formGroup]="form" class="grid grid-cols-3 gap-4 ">
+      <app-shared-input [control]="form.controls.firstName" class="col-span-3 sm:col-span-1">Vorname</app-shared-input>
+      <app-shared-input [control]="form.controls.lastName" class="col-span-3 sm:col-span-1">Nachname</app-shared-input>
+      <app-shared-input [control]="form.controls.email" class="col-span-3 sm:col-span-1">Email</app-shared-input>
+    </form>
+  </app-card-body>
+
+  <app-card-footer>
+    <div class="flex justify-end items-end space-x-2">
+      <app-shared-button routerLink="/admin" buttonDesign="secondary">Abbrechen</app-shared-button>
+      <app-shared-button (click)="onSubmit()" [isDisabled]="form.invalid">Speichern</app-shared-button>
+    </div>
+  </app-card-footer>
+</app-card>

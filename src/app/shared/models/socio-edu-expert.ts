@@ -1,6 +1,6 @@
 export class SocioEduExpert {
   id!: number
-  fistName!: string
+  firstName!: string
   lastName!: string
   email!: string
 }

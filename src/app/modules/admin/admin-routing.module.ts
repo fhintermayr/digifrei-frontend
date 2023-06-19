@@ -13,6 +13,9 @@ import {
 import {
   DepartmentManagementComponent
 } from "./components/department/department-management/department-management.component";
+import {
+  SocioEduExpertRegistrationComponent
+} from "./components/socio-edu-expert/socio-edu-expert-registration/socio-edu-expert-registration.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: "full" },
@@ -20,6 +23,7 @@ const routes: Routes = [
   { path: 'departments', component: DepartmentManagementComponent },
   { path: 'register', component: UserRegistrationComponent },
   { path: 'search', component: UserSearchComponent },
+  { path: 'socio-edu-expert/register', component: SocioEduExpertRegistrationComponent },
   { path: 'user/:userId', component: UserManagementComponent, children: [
       {path: '', redirectTo: 'profile', pathMatch: 'full' },
       {path: 'profile', component: UserManagementProfileComponent},
