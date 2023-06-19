@@ -17,6 +17,8 @@ import { DepartmentManagementComponent } from './components/department/departmen
 import { DepartmentGridListItemComponent } from './components/department/department-grid-list-item/department-grid-list-item.component';
 import { CreateDepartmentModalComponent } from './components/department/create-department-modal/create-department-modal.component';
 import { EditDepartmentModalComponent } from './components/department/edit-department-modal/edit-department-modal.component';
+import { SocioEduExpertFormComponent } from './components/socio-edu-expert/socio-edu-expert-form/socio-edu-expert-form.component';
+import { SocioEduExpertRegistrationComponent } from './components/socio-edu-expert/socio-edu-expert-registration/socio-edu-expert-registration.component';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { EditDepartmentModalComponent } from './components/department/edit-depar
     DepartmentManagementComponent,
     DepartmentGridListItemComponent,
     CreateDepartmentModalComponent,
-    EditDepartmentModalComponent
+    EditDepartmentModalComponent,
+    SocioEduExpertFormComponent,
+    SocioEduExpertRegistrationComponent
   ],
   imports: [
     CommonModule,
