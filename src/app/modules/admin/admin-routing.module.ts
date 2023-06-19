@@ -31,6 +31,7 @@ const routes: Routes = [
   { path: 'search', component: UserSearchComponent },
   { path: 'socio-edu-expert', component: SocioEduExpertSearchComponent },
   { path: 'socio-edu-expert/register', component: SocioEduExpertRegistrationComponent },
+  { path: 'socio-edu-expert/search', component: SocioEduExpertSearchComponent },
   { path: 'socio-edu-expert/:id', component: SocioEduExpertEditingComponent },
   { path: 'user/:userId', component: UserManagementComponent, children: [
       {path: '', redirectTo: 'profile', pathMatch: 'full' },
