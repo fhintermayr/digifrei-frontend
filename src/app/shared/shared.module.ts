@@ -21,6 +21,7 @@ import { CardHeaderComponent } from './components/card/card-header/card-header.c
 import { DangerConfirmationModalComponent } from './components/danger-confirmation-modal/danger-confirmation-modal.component';
 import { TablePaginationComponent } from './components/table-pagination/table-pagination.component';
 import { IfRoleDirective } from './directives/if-role.directive';
+import { ComboboxComponent } from './components/combobox/combobox.component';
 
 
 
@@ -43,7 +44,8 @@ import { IfRoleDirective } from './directives/if-role.directive';
     CardHeaderComponent,
     DangerConfirmationModalComponent,
     TablePaginationComponent,
-    IfRoleDirective
+    IfRoleDirective,
+    ComboboxComponent
   ],
     exports: [
         SharedButtonComponent,
@@ -62,7 +64,8 @@ import { IfRoleDirective } from './directives/if-role.directive';
         BadgeComponent,
         CardHeaderComponent,
         TablePaginationComponent,
-        IfRoleDirective
+        IfRoleDirective,
+        ComboboxComponent
     ],
     imports: [
         CommonModule,
