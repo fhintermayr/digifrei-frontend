@@ -15,6 +15,7 @@
       [class.focus-within:ring-red-600]="isInvalidAndTouched()"
       [class.focus:ring-primary]="!isInvalidAndTouched()"
       [class.ring-gray-300]="!isInvalidAndTouched()"
+      (input)="onInputChange(control.value)"
       type="text"
       class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6" role="combobox" aria-controls="options" aria-expanded="false">
 
@@ -24,9 +25,9 @@
       </svg>
     </button>
 
-    <ul *ngIf="options.length > 0 && isComboboxUnfolded" class="absolute z-10 mt-1 max-h-44 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" id="options" role="listbox">
+    <ul *ngIf="filteredOptions!.length > 0 && isComboboxUnfolded" class="absolute z-10 mt-1 max-h-44 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" id="options" role="listbox">
 
-      <li *ngFor="let option of options" (click)="onSelectionChange(option)" class="relative select-none py-2 pl-8 pr-4 text-gray-900 cursor-pointer" id="option-0" role="option" tabindex="-1">
+      <li *ngFor="let option of filteredOptions" (click)="onSelectionChange(option)" class="relative select-none py-2 pl-8 pr-4 text-gray-900 cursor-pointer" id="option-0" role="option" tabindex="-1">
 
         <span [ngClass]="{'font-semibold': option == selectedOption}" class="block truncate">{{ getDisplayText(option) }}</span>
 

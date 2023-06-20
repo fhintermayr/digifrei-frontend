@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 
 @Component({
@@ -6,7 +6,7 @@ import {FormControl, Validators} from "@angular/forms";
   templateUrl: './combobox.component.html',
   styleUrls: ['./combobox.component.css']
 })
-export class ComboboxComponent<T> {
+export class ComboboxComponent<T> implements OnInit {
 
   @Input()
   options?: T[]
@@ -18,15 +18,47 @@ export class ComboboxComponent<T> {
   label?: string
   @Output()
   selectionChange: EventEmitter<T> = new EventEmitter<T>()
+  filteredOptions?: T[]
 
   selectedOption?: T
-
   isComboboxUnfolded = false
 
+  ngOnInit() {
+    this.filteredOptions = this.options
+  }
+
   onSelectionChange(selectedOption: T) {
+    const displayText = this.getDisplayText(selectedOption)
+    this.setInputValue(<string>displayText)
+
     this.selectedOption = selectedOption
     this.toggleCombobox()
     this.selectionChange.emit(selectedOption)
+  }
+
+  onInputChange(inputValue: string) {
+
+    if (!this.isComboboxUnfolded) this.toggleCombobox()
+
+    const inputIsEmpty: boolean = inputValue.trim() === ''
+
+    if (inputIsEmpty) {
+      this.filteredOptions = this.options
+      return
+    }
+
+    this.filteredOptions = this.getOptionsContainingSearchValue(inputValue)
+  }
+
+  getOptionsContainingSearchValue(searchValue: string): T[] {
+
+    const sanitizedSearchValue = searchValue.trim().toLowerCase()
+
+    return this.options!.filter(option => this.getDisplayText(option)?.toLowerCase()?.includes(sanitizedSearchValue))
+  }
+
+  setInputValue(inputText: string) {
+    this.control.setValue(inputText)
   }
 
   getDisplayText(option: T) {
