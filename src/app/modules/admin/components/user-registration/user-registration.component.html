@@ -1,57 +1,66 @@
 <app-page-heading [breadcrumbs]="breadcrumbs">Register a new user</app-page-heading>
 
-<main class="overflow-hidden rounded-lg bg-white shadow">
+<main class="rounded-lg bg-white shadow">
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-      <div class="grid grid-cols-6 gap-6 bg-foreground px-4 py-8 sm:p-6">
+      <div class="grid grid-cols-6 gap-6  bg-foreground px-4 py-8 sm:p-6">
 
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <app-shared-input
-              (input)="autofillDefaultUsername()"
-              [control]="registrationForm.controls.firstName"
-              [inputId]="'fist-name'"
-              [placeholder]="'Max'"
-            >First name</app-shared-input>
-          </div>
+        <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+          <app-shared-input
+            [control]="registrationForm.controls.firstName"
+            [inputId]="'fist-name'"
+            [placeholder]="'Max'"
+          >First name</app-shared-input>
+        </div>
 
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <app-shared-input
-              (input)="autofillDefaultUsername()"
-              [control]="registrationForm.controls.lastName"
-              [inputId]="'last-name'"
-              [placeholder]="'Mustermann'"
-            >Last name</app-shared-input>
-          </div>
+        <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+          <app-shared-input
+            [control]="registrationForm.controls.lastName"
+            [inputId]="'last-name'"
+            [placeholder]="'Mustermann'"
+          >Last name</app-shared-input>
+        </div>
 
-          <div class="col-span-6 sm:col-span-4 lg:col-span-3">
-            <app-shared-input
-              [control]="registrationForm.controls.email"
-              [inputId]="'username'"
-              [placeholder]="'max.mustermann'"
-            >Username</app-shared-input>
-          </div>
+        <div class="col-span-6 sm:col-span-4 lg:col-span-3">
+          <app-shared-input
+            [control]="registrationForm.controls.email"
+            [inputId]="'email'"
+            [placeholder]="'max.mustermann@icpmuenchen.de'"
+          >E-Mail</app-shared-input>
+        </div>
 
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2 mb-8 sm:mb-4 lg:mb-0">
-            <app-shared-input
-              [control]="registrationForm.controls.password"
-              [inputId]="'password'"
-              [inputType]="'password'"
-            >Password</app-shared-input>
-          </div>
+        <div class="col-span-6 sm:col-span-3 lg:col-span-2 mb-8 sm:mb-4 lg:mb-0">
+          <app-shared-input
+            [control]="registrationForm.controls.password"
+            [inputId]="'password'"
+            [inputType]="'password'"
+          >Password</app-shared-input>
+        </div>
 
-          <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-            <app-shared-dropdown
-              [control]="registrationForm.controls.departmentId"
-              [inputId]="'department'"
-              [options]="departmentDropdownSelectOptions"
-            >Department</app-shared-dropdown>
-          </div>
+        <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+          <app-shared-dropdown
+            [control]="registrationForm.controls.departmentId"
+            [inputId]="'department'"
+            [options]="departmentDropdownSelectOptions"
+          >Department</app-shared-dropdown>
+        </div>
 
-          <div class="col-span-6 sm:col-span-2 lg:col-span-1">
-            <app-shared-dropdown
-              [control]="registrationForm.controls.userType"
-              [options]="accessRoleSelectOptions"
-            >User Type</app-shared-dropdown>
-          </div>
+        <div class="col-span-6 sm:col-span-2 lg:col-span-1">
+          <app-shared-dropdown
+            [control]="registrationForm.controls.userType"
+            [options]="accessRoleSelectOptions"
+          >Benutzer-Typ</app-shared-dropdown>
+        </div>
+
+        <div class="col-span-6 sm:col-span-2 lg:col-span-1" *ngIf="registrationForm.controls.userType.value! == AccessRole.APPRENTICE">
+        <ng-container *ngIf="socioEduExperts$ | async as socioEduExperts">
+          <app-combobox [control]="registrationForm.controls.socioEduExpert"
+                        [options]="socioEduExperts"
+                        [displayProperties]="['firstName', 'lastName']"
+                        [label]="'Fachdienst auswählen'"
+                        (selectionChange)="onSelectionChange($event)">
+          </app-combobox>
+          </ng-container>
+        </div>
 
         </div>
 
