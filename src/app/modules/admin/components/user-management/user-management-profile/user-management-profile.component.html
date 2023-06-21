@@ -37,6 +37,16 @@
         >Department</app-shared-dropdown>
       </div>
 
+      <div *ngIf="currentManagingApprentice">
+        <ng-container *ngIf="socioEduExperts$ | async as socioEduExperts">
+          <app-combobox [control]="userEditingForm.controls.socioEduExpert"
+                        [options]="socioEduExperts"
+                        [displayProperties]="['firstName', 'lastName']"
+                        [label]="'Fachdienst auswählen'">
+          </app-combobox>
+        </ng-container>
+      </div>
+
     </div>
 
     <div class="flex justify-end space-x-2 bg-gray-50 mt-8 -mb-8 sm:-mb-6 -mx-8 sm:-mx-6 px-8 py-3 text-right sm:px-6">
