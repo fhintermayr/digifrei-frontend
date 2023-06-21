@@ -6,7 +6,6 @@
 
         <div class="col-span-6 sm:col-span-3 lg:col-span-2">
           <app-shared-input
-            (input)="autofillDefaultUsername()"
             [control]="registrationForm.controls.firstName"
             [inputId]="'fist-name'"
             [placeholder]="'Max'"
@@ -15,7 +14,6 @@
 
         <div class="col-span-6 sm:col-span-3 lg:col-span-2">
           <app-shared-input
-            (input)="autofillDefaultUsername()"
             [control]="registrationForm.controls.lastName"
             [inputId]="'last-name'"
             [placeholder]="'Mustermann'"
@@ -50,7 +48,7 @@
           <app-shared-dropdown
             [control]="registrationForm.controls.userType"
             [options]="accessRoleSelectOptions"
-          >User Type</app-shared-dropdown>
+          >Benutzer-Typ</app-shared-dropdown>
         </div>
 
         <div class="col-span-6 sm:col-span-2 lg:col-span-1" *ngIf="registrationForm.controls.userType.value! == AccessRole.APPRENTICE">

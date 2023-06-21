@@ -75,19 +75,6 @@ export class UserRegistrationComponent implements OnInit, OnDestroy {
     })
 
   }
-
-  autofillDefaultUsername() {
-    const firstName = this.registrationForm.get('firstName')?.value
-    const lastName = this.registrationForm.get('lastName')?.value
-    const username = this.registrationForm.get('email')
-
-    firstName && lastName ?
-      username?.setValue(`${firstName}.${lastName}`.toLowerCase()) :
-      username?.reset()
-
-    username?.markAsTouched()
-  }
-
   createUserCreationDto(): UserCreationDto {
 
     const formValues = this.registrationForm.value
