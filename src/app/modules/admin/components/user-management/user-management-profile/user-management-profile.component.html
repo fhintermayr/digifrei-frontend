@@ -1,5 +1,5 @@
 <div class="mt-2 px-4 py-8 sm:p-6">
-  <app-section-heading class="col-span-6">Edit profile</app-section-heading>
+  <app-section-heading class="col-span-6">Profil bearbeiten</app-section-heading>
 
   <form *ngIf="currentManagingUser && departmentDropdownSelectOptions" [formGroup]="userEditingForm" (ngSubmit)="onSubmit()">
     <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
@@ -40,6 +40,8 @@
       <div *ngIf="currentManagingApprentice">
         <ng-container *ngIf="socioEduExperts$ | async as socioEduExperts">
           <app-combobox [control]="userEditingForm.controls.socioEduExpert"
+                        [defaultValue]="currentManagingApprentice.socioEduExpert"
+                        (selectionChange)="onSocioEduExpertSelectionChange($event)"
                         [options]="socioEduExperts"
                         [displayProperties]="['firstName', 'lastName']"
                         [label]="'Fachdienst auswählen'">

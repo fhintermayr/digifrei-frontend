@@ -13,6 +13,7 @@ import {Apprentice} from "../../../../../shared/models/apprentice";
 import {lastValueFrom, Observable} from "rxjs";
 import {SocioEduExpert} from "../../../../../shared/models/socio-edu-expert";
 import {SocioEduExpertService} from "../../../service/socio-edu-expert.service";
+import {ApprenticeUpdateDto} from "../../../dto/apprentice-update-dto";
 
 @Component({
   selector: 'app-user-management-profile',
@@ -25,7 +26,7 @@ export class UserManagementProfileComponent implements OnInit {
   currentManagingApprentice?: Apprentice
   departmentDropdownSelectOptions!: SelectOption[]
 
-  socioEduExperts$: Observable<SocioEduExpert[]> = this.socioEduExpertService.findAllContainingSearchTerm()
+  socioEduExperts$: Observable<SocioEduExpert[]> = this.socioEduExpertService.findAll()
 
   private readonly namePattern: RegExp = new RegExp("^[a-zA-Z\x7f-\xff-]{2,}(\\s?[a-zA-Z\x7f-\xff-]{2,})*$")
 
@@ -50,8 +51,14 @@ export class UserManagementProfileComponent implements OnInit {
     this.currentManagingUser = await this.getUserToEdit();
     this.insertUsersDataIntoForm(this.currentManagingUser)
 
-    if ('socioEduExpert' in this.currentManagingUser) this.currentManagingApprentice = this.currentManagingUser as Apprentice
-    console.debug(this.currentManagingApprentice)
+    const isUserApprentice: boolean = 'socioEduExpert' in this.currentManagingUser
+
+    if (isUserApprentice) this.currentManagingApprentice = this.currentManagingUser as Apprentice
+
+    if (!isUserApprentice) {
+      this.userEditingForm.controls.socioEduExpert.clearValidators()
+      this.userEditingForm.controls.socioEduExpert.updateValueAndValidity()
+    }
 
     this.initializeDepartmentDropdownOptions()
   }
@@ -71,17 +78,38 @@ export class UserManagementProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    const userUpdateDto: UserUpdateDto = new UserUpdateDto()
-    Object.assign(userUpdateDto, this.userEditingForm.value)
-    userUpdateDto.departmentId = parseInt(this.userEditingForm.controls.department.value!)
+    let userUpdateDto: UserUpdateDto = this.createUserUpdateDtoFromFromValues()
+
+    if (this.currentManagingApprentice) {
+      const apprenticeUpdateDto: ApprenticeUpdateDto = userUpdateDto
+      apprenticeUpdateDto.socioEduExpertId = this.currentManagingApprentice.socioEduExpert.id
+      userUpdateDto = apprenticeUpdateDto
+      userUpdateDto.userType = "APPRENTICE"
+    }
 
     this.restApiService.updateUserById(this.currentManagingUser.id, userUpdateDto).subscribe({
       next: updatedUser => {
-        this.notification.showSuccess(`${updatedUser.email} was updated successfully.`)
+        this.notification.showSuccess(`${updatedUser.firstName} ${updatedUser.lastName} was updated successfully.`)
         this.currentManagingUser = updatedUser
       },
       error: () => this.notification.showError("Wasn't able to perform the update. Please try again later.")
     })
+  }
+
+  onSocioEduExpertSelectionChange($event: SocioEduExpert) {
+    this.currentManagingApprentice!.socioEduExpert = $event
+  }
+
+
+  createUserUpdateDtoFromFromValues(): UserUpdateDto {
+    const userUpdateDto = new UserUpdateDto()
+    userUpdateDto.firstName = this.userEditingForm.controls.firstName.value!
+    userUpdateDto.lastName = this.userEditingForm.controls.lastName.value!
+    userUpdateDto.email = this.userEditingForm.controls.email.value!
+    userUpdateDto.departmentId = parseInt(this.userEditingForm.controls.department.value!)
+    userUpdateDto.userType = "TRAINER"
+
+    return userUpdateDto
   }
 
   private initializeDepartmentDropdownOptions() {
