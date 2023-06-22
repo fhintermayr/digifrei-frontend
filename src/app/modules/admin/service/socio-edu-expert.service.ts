@@ -26,6 +26,14 @@ export class SocioEduExpertService {
     return this.httpClient.get<SocioEduExpert>(url)
   }
 
+  public findAll(): Observable<SocioEduExpert[]> {
+
+    const url = `${environment.apiUrl}/socio-edu-expert`
+
+    return this.httpClient.get<SocioEduExpert[]>(url)
+  }
+
+
   public findAllContainingSearchTerm(searchTerm?: string): Observable<SocioEduExpert[]> {
 
     let params = new HttpParams()
