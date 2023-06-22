@@ -3,4 +3,5 @@ export class UserUpdateDto {
   lastName!: string
   email!: string
   departmentId!: number
+  userType!: string
 }

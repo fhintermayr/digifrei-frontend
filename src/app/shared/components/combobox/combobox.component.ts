@@ -16,6 +16,8 @@ export class ComboboxComponent<T> implements OnInit {
   control: FormControl = new FormControl()
   @Input()
   label?: string
+  @Input()
+  defaultValue?: T
   @Output()
   selectionChange: EventEmitter<T> = new EventEmitter<T>()
   filteredOptions?: T[]
@@ -25,6 +27,15 @@ export class ComboboxComponent<T> implements OnInit {
 
   ngOnInit() {
     this.filteredOptions = this.options
+    if (this.defaultValue) this.initDefaultValue()
+  }
+
+  private initDefaultValue() {
+    this.selectedOption = this.defaultValue
+    const displayText = this.getDisplayText(this.selectedOption!)
+
+    this.setInputValue(<string>displayText)
+    this.selectionChange.emit(this.selectedOption)
   }
 
   onSelectionChange(selectedOption: T) {
