@@ -39,8 +39,9 @@
         <app-processing-status-badge *ngIf="!exemptionRequest.requestProcessing" [processingStatus]="ProcessingStatus.SUBMITTED"></app-processing-status-badge>
       </td>
       <td class="py-4 pl-3 pr-4 text-right text-sm font-medium">
-        <a [routerLink]="'../' + exemptionRequest.id + '/details'" class="text-primary hover:text-primary-dark">
-          <span  class="flex flex-row items-center">Details<ng-icon name="heroArrowRightSolid" size="24" class="text-primary ml-2"></ng-icon></span>
+        <a [routerLink]="'../' + exemptionRequest.id + '/details'" class="flex flex-row items-center text-primary hover:text-primary-dark">
+          <span  class="hidden sm:block">Details</span>
+          <ng-icon name="heroArrowRightSolid" size="24" class="text-primary ml-2"></ng-icon>
         </a>
       </td>
     </tr>
