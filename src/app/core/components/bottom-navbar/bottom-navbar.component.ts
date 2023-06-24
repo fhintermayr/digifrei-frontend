@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {IconButtonModel} from "../../models/icon-button.model";
 import {NavigationBarContentService} from "../../services/navigation-bar-content.service";
 import {AuthService} from "../../../modules/authentication/service/auth.service";
+import {AccessRole} from "../../../shared/enum/access-role";
 
 @Component({
   selector: 'app-bottom-navbar',
@@ -15,4 +16,5 @@ export class BottomNavbarComponent {
     private navigationLinkService: NavigationBarContentService,
   ) { }
 
+  protected readonly AccessRole = AccessRole;
 }
