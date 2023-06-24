@@ -1,6 +1,4 @@
 import {Component} from '@angular/core';
-import {NavigationBarItemModel} from "../../models/navigation-bar-item.model";
-import {NavigationBarContentService} from "../../services/navigation-bar-content.service";
 import {AuthService} from "../../../modules/authentication/service/auth.service";
 
 @Component({
@@ -9,10 +7,7 @@ import {AuthService} from "../../../modules/authentication/service/auth.service"
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  navigationLinks: NavigationBarItemModel[] = this.navigationLinkService.getNavigationLinks()
-  constructor(
-    public authService: AuthService,
-    private navigationLinkService: NavigationBarContentService,
-  ) { }
+
+  constructor(public authService: AuthService) { }
 
 }
