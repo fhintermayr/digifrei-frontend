@@ -1,8 +1,8 @@
 <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
 
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
-    <img class="mx-auto h-12 w-auto" src="assets/images/match_logo_black.png" alt="Match Logo">
-    <h2 class="mt-6 text-center">Sign in to your account</h2>
+    <img class="mx-auto h-20 w-auto" src="assets/images/logo-icp-muenchen.png" alt="Logo der Stiftung ICP München">
+    <h2 class="mt-6 text-center">Anmelden</h2>
   </div>
 
   <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -11,18 +11,16 @@
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
 
         <div>
-          <app-shared-input [control]="loginForm.controls.email">Username</app-shared-input>
+          <app-shared-input [control]="loginForm.controls.email">E-Mail</app-shared-input>
         </div>
 
         <div>
-          <app-shared-input [control]="loginForm.controls.password" [inputType]="'password'">Password</app-shared-input>
+          <app-shared-input [control]="loginForm.controls.password" [inputType]="'password'">Passwort</app-shared-input>
         </div>
 
-        <div class="pb-2">
-          <a href="#" class="text-primary hover:text-primary-light">Forgot your password?</a>
-        </div>
+        <br>
 
-        <app-shared-button [buttonType]="'submit'" [isDisabled]="loginForm.invalid" class="inline-grid w-full">Sign in</app-shared-button>
+        <app-shared-button [buttonType]="'submit'" [isDisabled]="loginForm.invalid" class="inline-grid w-full">Anmelden</app-shared-button>
 
       </form>
 

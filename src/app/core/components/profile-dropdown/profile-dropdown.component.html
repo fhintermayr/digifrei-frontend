@@ -1,0 +1,13 @@
+<div appClickedOutside (clickedOutside)="onClickedOutside()">
+  <button type="button" (click)="toggleDropdown()" class="flex rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+    <img class="h-8 w-8 rounded-full" src="../../../../assets/images/default_profile_picture.svg" alt="Profilbild des Benutzers">
+  </button>
+</div>
+
+<div *ngIf="isDropdownOpen" @showHideProfileDropdown class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-foreground py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+  <p *ngIf="authenticatedUser | async as user" class="block px-4 py-2 text-sm text-gray-700" role="menuitem">
+    Angemeldet als <br><span class="font-semibold">{{user.firstName | titlecase}} {{user.lastName | titlecase}}</span>
+  </p>
+  <a *ifRole="[AccessRole.TRAINER]" routerLink="/admin" class="block px-4 py-2 text-sm text-gray-700" routerLinkActive="bg-gray-100" role="menuitem" tabindex="-1">Admin-Bereich</a>
+  <a (click)="onLogout()" routerLink="/login" class="block px-4 py-2 text-sm text-gray-700 font-semibold" role="menuitem">Logout</a>
+</div>

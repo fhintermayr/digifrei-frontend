@@ -1,2 +1,7 @@
-<app-page-heading>Eingereichten Anträge</app-page-heading>
+<app-page-heading>Eingereichte Anträge</app-page-heading>
+
+<div class="flex justify-end mb-6 sm:-mt-8">
+  <app-shared-button routerLink="/exemption-request/submission">Neuen Antrag einreichen</app-shared-button>
+</div>
+
 <app-exemption-requests-table *ngIf="selfSubmittedRequests" [exemptionRequests]="selfSubmittedRequests" (pageChange)="onPageChange($event)"></app-exemption-requests-table>

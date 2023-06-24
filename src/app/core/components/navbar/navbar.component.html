@@ -1,41 +1,27 @@
 <nav class="sticky z-10 top-0 bg-foreground shadow">
+
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div class="relative flex h-16 justify-between">
-
       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+
         <div class="flex flex-shrink-0 items-center">
           <img routerLink="/" class="block h-10 w-auto cursor-pointer" src="../../../../assets/images/logo-icp-muenchen.png" alt="ICP Logo">
         </div>
+
         <div class="hidden lg:ml-6 lg:flex lg:space-x-8">
           <a *ngFor="let navbarItem of navigationLinks" [routerLink]="navbarItem.routerLink" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm text-gray-500 hover:border-gray-300 hover:text-gray-700" routerLinkActive="border-b-2 border-primary font-semibold text-primary">{{ navbarItem.title }}</a>
         </div>
+
       </div>
 
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <!-- Profile dropdown -->
-        <div *ngIf="authService.isLoggedIn(); else loginButton" appClickedOutside (clickedOutside)="onOutsideClick()" class="relative ml-3">
-          <div>
-            <button type="button" (click)="toggleProfileDropdown()" class="flex rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-              <span class="sr-only">Open user menu</span>
-              <img class="h-8 w-8 rounded-full" src="../../../../assets/images/default_profile_picture.svg" alt="Your profile picture">
-            </button>
-          </div>
-
-          <div *ngIf="isProfileDropdownOpen" @showHideProfileDropdown class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-foreground py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-            <p *ngIf="currentUser$ | async as currentUser" class="block px-4 py-2 text-sm text-gray-700" role="menuitem">
-              Logged in as <br><span class="font-semibold">{{currentUser.firstName | titlecase}} {{currentUser.lastName | titlecase}}</span>
-            </p>
-            <a *ngIf="authService.hasRole(AccessRole.TRAINER)" routerLink="/admin" class="block px-4 py-2 text-sm text-gray-700" routerLinkActive="bg-gray-100" role="menuitem" tabindex="-1">Admin Menu</a>
-            <a *ngFor="let profileDropdownItem of profileDropdownItems" [routerLink]="profileDropdownItem.routerLink" class="block px-4 py-2 text-sm text-gray-700" routerLinkActive="bg-gray-100" role="menuitem" tabindex="-1">{{ profileDropdownItem.title }}</a>
-            <a (click)="onLogout()" [routerLink]="'/login'" class="block px-4 py-2 text-sm text-gray-700 font-semibold" role="menuitem">Logout</a>
-          </div>
-        </div>
+        <app-profile-dropdown *ngIf="authService.isLoggedIn(); else loginButton" class="relative ml-3"></app-profile-dropdown>
 
         <ng-template #loginButton>
-          <app-shared-button [routerLink]="'/login'">Login</app-shared-button>
+          <app-shared-button routerLink="/login">Login</app-shared-button>
         </ng-template>
-
       </div>
+
     </div>
   </div>
 

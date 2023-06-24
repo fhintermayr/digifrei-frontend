@@ -14,7 +14,7 @@ import {HttpErrorResponse, HttpStatusCode} from "@angular/common/http";
 export class LoginComponent {
 
   readonly loginForm = this.formBuilder.group({
-    email: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required]
   })
 
@@ -34,7 +34,7 @@ export class LoginComponent {
     this.authService.attemptLogin(loginCredentials).subscribe({
       next: jwtResponse => {
         this.authService.saveJwtInStorage(jwtResponse.token)
-        this.router.navigate(['/'])
+        this.router.navigate(['/exemption-request'])
       },
       error: error => this.handleLoginAttemptError(error)
     })

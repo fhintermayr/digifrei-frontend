@@ -9,6 +9,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {ToastrModule} from "ngx-toastr";
 import { NotificationComponent } from './components/notification/notification.component';
 import {NgIconComponent} from "@ng-icons/core";
+import { ProfileDropdownComponent } from './components/profile-dropdown/profile-dropdown.component';
 
 
 
@@ -17,7 +18,8 @@ import {NgIconComponent} from "@ng-icons/core";
     PageNotFoundComponent,
     NavbarComponent,
     BottomNavbarComponent,
-    NotificationComponent
+    NotificationComponent,
+    ProfileDropdownComponent
   ],
   exports: [
     PageNotFoundComponent,
