@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Dialog} from "@angular/cdk/dialog";
-import {ScrollStrategyOptions} from "@angular/cdk/overlay";
+import {ComponentType, ScrollStrategyOptions} from "@angular/cdk/overlay";
 import {ModalContent} from "../components/danger-confirmation-modal/modal-content";
 import {
   DangerConfirmationModalComponent
@@ -54,5 +54,10 @@ export class ModalService {
     return this.dialog.open(EditDepartmentModalComponent, modalConfig)
   }
 
+  public openModal(modalComponent: ComponentType<any>) {
+    const modalConfig = { scrollStrategy: this.scrollStrategyOptions.block() }
+
+    return this.dialog.open(modalComponent, modalConfig)
+  }
 
 }
