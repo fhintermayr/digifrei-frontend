@@ -1,0 +1,9 @@
+<app-section-heading>Benutzer löschen</app-section-heading>
+
+<app-alert [alertType]="'danger'">
+  Are you sure you want to delete this account?
+  All of the data will be permanently removed.
+  This action cannot be undone.
+</app-alert>
+
+<app-shared-button (click)="onUserDeletion()" buttonDesign="danger" class="block mt-6">Benutzer löschen?</app-shared-button>
