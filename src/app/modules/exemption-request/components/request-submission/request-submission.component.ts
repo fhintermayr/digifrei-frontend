@@ -3,7 +3,7 @@ import {SelectOption} from "../../../../shared/components/shared-dropdown/shared
 import {FormBuilder, Validators} from "@angular/forms";
 import {RequestSubmissionDto} from "../../dto/request-submission-dto";
 import {AuthService} from "../../../authentication/service/auth.service";
-import {lastValueFrom} from "rxjs";
+import {first, lastValueFrom} from "rxjs";
 import {User} from "../../../../shared/models/user";
 import {ExemptionRequestService} from "../../service/exemption-request.service";
 import {NotificationService} from "../../../../core/services/notification.service";
@@ -39,18 +39,15 @@ export class RequestSubmissionComponent {
 
     const requestSubmission: RequestSubmissionDto = await this.getRequestSubmissionFromSubmissionForm();
 
-    try {
-      await this.submitRequest(requestSubmission)
-    }
-    catch (error) {
-      this.notificationService.showError('Etwas ist schiefgelaufen. Versuche es später erneut');
-    }
-  }
-
-  private async submitRequest(requestSubmission: RequestSubmissionDto) {
-    await this.exemptionRequestService.submitExemptionRequest(requestSubmission)
-    this.notificationService.showSuccess('Deine Dienstbefreiung wurde eingereicht');
-    this.submissionForm.reset()
+    this.exemptionRequestService.submitExemptionRequest(requestSubmission).pipe(first()).subscribe({
+      next: () => {
+        this.notificationService.showSuccess('Deine Dienstbefreiung wurde eingereicht')
+        this.submissionForm.reset()
+      },
+      error: () => {
+        this.notificationService.showError('Etwas ist schiefgelaufen. Versuche es später erneut')
+      }
+    })
   }
 
   private async getRequestSubmissionFromSubmissionForm(): Promise<RequestSubmissionDto> {
