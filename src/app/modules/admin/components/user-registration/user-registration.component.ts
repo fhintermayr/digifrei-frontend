@@ -47,7 +47,7 @@ export class UserRegistrationComponent implements OnInit, OnDestroy {
 
   readonly breadcrumbs: SiteNavigationLink[] = [
     {displayName: "Admin", routerLink: "/admin"},
-    {displayName: "User Registration", routerLink: "/admin/register"},
+    {displayName: "Benutzer registrieren", routerLink: "/admin/register"},
   ]
 
   constructor(

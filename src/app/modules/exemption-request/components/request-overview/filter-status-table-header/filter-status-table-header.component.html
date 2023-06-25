@@ -8,15 +8,9 @@
     </button>
   </div>
 
-  <!--
-    Entering: "transition ease-out duration-100"
-      From: "transform opacity-0 scale-95"
-      To: "transform opacity-100 scale-100"
-    Leaving: "transition ease-in duration-75"
-      From: "transform opacity-100 scale-100"
-      To: "transform opacity-0 scale-95"
-  -->
-  <div [ngClass]="isDropdownOpen ? 'opacity-100 z-10' : 'opacity-0 -z-10'" class="absolute min-w mt-2 origin-top-right rounded-md bg-white p-4 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+  <div [@showHideDropdown]="isDropdownOpen ? 'visible' : 'hidden'"
+       class="absolute min-w mt-2 origin-top-right rounded-md bg-white p-4 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+  >
     <form [formGroup]="filterStatusForm" class="grid gap-y-2">
       <app-shared-checkbox [control]="filterStatusForm.controls.submitted" class="min-w-max">Eingereicht</app-shared-checkbox>
       <app-shared-checkbox [control]="filterStatusForm.controls.approved" class="min-w-max">Genehmigt</app-shared-checkbox>

@@ -1,9 +1,22 @@
-<section *ngIf="authService.isLoggedIn()" class="w-full fixed block lg:hidden inset-x-0 bottom-0 z-10 bg-foreground shadow">
+<section *ngIf="authService.isLoggedIn()" class="w-full fixed block lg:hidden inset-x-0 bottom-0 z-10 bg-foreground shadow ring-1 ring-black ring-opacity-5">
     <div class="flex justify-between py-4">
 
-      <a *ngFor="let navbarButton of navbarButtons" [routerLink]="navbarButton.routerLink" class="w-full justify-center inline-block text-center" routerLinkActive="text-primary">
-        <ng-icon [name]="navbarButton.ngIconName" size="24"></ng-icon>
-        <span class="block text-xs font-semibold">{{ navbarButton.title }}</span>
+      <a *ifRole="[AccessRole.TRAINER]" routerLink="/admin/dashboard" class="w-full justify-center inline-block text-center"
+         routerLinkActive="text-primary">
+        <ng-icon name="heroAdjustmentsHorizontalSolid" size="24"></ng-icon>
+        <span class="block text-xs font-semibold">Admin-Bereich</span>
+      </a>
+
+      <a *ifRole="[AccessRole.APPRENTICE]" routerLink="/exemption-request/submission" class="w-full justify-center inline-block text-center"
+         routerLinkActive="text-primary">
+        <ng-icon name="heroPlusCircleSolid" size="24"></ng-icon>
+        <span class="block text-xs font-semibold">Neuer Antrag</span>
+      </a>
+
+      <a routerLink="/exemption-request/overview" class="w-full justify-center inline-block text-center"
+         routerLinkActive="text-primary">
+        <ng-icon name="heroDocumentSolid" size="24"></ng-icon>
+        <span class="block text-xs font-semibold">Alle Anträge</span>
       </a>
 
     </div>

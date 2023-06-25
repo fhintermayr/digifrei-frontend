@@ -4,8 +4,9 @@ import {
   heroCalendarDaysSolid,
   heroCalendarSolid,
   heroChatBubbleOvalLeftSolid,
+  heroDocumentSolid,
   heroFireSolid,
-  heroHomeSolid,
+  heroHomeSolid, heroPlusCircleSolid,
   heroUserPlusSolid
 } from "@ng-icons/heroicons/solid";
 import {
@@ -47,6 +48,7 @@ export const ngIcons = {
   heroChevronLeftMini,
   heroChevronRightMini,
   heroChevronUpMini,
+  heroDocumentSolid,
   heroDocumentPlus,
   heroEllipsisVertical,
   heroExclamationCircle,
@@ -60,6 +62,7 @@ export const ngIcons = {
   heroLightBulb,
   heroMagnifyingGlass,
   heroPencil,
+  heroPlusCircleSolid,
   heroUserGroup,
   heroUserPlusSolid
 }

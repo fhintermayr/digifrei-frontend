@@ -9,7 +9,7 @@
           [control]="userEditingForm.controls.firstName"
           [inputId]="'fist-name'"
           [placeholder]="'Max'"
-        >First name</app-shared-input>
+        >Vorname</app-shared-input>
       </div>
 
       <div class="sm:col-span-3">
@@ -17,7 +17,7 @@
           [control]="userEditingForm.controls.lastName"
           [inputId]="'last-name'"
           [placeholder]="'Mustermann'"
-        >Last name</app-shared-input>
+        >Nachname</app-shared-input>
       </div>
 
       <div class="sm:col-span-4">
@@ -34,7 +34,7 @@
           [control]="userEditingForm.controls.department"
           [inputId]="'department'"
           [options]="departmentDropdownSelectOptions"
-        >Department</app-shared-dropdown>
+        >Abteilung</app-shared-dropdown>
       </div>
 
       <div *ngIf="currentManagingApprentice">
@@ -52,8 +52,8 @@
     </div>
 
     <div class="flex justify-end space-x-2 bg-gray-50 mt-8 -mb-8 sm:-mb-6 -mx-8 sm:-mx-6 px-8 py-3 text-right sm:px-6">
-      <app-shared-button [routerLink]="'/admin/search'" [buttonDesign]="'secondary'">Cancel</app-shared-button>
-      <app-shared-button [buttonType]="'submit'" [isDisabled]="!userEditingForm.valid" [buttonDesign]="'primary'">Save</app-shared-button>
+      <app-shared-button [routerLink]="'/admin/search'" [buttonDesign]="'secondary'">Abbrechen</app-shared-button>
+      <app-shared-button [buttonType]="'submit'" [isDisabled]="userEditingForm.invalid" [buttonDesign]="'primary'">Speichern</app-shared-button>
     </div>
 
   </form>
