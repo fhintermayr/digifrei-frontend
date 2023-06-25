@@ -24,6 +24,7 @@ import { SocioEduExpertSearchResultComponent } from './components/socio-edu-expe
 import { SocioEduExpertEditingComponent } from './components/socio-edu-expert/socio-edu-expert-editing/socio-edu-expert-editing.component';
 import { ChangePasswordComponent } from './components/user-management/user-management-account/change-password/change-password.component';
 import { DeleteUserComponent } from './components/user-management/user-management-account/delete-user/delete-user.component';
+import { DeleteUserConfirmationModalComponent } from './components/user-management/user-management-account/delete-user-confirmation-modal/delete-user-confirmation-modal.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { DeleteUserComponent } from './components/user-management/user-managemen
     SocioEduExpertSearchResultComponent,
     SocioEduExpertEditingComponent,
     ChangePasswordComponent,
-    DeleteUserComponent
+    DeleteUserComponent,
+    DeleteUserConfirmationModalComponent
   ],
   imports: [
     CommonModule,
