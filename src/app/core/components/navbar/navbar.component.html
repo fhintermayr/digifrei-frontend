@@ -8,7 +8,7 @@
           <img routerLink="exemption-request/overview" class="block h-10 w-auto cursor-pointer" src="../../../../assets/images/logo-icp-muenchen.png" alt="ICP Logo">
         </div>
 
-        <div class="hidden lg:ml-6 lg:flex lg:space-x-8">
+        <div *ngIf="authService.isLoggedIn()" class="hidden lg:ml-6 lg:flex lg:space-x-8">
           <a routerLink="/exemption-request/overview" class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm text-gray-500 hover:border-gray-300 hover:text-gray-700"
              routerLinkActive="border-b-2 border-primary font-semibold text-primary">
             Antragsübersicht
