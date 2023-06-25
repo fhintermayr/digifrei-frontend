@@ -2,11 +2,32 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProcessingStatus} from "../../../enum/processing-status";
 import {FormBuilder} from "@angular/forms";
 import {ExemptionRequest} from "../../../model/exemption-request";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-filter-status-table-header',
   templateUrl: './filter-status-table-header.component.html',
-  styleUrls: ['./filter-status-table-header.component.css']
+  styleUrls: ['./filter-status-table-header.component.css'],
+  animations: [
+    trigger('showHideDropdown', [
+      state('hidden', style({
+        opacity: 0,
+        zIndex: -10,
+        transform: 'scale(.95)'
+      })),
+      state('visible', style({
+        opacity: 100,
+        zIndex: 10,
+        transform: 'scale(1)'
+      })),
+      transition('hidden => visible', [
+        animate('200ms ease-out')
+      ]),
+      transition('visible => hidden', [
+        animate('75ms ease-in')
+      ]),
+    ])
+  ]
 })
 export class FilterStatusTableHeaderComponent implements OnInit {
 
