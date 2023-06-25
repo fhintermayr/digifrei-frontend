@@ -1,32 +1,6 @@
 <div class="flex flex-col space-y-10 mt-2 px-4 py-8 sm:p-6">
-  <div>
-    <app-section-heading>Passwort ändern</app-section-heading>
 
-    <form [formGroup]="passwordResetForm" (ngSubmit)="submitPasswordChange()" class="grid grid-cols-5 space-y-6">
-      <div class="col-span-5 sm:col-span-3">
-        <app-shared-input
-          [control]="passwordResetForm.controls.password"
-          [inputId]="'password'"
-          [inputType]="'password'"
-        >Passwort</app-shared-input>
-      </div>
-
-      <div class="col-span-5 sm:col-span-3">
-        <app-shared-input
-          [control]="passwordResetForm.controls.passwordConfirm"
-          [inputId]="'password-repeat'"
-          [inputType]="'password'"
-        >Passwort wiederholen</app-shared-input>
-      </div>
-
-      <div class="col-span-5 sm:col-span-3">
-        <app-shared-button [buttonType]="'submit'" [isDisabled]="passwordResetForm.invalid" [buttonDesign]="'primary'">
-          Speichern
-        </app-shared-button>
-      </div>
-    </form>
-
-  </div>
+  <app-change-password *ngIf="userId" [userId]="userId"></app-change-password>
 
   <div>
     <app-section-heading>Benutzer löschen</app-section-heading>

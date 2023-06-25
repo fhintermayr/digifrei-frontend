@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
-import {PasswordValidators} from "../../../validators/password-validators";
+import {FormBuilder} from "@angular/forms";
 import {RestApiService} from "../../../../../core/services/rest-api.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NotificationService} from "../../../../../core/services/notification.service";
@@ -14,12 +13,8 @@ import {User} from "../../../../../shared/models/user";
 })
 export class UserManagementAccountComponent implements OnInit {
 
-  readonly passwordResetForm = this.formBuilder.group({
-    password: ['', [Validators.required, Validators.minLength(8)]],
-    passwordConfirm: ['', [Validators.required, PasswordValidators.equalPasswords('password')]]
-  })
-
   currentlyManagingUser: User = new User()
+  userId?: number
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,19 +27,11 @@ export class UserManagementAccountComponent implements OnInit {
 
   ngOnInit(): void {
     const userIdProvidedInRoute: number = this.activatedRoute.snapshot.params['userId']
+    this.userId = userIdProvidedInRoute
 
     this.restApiService.getUserById(userIdProvidedInRoute).subscribe({
       next: user => this.currentlyManagingUser = user,
       error: () => this.notification.showError("Benutzer konnte nicht geladen werden")
-    })
-  }
-
-  submitPasswordChange() {
-    const newPassword: string = this.passwordResetForm.get('password')?.value || ''
-
-    this.restApiService.changePassword(this.currentlyManagingUser.id, newPassword).subscribe({
-      next: () => this.notification.showSuccess("Password wurde geändert"),
-      error: () => this.notification.showError("Passwort konnte nicht geändert werden")
     })
   }
 
