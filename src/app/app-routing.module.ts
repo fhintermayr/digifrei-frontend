@@ -22,6 +22,8 @@ const routes: Routes = [
   },
   {
     path: 'exemption-request',
+    canActivate: [authenticationGuard],
+    canActivateChild: [authenticationGuard],
     loadChildren: () => import('./modules/exemption-request/exemption-request.module').then(module => module.ExemptionRequestModule)
   },
   { path: 'login', component: LoginComponent },

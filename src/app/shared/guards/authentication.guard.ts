@@ -8,6 +8,14 @@ export const authenticationGuard: CanActivateFn = (route, state) => {
   const notificationService = inject(NotificationService)
   const router = inject(Router)
 
+  if (authService.isLoggedOut()) {
+    router.navigate(['/login'])
+
+    if (authService.isSessionExpired()) notificationService.showInfo("Your session has expired")
+
+    return false
+  }
+
   if (authService.isSessionExpired()) {
     router.navigate(['/login'])
     notificationService.showInfo("Your session has expired")
