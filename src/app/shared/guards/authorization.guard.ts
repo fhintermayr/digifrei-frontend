@@ -10,7 +10,7 @@ export const authorizationGuard: CanActivateFn = (route, state) => {
   const requiredRoles: AccessRole[] = route.data['requiredRoles']
 
   if (authService.isLoggedOut() || hasNotRequiredRole(authService ,requiredRoles)) {
-    router.navigate(['/'])
+    router.navigate(['/login'])
     return false
   }
 
