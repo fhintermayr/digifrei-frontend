@@ -29,10 +29,10 @@ export class ExemptionRequestService {
 
   public getSelfSubmittedExemptionRequests(page?: number): Observable<Page<ExemptionRequest>> {
 
-    const url = `${environment.apiUrl}/exemption/self`
+    const url = `${environment.apiUrl}/exemption/self-submitted`
 
-    const params = new HttpParams()
-    if (page) params.set("page", page)
+    let params = new HttpParams()
+    if (page) params = params.set("page", page)
 
     return this.httpClient.get<Page<ExemptionRequest>>(url, {params})
   }
