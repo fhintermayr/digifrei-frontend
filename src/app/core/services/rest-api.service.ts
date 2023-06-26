@@ -15,7 +15,7 @@ export class RestApiService {
 
   public createUser(userToCreate: UserCreationDto): Observable<User> {
 
-    const url = `${environment.apiUrl}/user/register`
+    const url = `${environment.apiUrl}/user`
 
     return this.httpClient.post<User>(url, userToCreate)
   }
