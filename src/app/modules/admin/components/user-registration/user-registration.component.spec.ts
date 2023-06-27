@@ -11,6 +11,7 @@ import {RouterTestingModule} from "@angular/router/testing";
 import {PageHeadingComponent} from "../../../../shared/components/page-heading/page-heading.component";
 import {NgIconsModule} from "@ng-icons/core";
 import {heroChevronLeftMini, heroChevronRightMini} from "@ng-icons/heroicons/mini";
+import {BreadcrumbComponent} from "../../../../shared/components/breadcrumb/breadcrumb.component";
 
 describe('UserRegistrationComponent', () => {
   let component: UserRegistrationComponent;
@@ -18,7 +19,10 @@ describe('UserRegistrationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserRegistrationComponent, SharedInputComponent, SharedDropdownComponent, SharedButtonComponent, PageHeadingComponent ],
+      declarations: [
+        UserRegistrationComponent, SharedInputComponent, SharedDropdownComponent, SharedButtonComponent,
+        PageHeadingComponent, BreadcrumbComponent
+      ],
       imports: [ ReactiveFormsModule, HttpClientTestingModule, ToastrModule.forRoot(), RouterTestingModule,
         NgIconsModule.withIcons({heroChevronLeftMini, heroChevronRightMini})]
     })

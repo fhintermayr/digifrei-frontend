@@ -14,6 +14,7 @@ import {NgIconsModule} from "@ng-icons/core";
 import {heroChevronLeftMini, heroChevronRightMini} from "@ng-icons/heroicons/mini";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RouterTestingModule} from "@angular/router/testing";
+import {BreadcrumbComponent} from "../../../../../shared/components/breadcrumb/breadcrumb.component";
 
 describe('SocioEduExpertRegistrationComponent', () => {
   let component: SocioEduExpertRegistrationComponent;
@@ -23,7 +24,7 @@ describe('SocioEduExpertRegistrationComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         SocioEduExpertRegistrationComponent, PageHeadingComponent, SocioEduExpertFormComponent, CardComponent,
-        CardBodyComponent, SharedInputComponent, SharedButtonComponent, CardFooterComponent,
+        CardBodyComponent, SharedInputComponent, SharedButtonComponent, CardFooterComponent, BreadcrumbComponent
       ],
       imports: [
         HttpClientTestingModule, ToastrModule.forRoot(), ReactiveFormsModule, RouterTestingModule,
