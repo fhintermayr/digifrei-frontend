@@ -6,6 +6,8 @@ import {SharedDropdownComponent} from "../../../../shared/components/shared-drop
 import {SharedInputComponent} from "../../../../shared/components/shared-input/shared-input.component";
 import {SharedButtonComponent} from "../../../../shared/components/shared-button/shared-button.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import {ModalComponent} from "../../../../shared/components/modal/modal.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 describe('NewRequestProcessingModalComponent', () => {
   let component: NewRequestProcessingModalComponent;
@@ -14,9 +16,10 @@ describe('NewRequestProcessingModalComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        NewRequestProcessingModalComponent, SharedDropdownComponent, SharedInputComponent, SharedButtonComponent
+        NewRequestProcessingModalComponent, SharedDropdownComponent, SharedInputComponent, SharedButtonComponent,
+        ModalComponent
       ],
-      imports: [ ReactiveFormsModule ],
+      imports: [ BrowserAnimationsModule, ReactiveFormsModule ],
       providers: [
         {provide: DialogRef, useValue: {}}
       ]
