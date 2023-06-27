@@ -16,7 +16,8 @@ const routes: Routes = [
     canActivate: [authenticationGuard, authorizationGuard],
     canActivateChild: [authenticationGuard],
     data: {
-      requiredRoles: [AccessRole.TRAINER]
+      requiredRoles: [AccessRole.TRAINER],
+      breadcrumb: 'Administration'
     },
     loadChildren: () => import('./modules/admin/admin.module').then(module => module.AdminModule)
   },
@@ -24,6 +25,7 @@ const routes: Routes = [
     path: 'exemption-request',
     canActivate: [authenticationGuard],
     canActivateChild: [authenticationGuard],
+    data: { breadcrumb: 'Dienstbefreiungsanträge' },
     loadChildren: () => import('./modules/exemption-request/exemption-request.module').then(module => module.ExemptionRequestModule)
   },
   { path: 'login', component: LoginComponent },

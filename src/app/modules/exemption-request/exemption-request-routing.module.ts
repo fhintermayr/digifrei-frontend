@@ -6,9 +6,9 @@ import {RequestDetailsComponent} from "./components/request-details/request-deta
 
 const routes: Routes = [
   { path: '', redirectTo: 'overview', pathMatch: "full" },
-  { path: 'overview', component: RequestOverviewComponent },
-  { path: ':id/details', component: RequestDetailsComponent },
-  { path: 'submission', component: RequestSubmissionComponent },
+  { path: 'overview', component: RequestOverviewComponent, data: { breadcrumb: 'Übersicht' } },
+  { path: ':id/details', component: RequestDetailsComponent, data: { breadcrumb: 'Antragsdetails' } },
+  { path: 'submission', component: RequestSubmissionComponent, data: { breadcrumb: 'Antrag einreichen' } },
 ];
 
 
