@@ -31,8 +31,8 @@ export class UserManagementProfileComponent implements OnInit {
   private readonly namePattern: RegExp = new RegExp("^[a-zA-Z\x7f-\xff-]{2,}(\\s?[a-zA-Z\x7f-\xff-]{2,})*$")
 
   userEditingForm = this.formBuilder.group({
-    firstName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(this.namePattern)]],
-    lastName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(this.namePattern)]],
+    firstName: ['', [Validators.required, Validators.pattern(this.namePattern)]],
+    lastName: ['', [Validators.required, Validators.pattern(this.namePattern)]],
     email: ['', Validators.required],
     department: ['', Validators.required],
     socioEduExpert: [null, Validators.required]
