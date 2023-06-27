@@ -89,10 +89,10 @@ export class UserManagementProfileComponent implements OnInit {
 
     this.restApiService.updateUserById(this.currentManagingUser.id, userUpdateDto).subscribe({
       next: updatedUser => {
-        this.notification.showSuccess(`${updatedUser.firstName} ${updatedUser.lastName} was updated successfully.`)
+        this.notification.showSuccess(`${updatedUser.firstName} ${updatedUser.lastName} wurde aktualisiert.`)
         this.currentManagingUser = updatedUser
       },
-      error: () => this.notification.showError("Wasn't able to perform the update. Please try again later.")
+      error: () => this.notification.showError("Benutzer konnte nicht aktualisiert werden. Versuche es später erneut")
     })
   }
 
