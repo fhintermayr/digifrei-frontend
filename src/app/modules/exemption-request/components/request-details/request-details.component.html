@@ -1,6 +1,6 @@
 <ng-container *ngIf="exemptionRequest$ | async as exemptionRequest">
 
-  <app-page-heading previousPageLink="/exemption-request">Dienstbefreiung von {{ exemptionRequest.applicant.firstName }} {{ exemptionRequest.applicant.lastName }}</app-page-heading>
+  <app-page-heading>Dienstbefreiung von {{ exemptionRequest.applicant.firstName }} {{ exemptionRequest.applicant.lastName }}</app-page-heading>
 
   <app-card>
     <app-card-header>

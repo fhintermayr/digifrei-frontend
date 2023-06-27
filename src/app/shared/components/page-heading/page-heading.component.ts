@@ -10,7 +10,5 @@ export class PageHeadingComponent {
 
   @Input()
   breadcrumbs?: SiteNavigationLink[]
-  @Input()
-  previousPageLink: string = "/"
 
 }

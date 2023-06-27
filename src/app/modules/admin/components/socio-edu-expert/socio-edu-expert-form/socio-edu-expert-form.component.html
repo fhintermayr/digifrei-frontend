@@ -3,9 +3,9 @@
 <app-card>
   <app-card-body>
     <form [formGroup]="form" class="grid grid-cols-3 gap-4 ">
-      <app-shared-input [control]="form.controls.firstName" class="col-span-3 sm:col-span-1">Vorname</app-shared-input>
-      <app-shared-input [control]="form.controls.lastName" class="col-span-3 sm:col-span-1">Nachname</app-shared-input>
-      <app-shared-input [control]="form.controls.email" class="col-span-3 sm:col-span-1">Email</app-shared-input>
+      <app-shared-input [control]="form.controls.firstName" placeholder="Maria" class="col-span-3 sm:col-span-1">Vorname</app-shared-input>
+      <app-shared-input [control]="form.controls.lastName" placeholder="Musterfrau" class="col-span-3 sm:col-span-1">Nachname</app-shared-input>
+      <app-shared-input [control]="form.controls.email" placeholder="maria.musterfrau@icpmuenchen.de" class="col-span-3 sm:col-span-1">Email</app-shared-input>
     </form>
   </app-card-body>
 
