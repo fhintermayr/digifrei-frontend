@@ -15,6 +15,7 @@ import {NgIconsModule} from "@ng-icons/core";
 import {heroChevronLeftMini, heroChevronRightMini} from "@ng-icons/heroicons/mini";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RouterTestingModule} from "@angular/router/testing";
+import {BreadcrumbComponent} from "../../../../shared/components/breadcrumb/breadcrumb.component";
 
 describe('RequestSubmissionComponent', () => {
   let component: RequestSubmissionComponent;
@@ -24,7 +25,7 @@ describe('RequestSubmissionComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         RequestSubmissionComponent,PageHeadingComponent, CardComponent, CardBodyComponent, CardFooterComponent,
-        SharedInputComponent, SharedDropdownComponent, SharedCheckboxComponent, SharedButtonComponent,
+        SharedInputComponent, SharedDropdownComponent, SharedCheckboxComponent, SharedButtonComponent, BreadcrumbComponent
       ],
       imports: [
         HttpClientTestingModule, ToastrModule.forRoot(), ReactiveFormsModule, RouterTestingModule,

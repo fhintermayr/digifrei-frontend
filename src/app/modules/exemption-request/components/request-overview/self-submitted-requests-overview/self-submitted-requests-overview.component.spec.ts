@@ -8,6 +8,7 @@ import {NgIconsModule} from "@ng-icons/core";
 import {heroChevronLeftMini, heroChevronRightMini} from "@ng-icons/heroicons/mini";
 import {RouterTestingModule} from "@angular/router/testing";
 import {AlertComponent} from "../../../../../shared/components/alert/alert.component";
+import {BreadcrumbComponent} from "../../../../../shared/components/breadcrumb/breadcrumb.component";
 
 describe('SelfSubmittedRequestsOverviewComponent', () => {
   let component: SelfSubmittedRequestsOverviewComponent;
@@ -17,7 +18,7 @@ describe('SelfSubmittedRequestsOverviewComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         SelfSubmittedRequestsOverviewComponent, PageHeadingComponent, ExemptionRequestsTableComponent,
-        AlertComponent
+        AlertComponent, BreadcrumbComponent
       ],
       imports: [
         HttpClientTestingModule, RouterTestingModule,

@@ -23,6 +23,7 @@ import { TablePaginationComponent } from './components/table-pagination/table-pa
 import { IfRoleDirective } from './directives/if-role.directive';
 import { ComboboxComponent } from './components/combobox/combobox.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 
 
@@ -47,7 +48,8 @@ import { ModalComponent } from './components/modal/modal.component';
     TablePaginationComponent,
     IfRoleDirective,
     ComboboxComponent,
-    ModalComponent
+    ModalComponent,
+    BreadcrumbComponent
   ],
     exports: [
         SharedButtonComponent,

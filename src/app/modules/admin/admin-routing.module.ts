@@ -26,17 +26,17 @@ import {
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: "full" },
   { path: 'dashboard', component: AdminDashboardComponent },
-  { path: 'departments', component: DepartmentManagementComponent },
-  { path: 'register', component: UserRegistrationComponent },
+  { path: 'departments', component: DepartmentManagementComponent, data: { breadcrumb: 'Abteilungen verwalten' } },
+  { path: 'register', component: UserRegistrationComponent, data: { breadcrumb: 'Benutzer registrieren' } },
   { path: 'search', component: UserSearchComponent },
   { path: 'socio-edu-expert', component: SocioEduExpertSearchComponent },
-  { path: 'socio-edu-expert/register', component: SocioEduExpertRegistrationComponent },
+  { path: 'socio-edu-expert/register', component: SocioEduExpertRegistrationComponent, data: { breadcrumb: 'Fachdienst registrieren' } },
   { path: 'socio-edu-expert/search', component: SocioEduExpertSearchComponent },
-  { path: 'socio-edu-expert/:id', component: SocioEduExpertEditingComponent },
-  { path: 'user/:userId', component: UserManagementComponent, children: [
+  { path: 'socio-edu-expert/:id', component: SocioEduExpertEditingComponent, data: { breadcrumb: 'Fachdienst bearbeiten' } },
+  { path: 'user/:userId', component: UserManagementComponent, data: { breadcrumb: 'Benutzer verwalten' }, children: [
       {path: '', redirectTo: 'profile', pathMatch: 'full' },
-      {path: 'profile', component: UserManagementProfileComponent},
-      {path: 'account', component: UserManagementAccountComponent}
+      {path: 'profile', component: UserManagementProfileComponent, data: { breadcrumb: 'Profil' }},
+      {path: 'account', component: UserManagementAccountComponent, data: { breadcrumb: 'Account & Sicherheit' }}
     ] }
 ];
 

@@ -11,6 +11,7 @@ import {SharedInputComponent} from "../../../../../shared/components/shared-inpu
 import {SharedButtonComponent} from "../../../../../shared/components/shared-button/shared-button.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RouterTestingModule} from "@angular/router/testing";
+import {BreadcrumbComponent} from "../../../../../shared/components/breadcrumb/breadcrumb.component";
 
 describe('SocioEduExpertFormComponent', () => {
   let component: SocioEduExpertFormComponent;
@@ -20,7 +21,7 @@ describe('SocioEduExpertFormComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         SocioEduExpertFormComponent, PageHeadingComponent, CardComponent, CardBodyComponent, CardFooterComponent,
-        SharedInputComponent, SharedButtonComponent
+        SharedInputComponent, SharedButtonComponent, BreadcrumbComponent
       ],
       imports: [
         NgIconsModule.withIcons({heroChevronLeftMini, heroChevronRightMini}), ReactiveFormsModule, RouterTestingModule
