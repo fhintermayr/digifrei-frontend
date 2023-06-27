@@ -8,11 +8,11 @@ import { Component } from '@angular/core';
 export class AdminDashboardComponent {
 
   dashboardListItems = [
-    { title: "Benutzer registrieren", description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor ", routerLink: "/admin/register", ngIconName: "heroUserPlusSolid" },
-    { title: "Benutzer verwalten", description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor ", routerLink: "/admin/search", ngIconName: "heroAdjustmentsHorizontalSolid" },
-    { title: "Fachdienst registrieren", description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor ", routerLink: "/admin/socio-edu-expert/register", ngIconName: "heroUserPlusSolid" },
-    { title: "Fachdienst verwalten", description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor ", routerLink: "/admin/socio-edu-expert/search", ngIconName: "heroAdjustmentsHorizontalSolid" },
-    { title: "Abteilungen verwalten", description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor ", routerLink: "/admin/departments", ngIconName: "heroBuildingOffice2Solid" },
+    { title: "Benutzer registrieren", description: "Lege hier einen neuen Account für einen Ausbilder oder Auszubildenden an", routerLink: "/admin/register", ngIconName: "heroUserPlusSolid" },
+    { title: "Benutzer verwalten", description: "Verwalte hier den Benutzer-Account eines Ausbilders oder Auszubildenden", routerLink: "/admin/search", ngIconName: "heroAdjustmentsHorizontalSolid" },
+    { title: "Fachdienst registrieren", description: "Lege hier einen neuen Fachdienst an", routerLink: "/admin/socio-edu-expert/register", ngIconName: "heroUserPlusSolid" },
+    { title: "Fachdienst verwalten", description: "Verwalte hier die Informationen eines Fachdienstes", routerLink: "/admin/socio-edu-expert/search", ngIconName: "heroAdjustmentsHorizontalSolid" },
+    { title: "Abteilungen verwalten", description: "Erstelle oder verwalte hier die Abteilungen", routerLink: "/admin/departments", ngIconName: "heroBuildingOffice2Solid" },
   ]
 
 }

@@ -29,8 +29,8 @@ export class UserRegistrationComponent implements OnInit, OnDestroy {
   private readonly namePattern: RegExp = new RegExp("^[a-zA-Z\x7f-\xff-]{2,}(\\s?[a-zA-Z\x7f-\xff-]{2,})*$")
 
   readonly registrationForm = this.formBuilder.group({
-    firstName: ['', [Validators.required, Validators.minLength(3), Validators.pattern(this.namePattern)]],
-    lastName: ['', [Validators.required, Validators.minLength(3),Validators.pattern(this.namePattern)]],
+    firstName: ['', [Validators.required, Validators.pattern(this.namePattern)]],
+    lastName: ['', [Validators.required,Validators.pattern(this.namePattern)]],
     email: ['', [Validators.required, Validators.email], UsernameValidators.usernameAvailable(this.restApiService)],
     password: [null, [Validators.required, Validators.minLength(8)]],
     departmentId: [null, Validators.required],
@@ -68,7 +68,7 @@ export class UserRegistrationComponent implements OnInit, OnDestroy {
 
     this.restApiService.createUser(userToRegister).pipe(takeUntil(this.unsubscribe$)).subscribe({
         next: createdUser => {
-      this.notification.showSuccess(`Nutzer ${createdUser.email} wurde erstellt`)
+      this.notification.showSuccess(`Nutzer ${createdUser.firstName} ${createdUser.lastName} wurde erstellt`)
       this.registrationForm.reset()
       },
       error: () => this.notification.showError("Nutzer konnte nicht erstellt werden. Bitte versuche es erneut")

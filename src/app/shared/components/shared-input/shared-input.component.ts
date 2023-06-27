@@ -34,8 +34,8 @@ export class SharedInputComponent implements OnChanges {
     max: "Der übergebene Wert is zu groß",
     email: "Bitte gib eine gültige E-Mail-Adresse ein",
     pattern: "Feld hat falsches Format",
-    usernameIsTaken: "Der Benutzername ist bereits vergeben",
-    unknownError: "Verfügbarkeit des Benutzernamens konnte nicht überprüft werden. " +
+    usernameIsTaken: "Die E-Mail wird bereits von einem anderen Benutzer verwendet",
+    unknownError: "Verfügbarkeit der E-Mail konnte nicht überprüft werden. " +
                   "Bitte überprüfe deine Internetverbindung",
     passwordsDoNotMatch: "Passwörter stimmen nicht überein",
     dateNotInFuture: "Das Datum muss in der Zukunft liegen",

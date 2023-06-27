@@ -14,8 +14,8 @@ export class UserManagementComponent implements OnInit {
   user$!: Observable<User>
 
   readonly tabs: SiteNavigationLink[] = [
-    {displayName: "Profile", routerLink: "./profile"},
-    {displayName: "Account & Security", routerLink: "./account"}
+    {displayName: "Profil", routerLink: "./profile"},
+    {displayName: "Account & Sicherheit", routerLink: "./account"}
   ]
 
   constructor(

@@ -45,8 +45,8 @@ export class LoginComponent {
 
   private handleLoginAttemptError(error: HttpErrorResponse) {
     error.status === HttpStatusCode.Unauthorized ?
-      this.notificationService.showError("Wrong credentials!") :
-      this.notificationService.showError("An unexpected error occurred")
+      this.notificationService.showError("Ungültige Anmeldedaten. Versuche es erneut") :
+      this.notificationService.showError("Es ist ein unerwarteter Fehler aufgetreten")
   }
 
 }

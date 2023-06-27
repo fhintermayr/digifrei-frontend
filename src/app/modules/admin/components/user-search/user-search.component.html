@@ -2,14 +2,14 @@
   <div class="text-center">
 
     <ng-icon name="heroMagnifyingGlass" size="48" class="text-icon mx-auto"></ng-icon>
-    <h3>Search user</h3>
-    <p class="mt-1">Search here for a user to manage.</p>
+    <h3>Benutzer suchen</h3>
+    <p class="mt-1">Suche hier nach einem Benutzer, um ihn zu verwalten</p>
 
     <form class="mt-6 flex">
       <app-shared-input
         #searchBar (input)="onInput(searchBar.control.value)"
         [inputType]="'search'"
-        [placeholder]="'Enter first name, last name or email'"
+        [placeholder]="'Gib den Vornamen, Nachnamen oder die E-Mail-Adresse ein'"
         class="w-full bg-white">
       </app-shared-input>
     </form>
@@ -28,17 +28,17 @@
       <div *ngIf="matchingUsers.length >= 10" class="mt-12 text-center">
         <ng-icon name="heroLightBulb" size="20" strokeWidth="2" class="text-icon mx-auto"></ng-icon>
         <p class="text-sm">
-          Hint: Only the first 10 matching users will be loaded.
-          If the desired user is not in the list, please provide a more detailed search term
+          Hinweis: Es werden nur die ersten 10 Ergebnisse angezeigt, die dem Suchbegriff entsprechen.
+          Wenn dein gewünschtes Ergebnis nicht in der Suche ist, verwende einen detaillierten Suchbegriff
         </p>
       </div>
 
     </ng-container>
 
     <ng-template #noResults>
-      <p *ngIf="isSearchTermProvided" class="flex flex-wrap justify-center">No users were found.
+      <p *ngIf="isSearchTermProvided" class="flex flex-wrap justify-center">Es wurden keine Benutzer gefunden.
         <a [routerLink]="'/admin/register'" class="inline-flex align-baseline text-primary font-bold ml-1">
-          Create a new one instead
+          Erstelle hier stattdesssen einen neuen
           <ng-icon name="heroArrowLongRightMini" size="24" class="text-primary ml-1"></ng-icon>
         </a>
       </p>
