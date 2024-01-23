@@ -10,6 +10,12 @@
   - [Anpassung der Backend-URL](#anpassung-der-backend-url)
   - [Lokales Starten der Anwendung](#lokales-starten-der-anwendung)
   - [Erstellen eines Builds](#erstellen-eines-builds)
+- [Benutzerhandbuch](#benutzerhandbuch)
+  - [Erstellen eines neuen Benutzers](#erstellen-eines-neuen-benutzers)
+  - [Verwalten von Benutzern und Fachdiensten](#verwalten-von-benutzern-und-fachdiensten)
+  - [Abteilungen verwalten](#abteilungen-verwalten)
+  - [Anträge einreichen](#anträge-einreichen)
+  - [Anträge verwalten](#anträge-verwalten)
 
 ## Vorwort
 Es empfiehlt sich zuerst die Backend-Anwendung zum Laufen zu bringen, da die Frontend-Anwendung auf diese zugreift. 
